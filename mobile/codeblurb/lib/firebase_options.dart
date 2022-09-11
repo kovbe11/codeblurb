@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '304106480953',
     projectId: 'codeblurb',
     storageBucket: 'codeblurb.appspot.com',
-    iosClientId: '304106480953-kgbtorc60bp88m019gbml1s9vuug8trb.apps.googleusercontent.com',
+    iosClientId:
+        '304106480953-kgbtorc60bp88m019gbml1s9vuug8trb.apps.googleusercontent.com',
     iosBundleId: 'com.example.codeblurb',
   );
 }
