@@ -23,8 +23,11 @@ jobs:
           channel: 'stable'
       - run: flutter --version
       - name: Install dependencies
+        working-directory: ./mobile/codeblurb/
         run: flutter pub get
       - name: Run Format
+        working-directory: ./mobile/codeblurb/
         run: flutter format --dry-run --set-exit-if-changed .
       - name: Run Analyzer
+        working-directory: ./mobile/codeblurb/
         run: flutter analyze .
