@@ -47,8 +47,13 @@ public class AuthController {
     @PostMapping("/logout")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void logout() {
-        //TODO
+        authenticationService.logout();
     }
 
+    @PostMapping("/force-logout")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void forceLogout() {
+        authenticationService.forceLogout();
+    }
 
 }

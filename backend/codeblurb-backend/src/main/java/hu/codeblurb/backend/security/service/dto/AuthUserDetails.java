@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.time.Instant;
 
 @Builder
-public record AuthUserDetails(String customerId, String username, String jti, Instant expiration) {
+public record AuthUserDetails(int customerId, String username, String jti, Instant expiration) {
 }

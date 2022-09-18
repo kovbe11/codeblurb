@@ -22,7 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_URL = "/auth/login";
-    private static final String LOGOUT_URL = "/auth/logout";
     private static final String TOKEN_REFRESH_URL = "/auth/refresh";
     private static final String REGISTER_URL = "/auth/register";
     private final JwtTokenAuthenticationService jwtTokenAuthenticationService;
@@ -36,7 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-                .antMatchers(HttpMethod.POST, LOGOUT_URL).permitAll()
                 .antMatchers(HttpMethod.POST, TOKEN_REFRESH_URL).permitAll()
                 .antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()
                 .anyRequest().authenticated()

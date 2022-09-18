@@ -24,6 +24,7 @@ import static hu.codeblurb.backend.security.service.TokenService.TOKEN_PREFIX;
 public class JwtTokenAuthenticationService {
 
     private final SecretService secretService;
+    private final DenyTokenService denyTokenService;
 
     public UsernamePasswordAuthenticationToken getAuthenticationFromToken(String token) {
         if (!StringUtils.hasText(token)) {
@@ -31,8 +32,10 @@ public class JwtTokenAuthenticationService {
         }
 
         final var claims = validateTokenAndParseClaims(token)
+                .filter(it -> denyTokenService.isNotDenied(it.getId()))
                 .orElseThrow(() -> new BadCredentialsException("")); //TODO
-        final var customerId = claims.get(TokenService.CUSTOMER_ID_CLAIM).toString();
+
+        final var customerId = Integer.parseInt(claims.get(TokenService.CUSTOMER_ID_CLAIM).toString());
 
         final var userDetails = AuthUserDetails.builder()
                 .customerId(customerId)

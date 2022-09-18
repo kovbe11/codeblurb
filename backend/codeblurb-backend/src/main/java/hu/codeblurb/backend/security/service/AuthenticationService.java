@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class AuthenticationService {
@@ -17,6 +19,10 @@ public class AuthenticationService {
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
     private final CustomerRepository customerRepository;
+    private final AuthenticationFacade authenticationFacade;
+    private final IssuedTokenService issuedTokenService;
+    private final DenyTokenService denyTokenService;
+
 
     public LoginResult login(String username, String password) {
         final var customer = findCustomerOrThrow(username);
@@ -30,11 +36,6 @@ public class AuthenticationService {
         } else {
             throw new WrongPasswordException();
         }
-    }
-
-    private Customer findCustomerOrThrow(String username) {
-        return customerRepository.findByUsername(username)
-                .orElseThrow(() -> new CustomerNotFoundException("No customer registered with username: " + username));
     }
 
     public void register(String username, String password) {
@@ -53,5 +54,27 @@ public class AuthenticationService {
                 .accessToken(tokens.accessToken())
                 .refreshToken(tokens.refreshToken())
                 .build();
+    }
+
+    public void forceLogout() {
+        authenticationFacade.getCurrentCustomerId()
+                .map(issuedTokenService::getIssuedTokensForCustomer)
+                .stream()
+                .flatMap(Set::stream)
+                .forEach(denyTokenService::denyToken);
+    }
+
+    public void logout() {
+        authenticationFacade.getCurrentUserFromContext()
+                .map(it -> issuedTokenService.findTokenById(it.jti()))
+                .ifPresent(token -> {
+                    denyTokenService.denyToken(token);
+                    denyTokenService.denyToken(issuedTokenService.findRefreshTokenForAccessToken(token.getJti()));
+                });
+    }
+
+    private Customer findCustomerOrThrow(String username) {
+        return customerRepository.findByUsername(username)
+                .orElseThrow(() -> new CustomerNotFoundException("No customer registered with username: " + username));
     }
 }

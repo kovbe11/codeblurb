@@ -2,10 +2,8 @@ package hu.codeblurb.backend.security.exception;
 
 import hu.codeblurb.backend.exception.CodeBlurbException;
 
-public class CodeBlurbSecurityException extends CodeBlurbException {
-
-    public CodeBlurbSecurityException(String message) {
+public class InconsistentDatabaseException extends CodeBlurbException {
+    public InconsistentDatabaseException(String message) {
         super(message);
     }
-
 }

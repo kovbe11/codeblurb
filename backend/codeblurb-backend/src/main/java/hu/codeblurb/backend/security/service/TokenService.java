@@ -2,6 +2,7 @@ package hu.codeblurb.backend.security.service;
 
 import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.security.exception.InvalidTokenException;
+import hu.codeblurb.backend.security.service.dto.TokenIssuedMessage;
 import hu.codeblurb.backend.security.service.dto.TokenResult;
 import hu.codeblurb.backend.security.service.dto.ValidateRefreshTokenResult;
 import io.jsonwebtoken.Claims;
@@ -9,6 +10,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,34 +28,37 @@ public class TokenService {
     private static final String REFRESH_TOKEN_SUBJECT = "refreshtoken";
 
     private final SecretService secretService;
+    private final DenyTokenService denyTokenService;
+    private final IssuedTokenService issuedTokenService;
 
-
-    public TokenResult generateTokens(Customer customer) {
-        return TokenResult.builder()
-                .accessToken(generateAccessToken(customer))
-                .refreshToken(generateRefreshToken(customer))
+    private static TokenIssuedMessage createTokenIssuedMessage(Customer customer, Token accessToken, Token refreshToken) {
+        return TokenIssuedMessage.builder()
+                .accessTokenJti(accessToken.jti())
+                .accessTokenExpirationDate(accessToken.expirationDate().toInstant())
+                .refreshTokenJti(refreshToken.jti())
+                .refreshTokenExpirationDate(refreshToken.expirationDate().toInstant())
+                .customerId(customer.getId())
                 .build();
     }
 
-    private String generateAccessToken(Customer customer) {
+    public TokenResult generateTokens(Customer customer) {
+        final var accessToken = generateAccessToken(customer);
+        final var refreshToken = generateRefreshToken(customer);
+
+        issuedTokenService.tokenIssued(createTokenIssuedMessage(customer, accessToken, refreshToken));
+
+        return TokenResult.builder()
+                .accessToken(accessToken.jwt())
+                .refreshToken(refreshToken.jwt())
+                .build();
+    }
+
+    private Token generateAccessToken(Customer customer) {
         return generateToken(customer, ACCESS_TOKEN_SUBJECT, 2000000000);
     }
 
-    private String generateRefreshToken(Customer customer) {
+    private Token generateRefreshToken(Customer customer) {
         return generateToken(customer, REFRESH_TOKEN_SUBJECT, 2000000000);
-    }
-
-    //TODO: ttl
-    private String generateToken(Customer customer, String subject, int ttl) {
-        return Jwts.builder()
-                .setId(randomJti())
-                .setSubject(subject)
-                .setAudience(customer.getUsername())
-                .setIssuer(TOKEN_ISSUER)
-                .claim(CUSTOMER_ID_CLAIM, customer.getId())
-                .setExpiration(getExpiration(ttl))
-                .signWith(SignatureAlgorithm.HS512, secretService.getSecret())
-                .compact();
     }
 
     private String randomJti() {
@@ -64,9 +69,20 @@ public class TokenService {
         return new Date(System.currentTimeMillis() + ttl);
     }
 
-    public ValidateRefreshTokenResult validateRefreshToken(String refreshToken) {
-        final var claims = validateToken(REFRESH_TOKEN_SUBJECT, refreshToken);
-        return new ValidateRefreshTokenResult(claims.getAudience());
+    //TODO: ttl
+    private Token generateToken(Customer customer, String subject, int ttl) {
+        final var jti = randomJti();
+        final var expiration = getExpiration(ttl);
+        final var jwt = Jwts.builder()
+                .setId(jti)
+                .setSubject(subject)
+                .setAudience(customer.getUsername())
+                .setIssuer(TOKEN_ISSUER)
+                .claim(CUSTOMER_ID_CLAIM, customer.getId())
+                .setExpiration(expiration)
+                .signWith(SignatureAlgorithm.HS512, secretService.getSecret())
+                .compact();
+        return new Token(jti, expiration, jwt);
     }
 
     private Claims validateToken(String subject, String refreshToken) {
@@ -80,5 +96,16 @@ public class TokenService {
         } catch (JwtException | IllegalArgumentException e) {
             throw new InvalidTokenException();
         }
+    }
+
+    public ValidateRefreshTokenResult validateRefreshToken(String refreshToken) {
+        if (denyTokenService.isDenied(refreshToken)) {
+            throw new BadCredentialsException(""); //TODO
+        }
+        final var claims = validateToken(REFRESH_TOKEN_SUBJECT, refreshToken);
+        return new ValidateRefreshTokenResult(claims.getAudience());
+    }
+
+    private record Token(String jti, Date expirationDate, String jwt) {
     }
 }
