@@ -24,6 +24,7 @@ public class QuizQuestion {
     QuizContent quiz;
     @Id
     private Integer id;
+    private String question;
     @ElementCollection
     private List<String> answers;
     private int solutionIndex;
