@@ -7,11 +7,9 @@ import hu.codeblurb.backend.security.controller.dto.RefreshTokenResponse;
 import hu.codeblurb.backend.security.controller.dto.RegisterRequest;
 import hu.codeblurb.backend.security.service.AuthenticationService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,13 +43,11 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void logout() {
         authenticationService.logout();
     }
 
     @PostMapping("/force-logout")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void forceLogout() {
         authenticationService.forceLogout();
     }

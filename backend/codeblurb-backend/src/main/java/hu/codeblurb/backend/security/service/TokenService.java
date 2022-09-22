@@ -25,21 +25,11 @@ public class TokenService {
     public static final String TOKEN_ISSUER = "codeblurb";
     public static final String CUSTOMER_ID_CLAIM = "customerId";
     public static final String ACCESS_TOKEN_SUBJECT = "accesstoken";
-    private static final String REFRESH_TOKEN_SUBJECT = "refreshtoken";
+    public static final String REFRESH_TOKEN_SUBJECT = "refreshtoken";
 
     private final SecretService secretService;
     private final DenyTokenService denyTokenService;
     private final IssuedTokenService issuedTokenService;
-
-    private static TokenIssuedMessage createTokenIssuedMessage(Customer customer, Token accessToken, Token refreshToken) {
-        return TokenIssuedMessage.builder()
-                .accessTokenJti(accessToken.jti())
-                .accessTokenExpirationDate(accessToken.expirationDate().toInstant())
-                .refreshTokenJti(refreshToken.jti())
-                .refreshTokenExpirationDate(refreshToken.expirationDate().toInstant())
-                .customerId(customer.getId())
-                .build();
-    }
 
     public TokenResult generateTokens(Customer customer) {
         final var accessToken = generateAccessToken(customer);
@@ -98,11 +88,21 @@ public class TokenService {
         }
     }
 
+    private static TokenIssuedMessage createTokenIssuedMessage(Customer customer, Token accessToken, Token refreshToken) {
+        return TokenIssuedMessage.builder()
+                .accessTokenJti(accessToken.jti())
+                .accessTokenExpirationDate(accessToken.expirationDate().toInstant())
+                .refreshTokenJti(refreshToken.jti())
+                .refreshTokenExpirationDate(refreshToken.expirationDate().toInstant())
+                .customerId(customer.getId())
+                .build();
+    }
+
     public ValidateRefreshTokenResult validateRefreshToken(String refreshToken) {
-        if (denyTokenService.isDenied(refreshToken)) {
+        final var claims = validateToken(REFRESH_TOKEN_SUBJECT, refreshToken);
+        if (denyTokenService.isDenied(claims.getId())) {
             throw new BadCredentialsException(""); //TODO
         }
-        final var claims = validateToken(REFRESH_TOKEN_SUBJECT, refreshToken);
         return new ValidateRefreshTokenResult(claims.getAudience());
     }
 

@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String TOKEN_REFRESH_URL = "/auth/refresh";
     private static final String REGISTER_URL = "/auth/register";
     private final JwtTokenAuthenticationService jwtTokenAuthenticationService;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -43,7 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         new JwtTokenFilter(authenticationManager(), jwtTokenAuthenticationService),
                         UsernamePasswordAuthenticationFilter.class
                 )
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .logout().disable();
     }
 
     @Override
