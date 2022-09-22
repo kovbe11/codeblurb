@@ -29,7 +29,7 @@ public class CodingContent extends Content {
     @OneToMany(orphanRemoval = true)
     private List<TestCase> testCases;
 
-    private CodingContentType contentType;
+    private CodingContentType codingContentType;
 
     public CodingContent() {
         super(null, ContentType.CODING);
