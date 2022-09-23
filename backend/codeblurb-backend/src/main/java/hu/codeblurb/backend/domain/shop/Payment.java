@@ -1,7 +1,7 @@
 package hu.codeblurb.backend.domain.shop;
 
 import hu.codeblurb.backend.domain.Customer;
-import hu.codeblurb.backend.domain.content.Content;
+import hu.codeblurb.backend.domain.content.ContentBundle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +28,5 @@ public class Payment {
     @ManyToOne
     private Customer customer;
     @ManyToMany
-    private Set<Content> contentBought;
+    private Set<ContentBundle> contentBundlesBought;
 }

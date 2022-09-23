@@ -66,10 +66,9 @@ class AuthControllerTest extends ControllerTestBase {
                 new HttpEntity<>(createAuthHeader(loginResult.accessToken())), Void.class);
         assertEquals(HttpStatus.OK, logoutResult.getStatusCode());
 
-        //todo
-        assertAuthenticates(HttpStatus.FORBIDDEN, loginResult.accessToken());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
         final var refreshResult = getRefreshTokenResponse(loginResult.refreshToken());
-        assertEquals(HttpStatus.FORBIDDEN, refreshResult.getStatusCode());
+        assertEquals(HttpStatus.UNAUTHORIZED, refreshResult.getStatusCode());
     }
 
 
@@ -86,11 +85,10 @@ class AuthControllerTest extends ControllerTestBase {
                 new HttpEntity<>(createAuthHeader(loginResult.accessToken())), Void.class);
         assertEquals(HttpStatus.OK, forceLogoutResult.getStatusCode());
 
-        //todo
-        assertAuthenticates(HttpStatus.FORBIDDEN, loginResult.accessToken());
-        assertAuthenticates(HttpStatus.FORBIDDEN, refreshResult.getBody().accessToken());
-        assertEquals(HttpStatus.FORBIDDEN, getRefreshTokenResponse(loginResult.refreshToken()).getStatusCode());
-        assertEquals(HttpStatus.FORBIDDEN, getRefreshTokenResponse(refreshResult.getBody().refreshToken()).getStatusCode());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, refreshResult.getBody().accessToken());
+        assertEquals(HttpStatus.UNAUTHORIZED, getRefreshTokenResponse(loginResult.refreshToken()).getStatusCode());
+        assertEquals(HttpStatus.UNAUTHORIZED, getRefreshTokenResponse(refreshResult.getBody().refreshToken()).getStatusCode());
     }
 
     private void assertAuthenticatesProperly(String token) {
@@ -98,8 +96,7 @@ class AuthControllerTest extends ControllerTestBase {
     }
 
     private void assertDoesNotAuthenticate() {
-        //TODO 401
-        assertAuthenticates(HttpStatus.FORBIDDEN, null);
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, null);
     }
 
     private void assertAuthenticates(HttpStatus httpStatus, String token) {

@@ -1,7 +1,7 @@
 package hu.codeblurb.backend.domain.shop;
 
 
-import hu.codeblurb.backend.domain.content.Content;
+import hu.codeblurb.backend.domain.content.ContentBundle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,7 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.Set;
+import javax.persistence.OneToOne;
 
 @Entity
 @AllArgsConstructor
@@ -24,8 +23,11 @@ public class ShoppingItem {
     @Id
     @GeneratedValue
     private Integer id;
-    private String title;
     private Double price;
-    @ManyToMany
-    private Set<Content> includedContent;
+    @OneToOne
+    private ContentBundle contentBundle;
+
+    public String getTitle() {
+        return contentBundle.getTitle();
+    }
 }
