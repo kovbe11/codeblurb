@@ -20,10 +20,10 @@ import java.util.List;
 @Setter
 @ToString
 public class QuizQuestion {
-    @ManyToOne
-    QuizContent quiz;
     @Id
     private Integer id;
+    @ManyToOne
+    QuizContent quiz;
     private String question;
     @ElementCollection
     private List<String> answers;

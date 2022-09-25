@@ -1,4 +1,6 @@
 package hu.codeblurb.backend.controller.dto;
 
-public record PaymentResponse() {
+import java.util.List;
+
+public record PaymentResponse(double pricePayed, List<ContentBundleResponse> boughtContentBundles) {
 }
