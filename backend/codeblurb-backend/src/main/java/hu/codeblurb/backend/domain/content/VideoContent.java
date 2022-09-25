@@ -17,11 +17,16 @@ import static hu.codeblurb.backend.domain.content.Content.ContentType.VIDEO;
 @ToString
 public class VideoContent extends Content {
 
-    private String title;
     private String description;
     private String resourceUrl;
 
     public VideoContent() {
-        super(null, VIDEO);
+        super(null, null, VIDEO);
+    }
+
+    public VideoContent(String title, String description, String resourceUrl) {
+        super(null, title, VIDEO);
+        this.description = description;
+        this.resourceUrl = resourceUrl;
     }
 }
