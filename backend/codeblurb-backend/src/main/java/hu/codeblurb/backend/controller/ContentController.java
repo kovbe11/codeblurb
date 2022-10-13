@@ -5,6 +5,7 @@ import hu.codeblurb.backend.controller.dto.content.MyContentBundlesResponse;
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionResponse;
 import hu.codeblurb.backend.controller.mapper.ContentMapper;
+import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.ContentService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,11 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContentController {
 
     private final ContentService contentService;
+    private final AuthenticationFacade authenticationFacade;
     private final ContentMapper mapper;
 
     @GetMapping("/my-content-bundles")
     public MyContentBundlesResponse getMyContentBundles() {
-        final var contentBundles = contentService.getPurchasedContentBundles();
+        final var contentBundles = contentService.getPurchasedContentBundles(authenticationFacade.getCurrentCustomerId());
         return new MyContentBundlesResponse(mapper.mapContentBundles(contentBundles));
     }
 

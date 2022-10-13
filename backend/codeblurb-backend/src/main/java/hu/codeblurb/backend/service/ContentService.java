@@ -2,13 +2,13 @@ package hu.codeblurb.backend.service;
 
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
 import hu.codeblurb.backend.domain.content.CodingContent;
+import hu.codeblurb.backend.domain.content.Content;
 import hu.codeblurb.backend.domain.content.ContentBundle;
 import hu.codeblurb.backend.domain.content.QuizContent;
 import hu.codeblurb.backend.repository.CodingRepository;
 import hu.codeblurb.backend.repository.ContentBundleRepository;
+import hu.codeblurb.backend.repository.ContentRepository;
 import hu.codeblurb.backend.repository.QuizRepository;
-import hu.codeblurb.backend.security.exception.InconsistentDatabaseException;
-import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import hu.codeblurb.backend.service.mapper.Mapper;
@@ -16,24 +16,30 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ContentService {
 
-    private final AuthenticationFacade authenticationFacade;
     private final CodingRepository codingRepository;
     private final QuizRepository quizRepository;
     private final ContentBundleRepository contentBundleRepository;
+    private final ContentRepository contentRepository;
     private final CodeRunnerService codeRunnerService;
     private final QuizSolutionCheckerService quizSolutionCheckerService;
     private final Mapper mapper;
 
-    public List<ContentBundleResult> getPurchasedContentBundles() {
-        return authenticationFacade.getCurrentCustomerId()
+    public List<ContentBundleResult> getPurchasedContentBundles(Optional<Integer> customerId) {
+        return customerId
                 .map(this::getPurchasedContentBundles)
                 .map(mapper::mapContentBundles)
-                .orElseThrow(() -> new InconsistentDatabaseException("Authenticated request does not have customer id!")); //should not happen
+                .orElseGet(List::of);
+    }
+
+    public Content getContentById(Integer id) {
+        return contentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Content.class, id));
     }
 
     //TODO: CACHE

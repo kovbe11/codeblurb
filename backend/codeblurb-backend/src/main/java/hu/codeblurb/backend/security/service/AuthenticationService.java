@@ -18,7 +18,7 @@ public class AuthenticationService {
 
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
-    private final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository; //TODO in service
     private final AuthenticationFacade authenticationFacade;
     private final IssuedTokenService issuedTokenService;
     private final DenyTokenService denyTokenService;
