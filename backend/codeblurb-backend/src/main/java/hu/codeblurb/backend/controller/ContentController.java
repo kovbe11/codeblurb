@@ -40,7 +40,6 @@ public class ContentController {
     @PostMapping("/quiz/solution/{contentId}")
     public QuizSolutionResponse checkSolutionForQuiz(@PathVariable Integer contentId,
                                                      @RequestBody QuizSolutionRequest quizSolutionRequest) {
-
         contentService.checkSolutionForQuiz(contentId, quizSolutionRequest);
         return null;
     }

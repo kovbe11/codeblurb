@@ -1,5 +1,6 @@
 package hu.codeblurb.backend.repository;
 
+import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.domain.content.CodingContent;
 import hu.codeblurb.backend.domain.content.ContentBundle;
 import hu.codeblurb.backend.domain.content.QuizContent;
@@ -40,11 +41,16 @@ class ContentBundleRepositoryTest {
 
     @Test
     @Sql({"/scripts/cleanDb.sql", "/scripts/addCustomer.sql"})
-    void findContentBundlesPurchasedByCustomerId() {
+    void findContentBundlesPurchasedByCustomer() {
         setUp();
 
-        List<ContentBundle> bundles = contentBundleRepository.findContentBundlesPurchasedByCustomerId(1);
-        List<ContentBundle> emptyBundles = contentBundleRepository.findContentBundlesPurchasedByCustomerId(2);
+        final var customer1 = new Customer();
+        customer1.setId(1);
+        final var customer2 = new Customer();
+        customer2.setId(2);
+
+        List<ContentBundle> bundles = contentBundleRepository.findContentBundlesPurchasedByCustomer(customer1);
+        List<ContentBundle> emptyBundles = contentBundleRepository.findContentBundlesPurchasedByCustomer(customer2);
 
         assertEquals(1, bundles.size());
         assertEquals(0, emptyBundles.size());

@@ -9,8 +9,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.Set;
@@ -25,9 +28,14 @@ public class Payment {
     @Id
     @GeneratedValue
     private Integer id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
     @ManyToMany
+    @JoinTable(
+            name = "content_bundles_bought_with_payment",
+            joinColumns = @JoinColumn(name = "payment_id"),
+            inverseJoinColumns = @JoinColumn(name = "content_bundle_id")
+    )
     private Set<ContentBundle> contentBundlesBought;
     private Double pricePayed;
 }

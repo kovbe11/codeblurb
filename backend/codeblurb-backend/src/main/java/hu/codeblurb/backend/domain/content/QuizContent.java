@@ -21,11 +21,11 @@ public class QuizContent extends Content {
     private List<QuizQuestion> questions;
 
     public QuizContent() {
-        super(null, null, QUIZ);
+        super(null, null, QUIZ, null);
     }
 
     public QuizContent(String name, List<QuizQuestion> questions) {
-        super(null, name, QUIZ);
+        super(null, name, QUIZ, null);
         this.questions = questions;
     }
 
