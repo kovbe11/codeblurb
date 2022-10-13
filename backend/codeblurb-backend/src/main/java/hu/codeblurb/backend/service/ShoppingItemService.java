@@ -1,5 +1,6 @@
 package hu.codeblurb.backend.service;
 
+import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.domain.shop.ShoppingItem;
 import hu.codeblurb.backend.repository.ShoppingItemRepository;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
@@ -14,6 +15,12 @@ public class ShoppingItemService {
 
     //CACHEABLE
     public ShoppingItem getShoppingItem(Integer shoppingItemId) {
-        return null;
+        return shoppingItemRepository.findById(shoppingItemId)
+                .orElseThrow(() -> new EntityNotFoundException(ShoppingItem.class, shoppingItemId));
+    }
+
+    public boolean hasCustomerBoughtShoppingItem(Customer customer, Integer shoppingItemId) {
+        final var shoppingItem = getShoppingItem(shoppingItemId);
+        return shoppingItemRepository.hasCustomerBoughtShoppingItem(customer, shoppingItem);
     }
 }

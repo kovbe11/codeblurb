@@ -10,6 +10,8 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import java.util.List;
@@ -27,5 +29,10 @@ public class ShoppingCart {
     @OneToOne
     private Customer customer;
     @ManyToMany
+    @JoinTable(
+            name = "shopping_items_in_carts",
+            joinColumns = @JoinColumn(name = "shopping_cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "shopping_item_id")
+    )
     private List<ShoppingItem> items;
 }

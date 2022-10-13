@@ -21,11 +21,11 @@ public class VideoContent extends Content {
     private String resourceUrl;
 
     public VideoContent() {
-        super(null, null, VIDEO);
+        super(null, null, VIDEO, null);
     }
 
     public VideoContent(String title, String description, String resourceUrl) {
-        super(null, title, VIDEO);
+        super(null, title, VIDEO, null);
         this.description = description;
         this.resourceUrl = resourceUrl;
     }

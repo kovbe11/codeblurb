@@ -1,6 +1,5 @@
-package hu.codeblurb.backend.security.exception;
+package hu.codeblurb.backend.exception;
 
-import hu.codeblurb.backend.exception.CodeBlurbException;
 import org.springframework.http.HttpStatus;
 
 public class InconsistentDatabaseException extends CodeBlurbException {

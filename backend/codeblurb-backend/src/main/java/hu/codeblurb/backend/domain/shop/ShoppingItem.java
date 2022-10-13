@@ -9,9 +9,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -26,6 +29,9 @@ public class ShoppingItem {
     private Double price;
     @OneToOne
     private ContentBundle contentBundle;
+
+    @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
+    private Set<ShoppingCart> shoppingCarts;
 
     public String getTitle() {
         return contentBundle.getTitle();

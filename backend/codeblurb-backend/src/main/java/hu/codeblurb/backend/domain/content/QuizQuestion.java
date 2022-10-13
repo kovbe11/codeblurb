@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 public class QuizQuestion {
     @Id
     private Integer id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     QuizContent quiz;
     private String question;
     @ElementCollection

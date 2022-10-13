@@ -1,13 +1,15 @@
 package hu.codeblurb.backend.service;
 
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
+import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.domain.content.CodingContent;
+import hu.codeblurb.backend.domain.content.Content;
 import hu.codeblurb.backend.domain.content.ContentBundle;
 import hu.codeblurb.backend.domain.content.QuizContent;
 import hu.codeblurb.backend.repository.CodingRepository;
 import hu.codeblurb.backend.repository.ContentBundleRepository;
+import hu.codeblurb.backend.repository.ContentRepository;
 import hu.codeblurb.backend.repository.QuizRepository;
-import hu.codeblurb.backend.security.exception.InconsistentDatabaseException;
 import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
@@ -21,24 +23,32 @@ import java.util.List;
 @AllArgsConstructor
 public class ContentService {
 
-    private final AuthenticationFacade authenticationFacade;
     private final CodingRepository codingRepository;
     private final QuizRepository quizRepository;
     private final ContentBundleRepository contentBundleRepository;
+    private final ContentRepository contentRepository;
+    private final AuthenticationFacade authenticationFacade;
+    private final CustomerService customerService;
     private final CodeRunnerService codeRunnerService;
     private final QuizSolutionCheckerService quizSolutionCheckerService;
     private final Mapper mapper;
 
     public List<ContentBundleResult> getPurchasedContentBundles() {
         return authenticationFacade.getCurrentCustomerId()
+                .map(customerService::getCustomerById)
                 .map(this::getPurchasedContentBundles)
                 .map(mapper::mapContentBundles)
-                .orElseThrow(() -> new InconsistentDatabaseException("Authenticated request does not have customer id!")); //should not happen
+                .orElseGet(List::of);
+    }
+
+    public Content getContentById(Integer id) {
+        return contentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Content.class, id));
     }
 
     //TODO: CACHE
-    private List<ContentBundle> getPurchasedContentBundles(Integer customerId) {
-        return contentBundleRepository.findContentBundlesPurchasedByCustomerId(customerId);
+    private List<ContentBundle> getPurchasedContentBundles(Customer customer) {
+        return contentBundleRepository.findContentBundlesPurchasedByCustomer(customer);
     }
 
 
@@ -47,7 +57,7 @@ public class ContentService {
                 .filter(it -> it.getCodingContentType() == CodingContent.CodingContentType.SCRATCH)
                 .orElseThrow(() -> new EntityNotFoundException(CodingContent.class, contentId));
 
-        codeRunnerService.runAndCheckOutputFor(coding);
+        codeRunnerService.runAndCheckOutputFor(coding, code);
         //TODO
     }
 
