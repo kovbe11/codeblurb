@@ -29,4 +29,5 @@ public class Payment {
     private Customer customer;
     @ManyToMany
     private Set<ContentBundle> contentBundlesBought;
+    private Double pricePayed;
 }

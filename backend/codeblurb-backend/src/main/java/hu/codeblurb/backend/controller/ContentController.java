@@ -1,9 +1,10 @@
 package hu.codeblurb.backend.controller;
 
-import hu.codeblurb.backend.controller.dto.CodeSolutionResponse;
-import hu.codeblurb.backend.controller.dto.MyContentBundlesResponse;
-import hu.codeblurb.backend.controller.dto.QuizSolutionRequest;
-import hu.codeblurb.backend.controller.dto.QuizSolutionResponse;
+import hu.codeblurb.backend.controller.dto.content.CodeSolutionResponse;
+import hu.codeblurb.backend.controller.dto.content.MyContentBundlesResponse;
+import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
+import hu.codeblurb.backend.controller.dto.content.QuizSolutionResponse;
+import hu.codeblurb.backend.controller.mapper.ContentMapper;
 import hu.codeblurb.backend.service.ContentService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContentController {
 
     private final ContentService contentService;
+    private final ContentMapper mapper;
 
     @GetMapping("/my-content-bundles")
     public MyContentBundlesResponse getMyContentBundles() {
-        contentService.getPurchasedContentBundles();
-        return null;
-        //TODO
+        final var contentBundles = contentService.getPurchasedContentBundles();
+        return new MyContentBundlesResponse(mapper.mapContentBundles(contentBundles));
     }
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")

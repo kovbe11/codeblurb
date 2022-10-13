@@ -1,4 +1,4 @@
-package hu.codeblurb.backend.controller.dto;
+package hu.codeblurb.backend.controller.dto.shoppingcart;
 
 import java.util.List;
 
