@@ -1,6 +1,7 @@
 package hu.codeblurb.backend.controller;
 
-import hu.codeblurb.backend.controller.dto.PreviousPaymentsResponse;
+import hu.codeblurb.backend.controller.dto.payments.PreviousPaymentsResponse;
+import hu.codeblurb.backend.controller.mapper.ContentMapper;
 import hu.codeblurb.backend.service.PaymentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
     private final PaymentService paymentService;
+    private final ContentMapper mapper;
 
     @PostMapping("/checkout")
     public void pay() {
@@ -23,9 +25,8 @@ public class PaymentController {
 
     @GetMapping
     public PreviousPaymentsResponse getPreviousPayments() {
-        paymentService.getPreviousPayments();
-        return null;
-        //TODO
+        final var payments = paymentService.getPreviousPayments();
+        return new PreviousPaymentsResponse(mapper.mapPayments(payments));
     }
 
 }

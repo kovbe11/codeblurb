@@ -1,17 +1,19 @@
 package hu.codeblurb.backend.service;
 
-import hu.codeblurb.backend.controller.dto.QuizSolutionRequest;
+import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
 import hu.codeblurb.backend.domain.content.CodingContent;
 import hu.codeblurb.backend.domain.content.Content;
 import hu.codeblurb.backend.domain.content.ContentBundle;
 import hu.codeblurb.backend.repository.ContentBundleRepository;
 import hu.codeblurb.backend.repository.ContentRepository;
+import hu.codeblurb.backend.security.exception.InconsistentDatabaseException;
 import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
+import hu.codeblurb.backend.service.exception.EntityNotFoundException;
+import hu.codeblurb.backend.service.mapper.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class ContentService {
     private final ContentRepository contentRepository;
     private final ContentBundleRepository contentBundleRepository;
     private final CodeRunnerService codeRunnerService;
+    private final Mapper mapper;
 
     public List<ContentBundleResult> getPurchasedContentBundles() {
         return authenticationFacade.getCurrentCustomerId()

@@ -1,4 +1,6 @@
 package hu.codeblurb.backend.service.dto;
 
-public record ContentBundleResult() {
+import java.util.List;
+
+public record ContentBundleResult(List<ContentResult> includedContent) {
 }

@@ -1,4 +1,4 @@
-package hu.codeblurb.backend.controller.dto;
+package hu.codeblurb.backend.controller.dto.payments;
 
 import java.util.List;
 

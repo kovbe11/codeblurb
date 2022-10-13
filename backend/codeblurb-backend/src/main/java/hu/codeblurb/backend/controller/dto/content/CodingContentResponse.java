@@ -1,4 +1,4 @@
-package hu.codeblurb.backend.controller.dto;
+package hu.codeblurb.backend.controller.dto.content;
 
 import hu.codeblurb.backend.domain.content.CodingContent.CodingContentType;
 import lombok.Getter;
