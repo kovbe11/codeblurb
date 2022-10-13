@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class CodeRunnerService {
-    public void runAndCheckOutputFor(CodingContent code) {
+    public void runAndCheckOutputFor(CodingContent code, String s) {
         //TODO
     }
 }

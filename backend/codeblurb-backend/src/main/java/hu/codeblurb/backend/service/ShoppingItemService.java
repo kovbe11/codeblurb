@@ -19,8 +19,8 @@ public class ShoppingItemService {
                 .orElseThrow(() -> new EntityNotFoundException(ShoppingItem.class, shoppingItemId));
     }
 
-    public boolean customerHasNotBoughtShoppingItem(Customer customer, Integer shoppingItemId) {
+    public boolean hasCustomerBoughtShoppingItem(Customer customer, Integer shoppingItemId) {
         final var shoppingItem = getShoppingItem(shoppingItemId);
-        return !shoppingItemRepository.hasCustomerBoughtShoppingItem(customer, shoppingItem);
+        return shoppingItemRepository.hasCustomerBoughtShoppingItem(customer, shoppingItem);
     }
 }

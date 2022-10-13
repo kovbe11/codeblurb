@@ -7,6 +7,8 @@ import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class CustomerService {
@@ -20,5 +22,18 @@ public class CustomerService {
     public boolean hasCustomerPayedForContent(Integer customerId, Content content) {
         final var customer = getCustomerById(customerId);
         return customerRepository.hasCustomerPayedForContent(customer, content);
+    }
+
+
+    public void createCustomer(String username, String encodedPassword) {
+        final var customer = Customer.builder()
+                .username(username)
+                .password(encodedPassword)
+                .build();
+        customerRepository.save(customer);
+    }
+
+    public Optional<Customer> findCustomerByUsername(String username) {
+        return customerRepository.findByUsername(username);
     }
 }

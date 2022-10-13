@@ -24,7 +24,7 @@ public class AuthorizationService {
 
     public boolean customerHasNotBoughtShoppingItem(Integer shoppingItemId) {
         final var customer = customerService.getCustomerById(getCustomerId());
-        return shoppingItemService.customerHasNotBoughtShoppingItem(customer, shoppingItemId);
+        return !shoppingItemService.hasCustomerBoughtShoppingItem(customer, shoppingItemId);
     }
 
     private Integer getCustomerId() {
