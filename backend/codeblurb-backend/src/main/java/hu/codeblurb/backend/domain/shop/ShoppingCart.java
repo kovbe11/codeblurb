@@ -35,4 +35,18 @@ public class ShoppingCart {
             inverseJoinColumns = @JoinColumn(name = "shopping_item_id")
     )
     private List<ShoppingItem> items;
+
+    public void addShoppingItem(ShoppingItem shoppingItem) {
+        shoppingItem.addShoppingCart(this);
+        items.add(shoppingItem);
+    }
+
+    public void removeShoppingItem(ShoppingItem shoppingItem) {
+        shoppingItem.removeShoppingCart(this);
+        items.remove(shoppingItem);
+    }
+
+    public void clearShoppingCart() {
+        items.clear();
+    }
 }

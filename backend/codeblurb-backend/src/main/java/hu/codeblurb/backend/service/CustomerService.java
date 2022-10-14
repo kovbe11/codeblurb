@@ -2,7 +2,9 @@ package hu.codeblurb.backend.service;
 
 import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.domain.content.Content;
+import hu.codeblurb.backend.exception.InconsistentDatabaseException;
 import hu.codeblurb.backend.repository.CustomerRepository;
+import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final AuthenticationFacade authenticationFacade;
 
     //CACHE
     public Customer getCustomerById(Integer id) {
@@ -35,5 +38,11 @@ public class CustomerService {
 
     public Optional<Customer> findCustomerByUsername(String username) {
         return customerRepository.findByUsername(username);
+    }
+
+    public Customer getCurrentCustomer() {
+        return authenticationFacade.getCurrentCustomerId()
+                .map(this::getCustomerById)
+                .orElseThrow(() -> new InconsistentDatabaseException("Authenticated request does not have customer id!")); // should not happen
     }
 }

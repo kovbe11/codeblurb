@@ -4,6 +4,7 @@ import hu.codeblurb.backend.controller.dto.shoppingcart.GetAvailableShoppingItem
 import hu.codeblurb.backend.controller.dto.shoppingcart.ShoppingCartResponse;
 import hu.codeblurb.backend.controller.mapper.ShopMapper;
 import hu.codeblurb.backend.service.ShoppingCartService;
+import hu.codeblurb.backend.service.ShoppingItemService;
 import hu.codeblurb.backend.service.dto.ShoppingItemResult;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ShoppingCartController {
 
     private final ShoppingCartService shoppingCartService;
+    private final ShoppingItemService shoppingItemService;
     private final ShopMapper mapper;
 
     @PreAuthorize("authorizationService.customerHasNotBoughtShoppingItem(#shoppingCartItem)")

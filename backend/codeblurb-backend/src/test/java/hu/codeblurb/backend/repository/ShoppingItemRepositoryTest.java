@@ -6,5 +6,11 @@ class ShoppingItemRepositoryTest {
 
     @Test
     void hasCustomerBoughtShoppingItem() {
+
+    }
+
+    @Test
+    void findShoppingItemsAvailableForPurchase() {
+
     }
 }

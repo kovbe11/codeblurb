@@ -10,7 +10,6 @@ import hu.codeblurb.backend.repository.CodingRepository;
 import hu.codeblurb.backend.repository.ContentBundleRepository;
 import hu.codeblurb.backend.repository.ContentRepository;
 import hu.codeblurb.backend.repository.QuizRepository;
-import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import hu.codeblurb.backend.service.mapper.Mapper;
@@ -27,18 +26,14 @@ public class ContentService {
     private final QuizRepository quizRepository;
     private final ContentBundleRepository contentBundleRepository;
     private final ContentRepository contentRepository;
-    private final AuthenticationFacade authenticationFacade;
     private final CustomerService customerService;
     private final CodeRunnerService codeRunnerService;
     private final QuizSolutionCheckerService quizSolutionCheckerService;
     private final Mapper mapper;
 
     public List<ContentBundleResult> getPurchasedContentBundles() {
-        return authenticationFacade.getCurrentCustomerId()
-                .map(customerService::getCustomerById)
-                .map(this::getPurchasedContentBundles)
-                .map(mapper::mapContentBundles)
-                .orElseGet(List::of);
+        final var customer = customerService.getCurrentCustomer();
+        return mapper.mapContentBundles(getPurchasedContentBundles(customer));
     }
 
     public Content getContentById(Integer id) {

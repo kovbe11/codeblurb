@@ -56,4 +56,6 @@ public interface Mapper {
     List<PaymentResult> mapPayments(List<Payment> paymentList);
 
     ShoppingItemResult map(ShoppingItem shoppingItem);
+
+    List<ShoppingItemResult> mapShoppingItems(List<ShoppingItem> shoppingItems);
 }

@@ -36,4 +36,12 @@ public class ShoppingItem {
     public String getTitle() {
         return contentBundle.getTitle();
     }
+
+    public void addShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCarts.add(shoppingCart);
+    }
+
+    public void removeShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCarts.remove(shoppingCart);
+    }
 }
