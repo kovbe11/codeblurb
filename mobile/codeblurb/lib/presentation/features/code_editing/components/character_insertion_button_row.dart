@@ -5,17 +5,92 @@ class _CharacterInsertionButtonRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SingleChildScrollView(
-      child: Row(
-        children: [
-          SizedBox(
-              height: 20,
-              width: 15,
-              child: ElevatedButton(
-                child: const Text('{'),
-                onPressed: () {},
-              ))
-        ],
+    final notifier = ref.watch(codeEditingProvider.notifier);
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    return ColoredBox(
+      color: Colors.amber,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: bottomPadding),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              _CharacterInsertionButton(
+                buttonText: "{",
+                onTap: notifier.insertCurlyBraces,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "[",
+                onTap: notifier.insertSquareBrackets,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "(",
+                onTap: notifier.insertParentheses,
+              ),
+              _CharacterInsertionButton(
+                buttonText: ";",
+                onTap: notifier.insertSemicolon,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "=",
+                onTap: notifier.insertEqualSign,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "TAB",
+                onTap: notifier.insertTab,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "{",
+                onTap: notifier.insertCurlyBraces,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "[",
+                onTap: notifier.insertSquareBrackets,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "(",
+                onTap: notifier.insertParentheses,
+              ),
+              _CharacterInsertionButton(
+                buttonText: ";",
+                onTap: notifier.insertSemicolon,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "=",
+                onTap: notifier.insertEqualSign,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "TAB",
+                onTap: notifier.insertTab,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "{",
+                onTap: notifier.insertCurlyBraces,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "[",
+                onTap: notifier.insertSquareBrackets,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "(",
+                onTap: notifier.insertParentheses,
+              ),
+              _CharacterInsertionButton(
+                buttonText: ";",
+                onTap: notifier.insertSemicolon,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "=",
+                onTap: notifier.insertEqualSign,
+              ),
+              _CharacterInsertionButton(
+                buttonText: "TAB",
+                onTap: notifier.insertTab,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
