@@ -38,7 +38,7 @@ void main() {
           sharedPrefsProvider.overrideWithValue(sharedPrefs),
         ],
         observers: const [Logger()],
-        child: const CodeblurbApp(),
+        child: CodeblurbApp(),
       ),
     );
   },

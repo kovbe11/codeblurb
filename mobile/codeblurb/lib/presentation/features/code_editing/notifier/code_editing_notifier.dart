@@ -1,0 +1,38 @@
+import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
+  CodeEditingNotifier(String starterCode)
+      : super(CodeEditingState(code: starterCode));
+
+  late final codeEditingController = TextEditingController(text: state.code);
+
+  void insertCurlyBraces() => _insertCodeToCurrentPosition(code: '{}');
+  void insertParentheses() => _insertCodeToCurrentPosition(code: '()');
+
+  void insertSemicolon() => _insertCodeToCurrentPosition(
+      code: ';', cursorOffsetFromInsertionPoint: 0);
+
+  void insertSquareBrackets() => _insertCodeToCurrentPosition(code: '[]');
+
+  void insertTab() => _insertCodeToCurrentPosition(
+      code: '\t', cursorOffsetFromInsertionPoint: 0);
+
+  void insertEqualSign() => _insertCodeToCurrentPosition(
+      code: ' = ', cursorOffsetFromInsertionPoint: 0);
+
+  void _insertCodeToCurrentPosition(
+      {required String code, int cursorOffsetFromInsertionPoint = 1}) {
+    final cursorPosition = codeEditingController.selection.extent;
+    final currentCode = codeEditingController.text;
+
+    final newCode = currentCode.replaceRange(
+        cursorPosition.offset, cursorPosition.offset, code);
+    codeEditingController.text = newCode;
+    codeEditingController.selection = TextSelection.collapsed(
+        offset: cursorPosition.offset + cursorOffsetFromInsertionPoint);
+
+    state = state.copyWith(code: codeEditingController.text);
+  }
+}
