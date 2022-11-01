@@ -11,16 +11,14 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
   void insertCurlyBraces() => _insertCodeToCurrentPosition(code: '{}');
   void insertParentheses() => _insertCodeToCurrentPosition(code: '()');
 
-  void insertSemicolon() => _insertCodeToCurrentPosition(
-      code: ';', cursorOffsetFromInsertionPoint: 0);
+  void insertSemicolon() => _insertCodeToCurrentPosition(code: ';');
 
   void insertSquareBrackets() => _insertCodeToCurrentPosition(code: '[]');
 
-  void insertTab() => _insertCodeToCurrentPosition(
-      code: '\t', cursorOffsetFromInsertionPoint: 0);
+  void insertTab() => _insertCodeToCurrentPosition(code: '\t');
 
   void insertEqualSign() => _insertCodeToCurrentPosition(
-      code: ' = ', cursorOffsetFromInsertionPoint: 0);
+      code: ' = ', cursorOffsetFromInsertionPoint: 3);
 
   void _insertCodeToCurrentPosition(
       {required String code, int cursorOffsetFromInsertionPoint = 1}) {
