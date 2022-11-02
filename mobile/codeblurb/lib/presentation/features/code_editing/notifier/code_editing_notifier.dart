@@ -8,6 +8,10 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
 
   late final codeEditingController = TextEditingController(text: state.code);
 
+  void setCode(String code) {
+    state = state.copyWith(code: code);
+  }
+
   void insertCurlyBraces() => _insertCodeToCurrentPosition(code: '{}');
   void insertParentheses() => _insertCodeToCurrentPosition(code: '()');
 
