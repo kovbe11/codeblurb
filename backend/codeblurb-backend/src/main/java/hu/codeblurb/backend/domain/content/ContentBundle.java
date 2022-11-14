@@ -20,7 +20,6 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -40,4 +39,10 @@ public class ContentBundle {
     private ShoppingItem shoppingItem;
     @Column(nullable = false, unique = true)
     private String title;
+
+    public ContentBundle(Integer id, Set<Content> includedContent, String title) {
+        this.id = id;
+        this.includedContent = includedContent;
+        this.title = title;
+    }
 }

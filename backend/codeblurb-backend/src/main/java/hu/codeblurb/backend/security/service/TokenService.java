@@ -2,6 +2,7 @@ package hu.codeblurb.backend.security.service;
 
 import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.security.exception.InvalidTokenException;
+import hu.codeblurb.backend.security.exception.TokenDeniedException;
 import hu.codeblurb.backend.security.service.dto.TokenIssuedMessage;
 import hu.codeblurb.backend.security.service.dto.TokenResult;
 import hu.codeblurb.backend.security.service.dto.ValidateRefreshTokenResult;
@@ -101,7 +102,7 @@ public class TokenService {
     public ValidateRefreshTokenResult validateRefreshToken(String refreshToken) {
         final var claims = validateToken(REFRESH_TOKEN_SUBJECT, refreshToken);
         if (denyTokenService.isDenied(claims.getId())) {
-            throw new BadCredentialsException(""); //TODO
+            throw new TokenDeniedException(claims.getId());
         }
         return new ValidateRefreshTokenResult(claims.getAudience());
     }

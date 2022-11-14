@@ -11,6 +11,7 @@ import hu.codeblurb.backend.repository.ContentBundleRepository;
 import hu.codeblurb.backend.repository.ContentRepository;
 import hu.codeblurb.backend.repository.QuizRepository;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
+import hu.codeblurb.backend.service.dto.QuizSolutionResult;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import hu.codeblurb.backend.service.mapper.Mapper;
 import lombok.AllArgsConstructor;
@@ -56,11 +57,10 @@ public class ContentService {
         //TODO
     }
 
-    public void checkSolutionForQuiz(Integer contentId, QuizSolutionRequest quizSolutionRequest) {
+    public QuizSolutionResult checkSolutionForQuiz(Integer contentId, QuizSolutionRequest quizSolutionRequest) {
         final var quiz = quizRepository.findById(contentId)
                 .orElseThrow(() -> new EntityNotFoundException(QuizContent.class, contentId));
 
-        quizSolutionCheckerService.checkSolution(quiz, quizSolutionRequest);
-        //TODO
+        return quizSolutionCheckerService.checkSolution(quiz, quizSolutionRequest);
     }
 }

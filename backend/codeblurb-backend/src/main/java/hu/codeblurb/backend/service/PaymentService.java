@@ -29,7 +29,7 @@ public class PaymentService {
         final var payment = new Payment(null, shoppingCart.getCustomer(), contentBundlesBought, 0.0);
         //if payment goes through
         paymentRepository.save(payment);
-        shoppingCartService.emptyShoppingCart();
+        shoppingCartService.removeShoppingCart();
     }
 
     public List<PaymentResult> getPreviousPayments() {

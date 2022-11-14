@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -32,6 +31,12 @@ public class ShoppingItem {
 
     @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
     private Set<ShoppingCart> shoppingCarts;
+
+    public ShoppingItem(Integer id, Double price, ContentBundle contentBundle) {
+        this.id = id;
+        this.price = price;
+        this.contentBundle = contentBundle;
+    }
 
     public String getTitle() {
         return contentBundle.getTitle();

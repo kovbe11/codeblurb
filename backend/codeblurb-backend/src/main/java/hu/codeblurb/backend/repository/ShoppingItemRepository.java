@@ -20,11 +20,12 @@ public interface ShoppingItemRepository extends JpaRepository<ShoppingItem, Inte
     boolean hasCustomerBoughtShoppingItem(@Param("customer") Customer customer, @Param("shoppingItem") ShoppingItem shoppingItem);
 
 
-    @Query("SELECT si FROM" +
+    @Query("SELECT si FROM ShoppingItem si where si not in " +
+            "(SELECT si FROM" +
             " Customer c" +
             " JOIN c.payments p" +
             " JOIN p.contentBundlesBought cbb" +
             " JOIN cbb.shoppingItem si" +
-            " WHERE c.id = :#{#customer.id}")
+            " WHERE c.id = :#{#customer.id})")
     List<ShoppingItem> findShoppingItemsAvailableForPurchase(@Param("customer") Customer customer);
 }

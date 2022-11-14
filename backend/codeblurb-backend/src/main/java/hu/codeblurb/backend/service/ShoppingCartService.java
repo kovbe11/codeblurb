@@ -49,9 +49,9 @@ public class ShoppingCartService {
         shoppingCartRepository.save(shoppingCart);
     }
 
-    public void emptyShoppingCart() {
+    public void removeShoppingCart() {
         final var shoppingCart = getShoppingCart();
-        shoppingCart.clearShoppingCart();
+        shoppingCartRepository.delete(shoppingCart);
     }
 
     private ShoppingCart getShoppingCart() {

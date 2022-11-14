@@ -42,8 +42,8 @@ public interface Mapper {
 
     QuizContentResult map(QuizContent quizContent);
 
+    @Mapping(target = "solutionChar", source = "solution")
     QuizQuestionResult map(QuizQuestion quizQuestion);
-//    QuizSolutionResult map(QuizSolution quizSolution);
 
     TestCaseResult map(TestCase testCase);
 //    TestCaseOutcomeResult map(TestCaseOutcome testCaseOutcome);
