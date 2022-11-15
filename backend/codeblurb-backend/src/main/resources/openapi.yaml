@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI definition
+  title: CodeBlurb API
   version: v0.1
 servers:
   - url: https://api.bence.kovacs.host
