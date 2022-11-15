@@ -25,7 +25,6 @@ public class DenyTokenService {
         saveToDatabase(loggedOutToken);
     }
 
-    //TODO: look up whether concurrent map is enough for this
     public boolean isDenied(String jti) {
         return cache.containsKey(jti);
     }

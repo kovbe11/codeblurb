@@ -42,8 +42,8 @@ public interface Mapper {
 
     QuizContentResult map(QuizContent quizContent);
 
+    @Mapping(target = "solutionChar", source = "solution")
     QuizQuestionResult map(QuizQuestion quizQuestion);
-//    QuizSolutionResult map(QuizSolution quizSolution);
 
     TestCaseResult map(TestCase testCase);
 //    TestCaseOutcomeResult map(TestCaseOutcome testCaseOutcome);
@@ -56,4 +56,6 @@ public interface Mapper {
     List<PaymentResult> mapPayments(List<Payment> paymentList);
 
     ShoppingItemResult map(ShoppingItem shoppingItem);
+
+    List<ShoppingItemResult> mapShoppingItems(List<ShoppingItem> shoppingItems);
 }

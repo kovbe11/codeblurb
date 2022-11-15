@@ -1,5 +1,8 @@
 package hu.codeblurb.backend.controller;
 
+import hu.codeblurb.backend.controller.dto.content.CodeQuizSolutionRequest;
+import hu.codeblurb.backend.controller.dto.content.CodeQuizSolutionResponse;
+import hu.codeblurb.backend.controller.dto.content.CodeSolutionRequest;
 import hu.codeblurb.backend.controller.dto.content.CodeSolutionResponse;
 import hu.codeblurb.backend.controller.dto.content.MyContentBundlesResponse;
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
@@ -30,9 +33,16 @@ public class ContentController {
     }
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
-    @PostMapping("/code/solution/{contentId}")
-    public CodeSolutionResponse runSolutionFor(@PathVariable Integer contentId, @RequestBody String code) { //TODO: dto
-        contentService.runCodeSolutionFor(contentId, code);
+    @PostMapping("/code/scratch-solution/{contentId}")
+    public CodeSolutionResponse runSolutionFor(@PathVariable Integer contentId, @RequestBody CodeSolutionRequest code) {
+        contentService.runCodeSolutionFor(contentId, code.code());
+        return null;
+    }
+
+    @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
+    @PostMapping("/code/code-quiz-solution/{contentId}")
+    public CodeQuizSolutionResponse checkCodeQuizSolutionFor(@PathVariable Integer contentId, @RequestBody CodeQuizSolutionRequest code) {
+        contentService.checkCodeQuizSolutionFor(contentId, code.solutionsByIndex());
         return null;
     }
 
@@ -40,8 +50,8 @@ public class ContentController {
     @PostMapping("/quiz/solution/{contentId}")
     public QuizSolutionResponse checkSolutionForQuiz(@PathVariable Integer contentId,
                                                      @RequestBody QuizSolutionRequest quizSolutionRequest) {
-        contentService.checkSolutionForQuiz(contentId, quizSolutionRequest);
-        return null;
+        final var result = contentService.checkSolutionForQuiz(contentId, quizSolutionRequest);
+        return mapper.map(result);
     }
 
 

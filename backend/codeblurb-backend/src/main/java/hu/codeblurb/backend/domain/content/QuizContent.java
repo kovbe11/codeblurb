@@ -24,8 +24,8 @@ public class QuizContent extends Content {
         super(null, null, QUIZ, null);
     }
 
-    public QuizContent(String name, List<QuizQuestion> questions) {
-        super(null, name, QUIZ, null);
+    public QuizContent(Integer id, String name, List<QuizQuestion> questions) {
+        super(id, name, QUIZ, null);
         this.questions = questions;
     }
 

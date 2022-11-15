@@ -40,8 +40,8 @@ public class CodingContent extends Content {
         super(null, null, CODING, null);
     }
 
-    public CodingContent(String name, String description, List<String> codeSkeleton, List<String> codeSnippets, List<TestCase> testCases) {
-        super(null, name, CODING, null);
+    public CodingContent(Integer id, String name, String description, List<String> codeSkeleton, List<String> codeSnippets, List<TestCase> testCases) {
+        super(id, name, CODING, null);
         this.description = description;
         this.codeSkeleton = codeSkeleton;
         this.codeSnippets = codeSnippets;

@@ -13,9 +13,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.web.reactive.server.WebTestClient;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 class AuthControllerTest extends ControllerTestBase {
 
@@ -67,8 +71,7 @@ class AuthControllerTest extends ControllerTestBase {
         assertEquals(HttpStatus.OK, logoutResult.getStatusCode());
 
         assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
-        final var refreshResult = getRefreshTokenResponse(loginResult.refreshToken());
-        assertEquals(HttpStatus.UNAUTHORIZED, refreshResult.getStatusCode());
+        assertRefreshTokenIsDenied(loginResult.refreshToken());
     }
 
 
@@ -87,8 +90,8 @@ class AuthControllerTest extends ControllerTestBase {
 
         assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
         assertAuthenticates(HttpStatus.UNAUTHORIZED, refreshResult.getBody().accessToken());
-        assertEquals(HttpStatus.UNAUTHORIZED, getRefreshTokenResponse(loginResult.refreshToken()).getStatusCode());
-        assertEquals(HttpStatus.UNAUTHORIZED, getRefreshTokenResponse(refreshResult.getBody().refreshToken()).getStatusCode());
+        assertRefreshTokenIsDenied(loginResult.refreshToken());
+        assertRefreshTokenIsDenied(refreshResult.getBody().refreshToken());
     }
 
     private void assertAuthenticatesProperly(String token) {
@@ -120,6 +123,26 @@ class AuthControllerTest extends ControllerTestBase {
         return testRestTemplate.postForEntity(baseUrl + "/refresh",
                 RefreshTokenRequest.builder().refreshToken(refreshToken).build(),
                 RefreshTokenResponse.class);
+    }
+
+    private void assertRefreshTokenIsDenied(String refreshToken) {
+        //TODO: migrate to WebTestClient, so testresttemplate is not an issue anymore..
+        final var webtestclient = WebTestClient
+                .bindToServer()
+                .baseUrl(testRestTemplate.getRootUri())
+                .responseTimeout(Duration.ofMinutes(2))
+                .codecs(configurer -> configurer
+                        .defaultCodecs()
+                        .maxInMemorySize(16 * 1024 * 1024)
+                )
+                .build();
+        final var refreshTokenRequest = RefreshTokenRequest.builder().refreshToken(refreshToken).build();
+        webtestclient.post()
+                .uri(baseUrl + "/refresh")
+                .contentType(APPLICATION_JSON)
+                .bodyValue(refreshTokenRequest)
+                .exchange()
+                .expectStatus().isUnauthorized();
     }
 
     private HttpHeaders createAuthHeader(String token) {
