@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -62,5 +63,9 @@ public class ContentService {
                 .orElseThrow(() -> new EntityNotFoundException(QuizContent.class, contentId));
 
         return quizSolutionCheckerService.checkSolution(quiz, quizSolutionRequest);
+    }
+
+    public void checkCodeQuizSolutionFor(Integer contentId, Map<Integer, String> solutionsByIndex) {
+
     }
 }

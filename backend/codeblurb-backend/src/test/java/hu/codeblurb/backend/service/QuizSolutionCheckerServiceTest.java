@@ -28,7 +28,7 @@ class QuizSolutionCheckerServiceTest {
         final var result = quizSolutionCheckerService.checkSolution(QUIZ_CONTENT, request);
 
         assertEquals(List.of(new IncorrectSolution(3, 0, 2)), result.incorrectSolutions());
-        assertEquals(List.of(2, 1), result.correctAnswerQuestionIds());
+        assertEquals(List.of(1, 2), result.correctAnswerQuestionIds());
     }
 
     @Test

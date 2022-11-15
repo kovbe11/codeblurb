@@ -8,6 +8,8 @@ import hu.codeblurb.backend.service.dto.QuizSolutionResult;
 import hu.codeblurb.backend.service.exception.QuizSolutionRequestMalformedException;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+
 @Service
 public class QuizSolutionCheckerService {
 
@@ -25,7 +27,8 @@ public class QuizSolutionCheckerService {
                 result.incorrectSolutions().add(createIncorrectSolutionInfo(question, answer));
             }
         });
-
+        result.incorrectSolutions().sort(Comparator.comparing(IncorrectSolution::incorrectQuestionId));
+        result.correctAnswerQuestionIds().sort(Comparator.naturalOrder());
         return result;
     }
 
