@@ -36,6 +36,8 @@ class CodeEditingScreen extends ConsumerWidget {
           onChanged: notifier.setCode,
         ),
         const Spacer(),
+        ElevatedButton(onPressed: notifier.onPress, child: const Text('echo')),
+        const Spacer(),
         const _CharacterInsertionButtonRow(),
       ],
     );

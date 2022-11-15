@@ -20,6 +20,6 @@ const _dummyCode = '''main() {
 
 final codeEditingProvider =
     StateNotifierProvider.autoDispose<CodeEditingNotifier, CodeEditingState>(
-  (ref) => CodeEditingNotifier(_dummyCode),
+  (ref) => CodeEditingNotifier(_dummyCode, ref.read),
   name: 'Code Editing Notifier',
 );
