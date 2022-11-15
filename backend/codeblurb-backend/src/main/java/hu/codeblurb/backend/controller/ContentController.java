@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/content")
 @AllArgsConstructor
@@ -34,14 +36,14 @@ public class ContentController {
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/code/scratch-solution/{contentId}")
-    public CodeSolutionResponse runSolutionFor(@PathVariable Integer contentId, @RequestBody CodeSolutionRequest code) {
+    public CodeSolutionResponse runSolutionFor(@PathVariable Integer contentId, @Valid @RequestBody CodeSolutionRequest code) {
         contentService.runCodeSolutionFor(contentId, code.code());
         return null;
     }
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/code/code-quiz-solution/{contentId}")
-    public CodeQuizSolutionResponse checkCodeQuizSolutionFor(@PathVariable Integer contentId, @RequestBody CodeQuizSolutionRequest code) {
+    public CodeQuizSolutionResponse checkCodeQuizSolutionFor(@PathVariable Integer contentId, @Valid @RequestBody CodeQuizSolutionRequest code) {
         contentService.checkCodeQuizSolutionFor(contentId, code.solutionsByIndex());
         return null;
     }
@@ -49,7 +51,7 @@ public class ContentController {
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/quiz/solution/{contentId}")
     public QuizSolutionResponse checkSolutionForQuiz(@PathVariable Integer contentId,
-                                                     @RequestBody QuizSolutionRequest quizSolutionRequest) {
+                                                     @Valid @RequestBody QuizSolutionRequest quizSolutionRequest) {
         final var result = contentService.checkSolutionForQuiz(contentId, quizSolutionRequest);
         return mapper.map(result);
     }
