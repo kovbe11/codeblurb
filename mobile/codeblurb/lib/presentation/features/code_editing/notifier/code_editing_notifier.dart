@@ -1,4 +1,4 @@
-import 'package:codeblurb/data/common/network/shopping/repository/shopping_repository.dart';
+import 'package:codeblurb/data/shopping/shopping_repository.dart';
 import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

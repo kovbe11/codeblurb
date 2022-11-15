@@ -1,4 +1,4 @@
-import 'package:codeblurb/data/common/network/shopping/api/shopping_api.dart';
+import 'package:codeblurb/data/shopping/shopping_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final shoppingRepoProvider = Provider<ShoppingRepository>(
