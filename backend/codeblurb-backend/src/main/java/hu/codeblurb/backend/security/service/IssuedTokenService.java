@@ -1,7 +1,7 @@
 package hu.codeblurb.backend.security.service;
 
+import hu.codeblurb.backend.exception.InconsistentDatabaseException;
 import hu.codeblurb.backend.security.domain.IssuedToken;
-import hu.codeblurb.backend.security.exception.InconsistentDatabaseException;
 import hu.codeblurb.backend.security.repository.IssuedTokenRepository;
 import hu.codeblurb.backend.security.service.dto.TokenIssuedMessage;
 import lombok.AllArgsConstructor;

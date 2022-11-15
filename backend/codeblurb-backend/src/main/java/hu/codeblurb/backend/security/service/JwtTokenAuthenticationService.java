@@ -1,6 +1,7 @@
 package hu.codeblurb.backend.security.service;
 
 import hu.codeblurb.backend.security.exception.ExpiredAccessTokenException;
+import hu.codeblurb.backend.security.exception.TokenDeniedException;
 import hu.codeblurb.backend.security.service.dto.AuthUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -33,7 +34,7 @@ public class JwtTokenAuthenticationService {
 
         final var claims = validateTokenAndParseClaims(token)
                 .filter(it -> denyTokenService.isNotDenied(it.getId()))
-                .orElseThrow(() -> new BadCredentialsException("")); //TODO
+                .orElseThrow(TokenDeniedException::new);
 
         final var customerId = Integer.parseInt(claims.get(TokenService.CUSTOMER_ID_CLAIM).toString());
 

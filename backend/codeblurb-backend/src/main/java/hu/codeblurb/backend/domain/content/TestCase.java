@@ -20,7 +20,9 @@ import java.util.List;
 public class TestCase {
     @Id
     private Integer id;
+    private String input;
     private String expectedOutput;
+    private boolean exampleTestCase;
     @ElementCollection
     private List<String> hints;
 }

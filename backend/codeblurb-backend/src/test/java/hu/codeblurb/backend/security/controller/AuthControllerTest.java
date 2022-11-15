@@ -13,9 +13,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.web.reactive.server.WebTestClient;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 class AuthControllerTest extends ControllerTestBase {
 
@@ -66,10 +70,8 @@ class AuthControllerTest extends ControllerTestBase {
                 new HttpEntity<>(createAuthHeader(loginResult.accessToken())), Void.class);
         assertEquals(HttpStatus.OK, logoutResult.getStatusCode());
 
-        //todo
-        assertAuthenticates(HttpStatus.FORBIDDEN, loginResult.accessToken());
-        final var refreshResult = getRefreshTokenResponse(loginResult.refreshToken());
-        assertEquals(HttpStatus.FORBIDDEN, refreshResult.getStatusCode());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
+        assertRefreshTokenIsDenied(loginResult.refreshToken());
     }
 
 
@@ -86,11 +88,10 @@ class AuthControllerTest extends ControllerTestBase {
                 new HttpEntity<>(createAuthHeader(loginResult.accessToken())), Void.class);
         assertEquals(HttpStatus.OK, forceLogoutResult.getStatusCode());
 
-        //todo
-        assertAuthenticates(HttpStatus.FORBIDDEN, loginResult.accessToken());
-        assertAuthenticates(HttpStatus.FORBIDDEN, refreshResult.getBody().accessToken());
-        assertEquals(HttpStatus.FORBIDDEN, getRefreshTokenResponse(loginResult.refreshToken()).getStatusCode());
-        assertEquals(HttpStatus.FORBIDDEN, getRefreshTokenResponse(refreshResult.getBody().refreshToken()).getStatusCode());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, loginResult.accessToken());
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, refreshResult.getBody().accessToken());
+        assertRefreshTokenIsDenied(loginResult.refreshToken());
+        assertRefreshTokenIsDenied(refreshResult.getBody().refreshToken());
     }
 
     private void assertAuthenticatesProperly(String token) {
@@ -98,8 +99,7 @@ class AuthControllerTest extends ControllerTestBase {
     }
 
     private void assertDoesNotAuthenticate() {
-        //TODO 401
-        assertAuthenticates(HttpStatus.FORBIDDEN, null);
+        assertAuthenticates(HttpStatus.UNAUTHORIZED, null);
     }
 
     private void assertAuthenticates(HttpStatus httpStatus, String token) {
@@ -123,6 +123,26 @@ class AuthControllerTest extends ControllerTestBase {
         return testRestTemplate.postForEntity(baseUrl + "/refresh",
                 RefreshTokenRequest.builder().refreshToken(refreshToken).build(),
                 RefreshTokenResponse.class);
+    }
+
+    private void assertRefreshTokenIsDenied(String refreshToken) {
+        //TODO: migrate to WebTestClient, so testresttemplate is not an issue anymore..
+        final var webtestclient = WebTestClient
+                .bindToServer()
+                .baseUrl(testRestTemplate.getRootUri())
+                .responseTimeout(Duration.ofMinutes(2))
+                .codecs(configurer -> configurer
+                        .defaultCodecs()
+                        .maxInMemorySize(16 * 1024 * 1024)
+                )
+                .build();
+        final var refreshTokenRequest = RefreshTokenRequest.builder().refreshToken(refreshToken).build();
+        webtestclient.post()
+                .uri(baseUrl + "/refresh")
+                .contentType(APPLICATION_JSON)
+                .bodyValue(refreshTokenRequest)
+                .exchange()
+                .expectStatus().isUnauthorized();
     }
 
     private HttpHeaders createAuthHeader(String token) {

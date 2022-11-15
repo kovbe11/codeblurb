@@ -1,7 +1,7 @@
 package hu.codeblurb.backend.domain.shop;
 
 
-import hu.codeblurb.backend.domain.content.Content;
+import hu.codeblurb.backend.domain.content.ContentBundle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +9,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import java.util.Set;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -24,8 +25,28 @@ public class ShoppingItem {
     @Id
     @GeneratedValue
     private Integer id;
-    private String title;
     private Double price;
-    @ManyToMany
-    private Set<Content> includedContent;
+    @OneToOne
+    private ContentBundle contentBundle;
+
+    @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
+    private Set<ShoppingCart> shoppingCarts;
+
+    public ShoppingItem(Integer id, Double price, ContentBundle contentBundle) {
+        this.id = id;
+        this.price = price;
+        this.contentBundle = contentBundle;
+    }
+
+    public String getTitle() {
+        return contentBundle.getTitle();
+    }
+
+    public void addShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCarts.add(shoppingCart);
+    }
+
+    public void removeShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCarts.remove(shoppingCart);
+    }
 }

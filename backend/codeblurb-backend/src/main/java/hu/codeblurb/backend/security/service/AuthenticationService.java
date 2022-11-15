@@ -1,11 +1,11 @@
 package hu.codeblurb.backend.security.service;
 
 import hu.codeblurb.backend.domain.Customer;
-import hu.codeblurb.backend.repository.CustomerRepository;
 import hu.codeblurb.backend.security.exception.CustomerNotFoundException;
 import hu.codeblurb.backend.security.exception.WrongPasswordException;
 import hu.codeblurb.backend.security.service.dto.LoginResult;
 import hu.codeblurb.backend.security.service.dto.RefreshTokenResult;
+import hu.codeblurb.backend.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ public class AuthenticationService {
 
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
-    private final CustomerRepository customerRepository;
     private final AuthenticationFacade authenticationFacade;
     private final IssuedTokenService issuedTokenService;
     private final DenyTokenService denyTokenService;
+    private final CustomerService customerService;
 
 
     public LoginResult login(String username, String password) {
@@ -39,11 +39,7 @@ public class AuthenticationService {
     }
 
     public void register(String username, String password) {
-        final var customer = Customer.builder()
-                .username(username)
-                .password(passwordEncoder.encode(password))
-                .build();
-        customerRepository.save(customer);
+        customerService.createCustomer(username, passwordEncoder.encode(password));
     }
 
     public RefreshTokenResult refresh(String refreshToken) {
@@ -74,7 +70,7 @@ public class AuthenticationService {
     }
 
     private Customer findCustomerOrThrow(String username) {
-        return customerRepository.findByUsername(username)
+        return customerService.findCustomerByUsername(username)
                 .orElseThrow(() -> new CustomerNotFoundException("No customer registered with username: " + username));
     }
 }
