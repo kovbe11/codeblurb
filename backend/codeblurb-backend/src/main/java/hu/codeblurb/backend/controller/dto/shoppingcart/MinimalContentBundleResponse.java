@@ -1,4 +1,6 @@
 package hu.codeblurb.backend.controller.dto.shoppingcart;
 
-public record MinimalContentBundleResponse() {
+import java.util.List;
+
+public record MinimalContentBundleResponse(List<MinimalContentResponse> includedContent) {
 }

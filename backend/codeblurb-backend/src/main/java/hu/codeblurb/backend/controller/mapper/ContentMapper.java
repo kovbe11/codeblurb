@@ -5,6 +5,7 @@ import hu.codeblurb.backend.controller.dto.content.ContentBundleResponse;
 import hu.codeblurb.backend.controller.dto.content.ContentResponse;
 import hu.codeblurb.backend.controller.dto.content.QuizContentResponse;
 import hu.codeblurb.backend.controller.dto.content.QuizQuestionResponse;
+import hu.codeblurb.backend.controller.dto.content.QuizSolutionResponse;
 import hu.codeblurb.backend.controller.dto.content.TestCaseResponse;
 import hu.codeblurb.backend.controller.dto.content.VideoContentResponse;
 import hu.codeblurb.backend.controller.dto.payments.PaymentResponse;
@@ -14,9 +15,11 @@ import hu.codeblurb.backend.service.dto.ContentResult;
 import hu.codeblurb.backend.service.dto.PaymentResult;
 import hu.codeblurb.backend.service.dto.QuizContentResult;
 import hu.codeblurb.backend.service.dto.QuizQuestionResult;
+import hu.codeblurb.backend.service.dto.QuizSolutionResult;
 import hu.codeblurb.backend.service.dto.TestCaseResult;
 import hu.codeblurb.backend.service.dto.VideoContentResult;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -33,7 +36,7 @@ public interface ContentMapper {
     QuizContentResponse map(QuizContentResult quizContentResult);
 
     QuizQuestionResponse map(QuizQuestionResult quizQuestionResult);
-//    QuizSolutionResponse map(QuizSolutionResult quizSolutionResult);
+    QuizSolutionResponse map(QuizSolutionResult quizSolutionResult);
 
     TestCaseResponse map(TestCaseResult testCaseResult);
 //    TestCaseOutcomeResponse map(TestCaseOutcomeResult testCaseOutcomeResult);

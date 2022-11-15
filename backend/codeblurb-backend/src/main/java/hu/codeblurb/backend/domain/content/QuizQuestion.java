@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -29,6 +28,13 @@ public class QuizQuestion {
     @ElementCollection
     private List<String> answers;
     private int solutionIndex;
+
+    public QuizQuestion(Integer id, String question, List<String> answers, int solutionIndex) {
+        this.id = id;
+        this.question = question;
+        this.answers = answers;
+        this.solutionIndex = solutionIndex;
+    }
 
     public char getSolution() {
         return (char) ((int) 'a' + solutionIndex);

@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 
 public class EntityNotFoundException extends CodeBlurbException {
     public EntityNotFoundException(Class<?> clazz, Integer id) {
-        super(clazz.getName() + " with id " + id + " was not found!", HttpStatus.INTERNAL_SERVER_ERROR);
+        super(clazz.getName() + " with id " + id + " was not found!", HttpStatus.NOT_FOUND);
     }
 }

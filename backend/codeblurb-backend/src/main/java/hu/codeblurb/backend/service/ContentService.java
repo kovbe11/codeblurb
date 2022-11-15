@@ -10,14 +10,15 @@ import hu.codeblurb.backend.repository.CodingRepository;
 import hu.codeblurb.backend.repository.ContentBundleRepository;
 import hu.codeblurb.backend.repository.ContentRepository;
 import hu.codeblurb.backend.repository.QuizRepository;
-import hu.codeblurb.backend.security.service.AuthenticationFacade;
 import hu.codeblurb.backend.service.dto.ContentBundleResult;
+import hu.codeblurb.backend.service.dto.QuizSolutionResult;
 import hu.codeblurb.backend.service.exception.EntityNotFoundException;
 import hu.codeblurb.backend.service.mapper.Mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -27,18 +28,14 @@ public class ContentService {
     private final QuizRepository quizRepository;
     private final ContentBundleRepository contentBundleRepository;
     private final ContentRepository contentRepository;
-    private final AuthenticationFacade authenticationFacade;
     private final CustomerService customerService;
     private final CodeRunnerService codeRunnerService;
     private final QuizSolutionCheckerService quizSolutionCheckerService;
     private final Mapper mapper;
 
     public List<ContentBundleResult> getPurchasedContentBundles() {
-        return authenticationFacade.getCurrentCustomerId()
-                .map(customerService::getCustomerById)
-                .map(this::getPurchasedContentBundles)
-                .map(mapper::mapContentBundles)
-                .orElseGet(List::of);
+        final var customer = customerService.getCurrentCustomer();
+        return mapper.mapContentBundles(getPurchasedContentBundles(customer));
     }
 
     public Content getContentById(Integer id) {
@@ -61,11 +58,14 @@ public class ContentService {
         //TODO
     }
 
-    public void checkSolutionForQuiz(Integer contentId, QuizSolutionRequest quizSolutionRequest) {
+    public QuizSolutionResult checkSolutionForQuiz(Integer contentId, QuizSolutionRequest quizSolutionRequest) {
         final var quiz = quizRepository.findById(contentId)
                 .orElseThrow(() -> new EntityNotFoundException(QuizContent.class, contentId));
 
-        quizSolutionCheckerService.checkSolution(quiz, quizSolutionRequest);
-        //TODO
+        return quizSolutionCheckerService.checkSolution(quiz, quizSolutionRequest);
+    }
+
+    public void checkCodeQuizSolutionFor(Integer contentId, Map<Integer, String> solutionsByIndex) {
+
     }
 }
