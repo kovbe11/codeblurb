@@ -1,4 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+
+import 'package:codeblurb/presentation/features/code_editing/code_editing_screen.dart';
+import 'package:codeblurb/presentation/features/code_editing/draggable_code_editing_screen.dart';
+
 import 'package:codeblurb/presentation/features/splash_screen.dart';
 import 'package:flutter/material.dart';
 

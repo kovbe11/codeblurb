@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class CodeblurbApp extends StatelessWidget {
-  const CodeblurbApp({super.key});
+  CodeblurbApp({super.key});
+  final router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    final router = AppRouter();
-
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
