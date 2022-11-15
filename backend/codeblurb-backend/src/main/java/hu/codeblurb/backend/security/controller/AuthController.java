@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
+    public LoginResponse login(@Valid @RequestBody LoginRequest loginRequest) {
         final var tokens = authenticationService.login(loginRequest.username(), loginRequest.password());
         return LoginResponse.builder()
                 .accessToken(tokens.accessToken())
@@ -29,12 +31,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody RegisterRequest registerRequest) {
+    public void register(@Valid @RequestBody RegisterRequest registerRequest) {
         authenticationService.register(registerRequest.username(), registerRequest.password());
     }
 
     @PostMapping("/refresh")
-    public RefreshTokenResponse refresh(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+    public RefreshTokenResponse refresh(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         final var tokens = authenticationService.refresh(refreshTokenRequest.refreshToken());
         return RefreshTokenResponse.builder()
                 .accessToken(tokens.accessToken())
