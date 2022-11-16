@@ -21,6 +21,10 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const SplashScreen());
     },
+    LoginRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const LoginScreen());
+    },
     DraggableCodeEditingRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const DraggableCodeEditingScreen());
@@ -34,9 +38,10 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/splash-screen'),
+        RouteConfig(LoginRoute.name, path: '/'),
         RouteConfig(DraggableCodeEditingRoute.name,
             path: '/draggable-code-editing-screen'),
-        RouteConfig(CodeEditingRoute.name, path: '/')
+        RouteConfig(CodeEditingRoute.name, path: '/code-editing-screen')
       ];
 }
 
@@ -46,6 +51,14 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/splash-screen');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [LoginScreen]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/');
+
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for
@@ -61,7 +74,8 @@ class DraggableCodeEditingRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [CodeEditingScreen]
 class CodeEditingRoute extends PageRouteInfo<void> {
-  const CodeEditingRoute() : super(CodeEditingRoute.name, path: '/');
+  const CodeEditingRoute()
+      : super(CodeEditingRoute.name, path: '/code-editing-screen');
 
   static const String name = 'CodeEditingRoute';
 }

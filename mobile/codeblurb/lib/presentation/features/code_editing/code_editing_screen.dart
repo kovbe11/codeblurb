@@ -1,4 +1,4 @@
-import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_provider.dart';
+import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_notifier_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
@@ -14,8 +14,8 @@ class CodeEditingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(codeEditingProvider.notifier);
-    final state = ref.watch(codeEditingProvider);
+    final notifier = ref.watch(codeEditingNotifierProvider.notifier);
+    final state = ref.watch(codeEditingNotifierProvider);
 
     return _CodeEditingScreenWrapper(
       children: [

@@ -1,4 +1,6 @@
 import 'package:codeblurb/data/auth/auth_api.dart';
+import 'package:codeblurb/data/auth/models/login_request.dart';
+import 'package:codeblurb/data/auth/models/login_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authRepoProvider = Provider<AuthRepository>(
@@ -23,8 +25,10 @@ class AuthRepository {
     return _authApi.logout();
   }
 
-  Future<dynamic> login() async {
-    return _authApi.login();
+  Future<dynamic> login(
+      {required String username, required String password}) async {
+    final response = await _authApi.login(LoginRequest(username, password));
+    final loginResponse = LoginResponse.fromJson(response.data);
   }
 
   Future<dynamic> forceLogout() async {

@@ -1,3 +1,4 @@
+import 'package:codeblurb/data/auth/models/login_request.dart';
 import 'package:codeblurb/data/common/network/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,23 +13,23 @@ class AuthApi {
 
   final Dio _dio;
 
-  Future<dynamic> register() async {
+  Future<Response> register() async {
     return _dio.post('/auth/register');
   }
 
-  Future<dynamic> refreshToken() async {
+  Future<Response> refreshToken() async {
     return _dio.post('/auth/refresh');
   }
 
-  Future<dynamic> logout() async {
+  Future<Response> logout() async {
     return _dio.post('/auth/logout');
   }
 
-  Future<dynamic> login() async {
-    return _dio.post('/auth/login');
+  Future<Response> login(LoginRequest request) async {
+    return _dio.post('/auth/login', data: request.toJson());
   }
 
-  Future<dynamic> forceLogout() async {
+  Future<Response> forceLogout() async {
     return _dio.post('/auth/force-logout');
   }
 }
