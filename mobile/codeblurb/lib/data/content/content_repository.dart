@@ -1,4 +1,5 @@
 import 'package:codeblurb/data/content/content_api.dart';
+import 'package:codeblurb/data/content/models/my_content_bundles_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final contentRepoProvider = Provider<ContentRepository>(
@@ -23,7 +24,8 @@ class ContentRepository {
     return _contentApi.getCodeQuizSolutionResult(contentId: contentId);
   }
 
-  Future<dynamic> getMyContent() async {
-    return _contentApi.getMyContent();
+  Future<MyContentBundlesResponse> getMyContent() async {
+    final response = await _contentApi.getMyContent();
+    return MyContentBundlesResponse.fromJson(response.data);
   }
 }

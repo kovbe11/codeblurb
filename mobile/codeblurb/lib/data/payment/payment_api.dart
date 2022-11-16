@@ -12,11 +12,11 @@ class PaymentApi {
 
   final Dio _dio;
 
-  Future<dynamic> getPayments() async {
+  Future<Response> getPayments() async {
     return _dio.get('/payment');
   }
 
-  Future<dynamic> checkout() async {
+  Future<Response> checkout() async {
     return _dio.post('/payments/checkout');
   }
 }

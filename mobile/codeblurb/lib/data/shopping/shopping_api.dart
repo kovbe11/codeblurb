@@ -12,23 +12,19 @@ class ShoppingApi {
 
   final Dio _dio;
 
-  Future<dynamic> addItem({required int shoppingCartItemId}) async {
+  Future<Response> addItem({required int shoppingCartItemId}) async {
     return _dio.post('/shopping/add-item/$shoppingCartItemId');
   }
 
-  Future<dynamic> restoreShoppingCart() async {
+  Future<Response> restoreShoppingCart() async {
     return _dio.get('/shopping/restore-shopping-cart');
   }
 
-  Future<dynamic> getAvailableShoppingItems() async {
+  Future<Response> getAvailableShoppingItems() async {
     return _dio.get('/shopping/available-shopping-items');
   }
 
-  Future<dynamic> removeItemFromCart({required int shoppingCartItemId}) async {
+  Future<Response> removeItemFromCart({required int shoppingCartItemId}) async {
     return _dio.delete('/shopping/delete-item/$shoppingCartItemId');
-  }
-
-  Future<dynamic> echo({required String text}) async {
-    return _dio.get('/$text');
   }
 }
