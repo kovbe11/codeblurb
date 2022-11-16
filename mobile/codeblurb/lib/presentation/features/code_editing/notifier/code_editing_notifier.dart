@@ -28,7 +28,7 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
       code: ' = ', cursorOffsetFromInsertionPoint: 3);
 
   void onPress() async {
-    await _read(shoppingRepoProvider).echo(text: 'Hello World');
+    await _read(shoppingRepoProvider).getAvailableShoppingItems();
   }
 
   void _insertCodeToCurrentPosition(

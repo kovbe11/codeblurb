@@ -1,3 +1,4 @@
+import 'package:codeblurb/data/shopping/models/shopping_cart_response.dart';
 import 'package:codeblurb/data/shopping/shopping_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,16 +20,13 @@ class ShoppingRepository {
     return _shoppingApi.restoreShoppingCart();
   }
 
-  Future<dynamic> getAvailableShoppingItems() async {
-    return _shoppingApi.getAvailableShoppingItems();
+  Future<ShoppingCartResponse> getAvailableShoppingItems() async {
+    final response = await _shoppingApi.getAvailableShoppingItems();
+    return ShoppingCartResponse.fromJson(response.data);
   }
 
   Future<dynamic> removeItemFromCart({required int shoppingCartItemId}) async {
     return _shoppingApi.removeItemFromCart(
         shoppingCartItemId: shoppingCartItemId);
-  }
-
-  Future<dynamic> echo({required String text}) async {
-    _shoppingApi.echo(text: text);
   }
 }

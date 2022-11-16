@@ -12,19 +12,19 @@ class ContentApi {
 
   final Dio _dio;
 
-  Future<dynamic> getQuizResult({required int contentId}) async {
+  Future<Response> getQuizResult({required int contentId}) async {
     return _dio.post('/content/quiz/solution/$contentId');
   }
 
-  Future<dynamic> getCodeSolutionResult({required int contentId}) async {
+  Future<Response> getCodeSolutionResult({required int contentId}) async {
     return _dio.post('/content/code/solution/$contentId');
   }
 
-  Future<dynamic> getCodeQuizSolutionResult({required int contentId}) async {
+  Future<Response> getCodeQuizSolutionResult({required int contentId}) async {
     return _dio.post('/content/code/code-quiz-solution/$contentId');
   }
 
-  Future<dynamic> getMyContent() async {
+  Future<Response> getMyContent() async {
     return _dio.get('/content/my-content-bundles');
   }
 }
