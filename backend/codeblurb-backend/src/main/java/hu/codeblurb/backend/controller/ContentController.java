@@ -4,9 +4,15 @@ import hu.codeblurb.backend.controller.dto.content.CodeQuizSolutionRequest;
 import hu.codeblurb.backend.controller.dto.content.CodeQuizSolutionResponse;
 import hu.codeblurb.backend.controller.dto.content.CodeSolutionRequest;
 import hu.codeblurb.backend.controller.dto.content.CodeSolutionResponse;
+import hu.codeblurb.backend.controller.dto.content.CodingContentResponse;
+import hu.codeblurb.backend.controller.dto.content.ContentBundleResponse;
 import hu.codeblurb.backend.controller.dto.content.MyContentBundlesResponse;
+import hu.codeblurb.backend.controller.dto.content.MyContentBundlesSeparatedResponse;
+import hu.codeblurb.backend.controller.dto.content.QuizContentResponse;
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionRequest;
 import hu.codeblurb.backend.controller.dto.content.QuizSolutionResponse;
+import hu.codeblurb.backend.controller.dto.content.SeparatedContentBundleResponse;
+import hu.codeblurb.backend.controller.dto.content.VideoContentResponse;
 import hu.codeblurb.backend.controller.mapper.ContentMapper;
 import hu.codeblurb.backend.service.ContentService;
 import lombok.AllArgsConstructor;
@@ -19,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/content")
@@ -32,6 +40,13 @@ public class ContentController {
     public MyContentBundlesResponse getMyContentBundles() {
         final var contentBundles = contentService.getPurchasedContentBundles();
         return new MyContentBundlesResponse(mapper.mapContentBundles(contentBundles));
+    }
+
+    @GetMapping("/my-content-bundles/separated")
+    public MyContentBundlesSeparatedResponse getMyContentBundlesSeparated() {
+        final var contentBundles = mapper.mapContentBundles(contentService.getPurchasedContentBundles());
+        final var separatedContentBundles = separateContentBundles(contentBundles);
+        return new MyContentBundlesSeparatedResponse(separatedContentBundles);
     }
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
@@ -56,5 +71,25 @@ public class ContentController {
         return mapper.map(result);
     }
 
+    private static List<SeparatedContentBundleResponse> separateContentBundles(List<ContentBundleResponse> contentBundles) {
+        return contentBundles.stream()
+                .map(it -> {
+                    final var videos = new ArrayList<VideoContentResponse>();
+                    final var codings = new ArrayList<CodingContentResponse>();
+                    final var quizzes = new ArrayList<QuizContentResponse>();
+                    it.includedContent()
+                            .forEach(content -> {
+                                if (content instanceof CodingContentResponse code) {
+                                    codings.add(code);
+                                } else if (content instanceof VideoContentResponse video) {
+                                    videos.add(video);
+                                } else if (content instanceof QuizContentResponse quiz) {
+                                    quizzes.add(quiz);
+                                }
+                            });
+                    return new SeparatedContentBundleResponse(videos, codings, quizzes);
+                })
+                .toList();
+    }
 
 }

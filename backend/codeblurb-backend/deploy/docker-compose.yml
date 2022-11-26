@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  codeblurb-backend:
+    image: codeblurb-backend:0.2
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb:codeblurb-backend
+    environment:
+      CODEBLURB_DB_HOST: mysqldb
+      SPRING_JPA_HIBERNATE_DDL-AUTO: validate
+  mysqldb:
+    image: "mysql:latest"
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: codeblurb
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./sql_data:/docker-entrypoint-initdb.d

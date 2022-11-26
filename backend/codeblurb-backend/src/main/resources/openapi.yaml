@@ -31,14 +31,6 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /payments/checkout:
-    post:
-      tags:
-        - Payment
-      operationId: pay
-      responses:
-        "200":
-          description: OK
   /content/quiz/solution/{contentId}:
     post:
       tags:
@@ -126,6 +118,30 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /content/my-content-bundles:
+    get:
+      tags:
+        - Content
+      operationId: getMyContentBundles
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/MyContentBundlesResponse'
+  /content/my-content-bundles/separated:
+    get:
+      tags:
+        - Content
+      operationId: getMyContentBundlesSeparated
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/MyContentBundlesSeparatedResponse'
   /auth/register:
     post:
       tags:
@@ -142,6 +158,12 @@ paths:
           description: OK
         "400":
           description: Bad request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "403":
+          description: User exists
           content:
             'application/json':
               schema:
@@ -234,30 +256,6 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/GetAvailableShoppingItemsResponse'
-  /payments:
-    get:
-      tags:
-        - Payment
-      operationId: getPreviousPayments
-      responses:
-        "200":
-          description: OK
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/PreviousPaymentsResponse'
-  /content/my-content-bundles:
-    get:
-      tags:
-        - Content
-      operationId: getMyContentBundles
-      responses:
-        "200":
-          description: OK
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/MyContentBundlesResponse'
   /shopping/delete-item/{shoppingCartItem}:
     delete:
       tags:
@@ -277,6 +275,26 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/ShoppingCartResponse'
+  /payments:
+    get:
+      tags:
+        - Payment
+      operationId: getPreviousPayments
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/PreviousPaymentsResponse'
+  /payments/checkout:
+    post:
+      tags:
+        - Payment
+      operationId: pay
+      responses:
+        "200":
+          description: OK
 components:
   schemas:
     MinimalContentBundleResponse:
@@ -604,6 +622,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ContentBundleResponse'
+    MyContentBundlesSeparatedResponse:
+      type: object
+      properties:
+        contentBundles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeparatedContentBundleResponse'
+    SeparatedContentBundleResponse:
+      type: object
+      properties:
+        includedVideos:
+          type: array
+          items:
+            $ref: '#/components/schemas/VideoContentResponse'
+        includedCodings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodingContentResponse'
+        includedQuizzes:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuizContentResponse'
     ErrorResponse:
       type: object
       properties:
