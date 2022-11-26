@@ -2,6 +2,7 @@ package hu.codeblurb.backend.security.service;
 
 import hu.codeblurb.backend.domain.Customer;
 import hu.codeblurb.backend.security.exception.CustomerNotFoundException;
+import hu.codeblurb.backend.security.exception.UsernameAlreadyExists;
 import hu.codeblurb.backend.security.exception.WrongPasswordException;
 import hu.codeblurb.backend.security.service.dto.LoginResult;
 import hu.codeblurb.backend.security.service.dto.RefreshTokenResult;
@@ -39,6 +40,9 @@ public class AuthenticationService {
     }
 
     public void register(String username, String password) {
+        if (customerService.findCustomerByUsername(username).isPresent()) {
+            throw new UsernameAlreadyExists(username);
+        }
         customerService.createCustomer(username, passwordEncoder.encode(password));
     }
 
