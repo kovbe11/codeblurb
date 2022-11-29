@@ -19,8 +19,7 @@ final dioProvider = Provider<Dio>(
       if (!kReleaseMode) PrettyDioLogger(requestBody: true, responseBody: true),
       _AuthInterceptor(ref.watch(sharedPrefsProvider)),
       InterceptorsWrapper(onError: (error, handler) async {
-        if (error.response?.statusCode == 401 ||
-            error.response?.statusCode == 403) {
+        if (error.response?.statusCode == 401) {
           await ref.read(authRepoProvider).refreshToken();
           _retry(error.requestOptions, dio);
         }
