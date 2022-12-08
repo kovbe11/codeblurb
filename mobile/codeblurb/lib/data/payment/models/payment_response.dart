@@ -1,4 +1,3 @@
-import 'package:codeblurb/data/common/network/models/separated_content_bundle_response.dart';
 import 'package:codeblurb/data/content/models/payment_content_bundle_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
