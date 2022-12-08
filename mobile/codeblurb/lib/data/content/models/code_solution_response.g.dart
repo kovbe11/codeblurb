@@ -17,6 +17,6 @@ CodeSolutionResponse _$CodeSolutionResponseFromJson(
     );
 
 const _$OverallResultEnumMap = {
-  OverallResult.allPassed: 'allPassed',
-  OverallResult.someFailed: 'someFailed',
+  OverallResult.allPassed: 'ALL_PASSED',
+  OverallResult.someFailed: 'TESTCASES_FAILED',
 };

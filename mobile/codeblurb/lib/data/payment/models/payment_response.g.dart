@@ -10,6 +10,7 @@ PaymentResponse _$PaymentResponseFromJson(Map<String, dynamic> json) =>
     PaymentResponse(
       (json['pricePayed'] as num).toDouble(),
       (json['boughtContentBundles'] as List<dynamic>)
-          .map((e) => ContentBundleResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) =>
+              PaymentContentBundleResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

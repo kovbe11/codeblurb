@@ -1,9 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum ContentType {
-  coding("CODING"),
-  video("VIDEO"),
-  quiz("QUIZ");
-
-  final String value;
-
-  const ContentType(this.value);
+  @JsonValue('CODING')
+  coding,
+  @JsonValue('VIDEO')
+  video,
+  @JsonValue('QUIZ')
+  quiz,
 }

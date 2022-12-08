@@ -16,6 +16,6 @@ TestCaseOutcomeResponse _$TestCaseOutcomeResponseFromJson(
     );
 
 const _$TestCaseResultEnumMap = {
-  TestCaseResult.passed: 'passed',
-  TestCaseResult.failed: 'failed',
+  TestCaseResult.passed: 'PASSED',
+  TestCaseResult.failed: 'FAILED',
 };

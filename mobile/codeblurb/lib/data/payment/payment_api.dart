@@ -13,7 +13,7 @@ class PaymentApi {
   final Dio _dio;
 
   Future<Response> getPayments() async {
-    return _dio.get('/payment');
+    return _dio.get('/payments');
   }
 
   Future<Response> checkout() async {

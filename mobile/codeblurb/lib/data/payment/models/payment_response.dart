@@ -1,4 +1,5 @@
-import 'package:codeblurb/data/common/network/models/content_bundle_response.dart';
+import 'package:codeblurb/data/common/network/models/separated_content_bundle_response.dart';
+import 'package:codeblurb/data/content/models/payment_content_bundle_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_response.g.dart';
@@ -7,7 +8,7 @@ part 'payment_response.g.dart';
 class PaymentResponse {
   @JsonKey(name: 'pricePayed')
   final double price;
-  final List<ContentBundleResponse> boughtContentBundles;
+  final List<PaymentContentBundleResponse> boughtContentBundles;
 
   PaymentResponse(this.price, this.boughtContentBundles);
 

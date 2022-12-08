@@ -9,7 +9,7 @@ part of 'quiz_solution_response.dart';
 QuizSolutionResponse _$QuizSolutionResponseFromJson(
         Map<String, dynamic> json) =>
     QuizSolutionResponse(
-      (json['correctAnsweredQuestionIds'] as List<dynamic>)
+      (json['correctAnswerQuestionIds'] as List<dynamic>)
           .map((e) => e as int)
           .toList(),
       (json['incorrectSolutions'] as List<dynamic>)

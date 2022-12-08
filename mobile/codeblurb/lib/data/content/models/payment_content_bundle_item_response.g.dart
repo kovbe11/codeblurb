@@ -1,15 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'minimal_content_response.dart';
+part of 'payment_content_bundle_item_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MinimalContentResponse _$MinimalContentResponseFromJson(
+PaymentContentBundleItemResponse _$PaymentContentBundleItemResponseFromJson(
         Map<String, dynamic> json) =>
-    MinimalContentResponse(
-      json['id'] as int,
+    PaymentContentBundleItemResponse(
       json['name'] as String,
       $enumDecode(_$ContentTypeEnumMap, json['contentType']),
     );

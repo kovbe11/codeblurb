@@ -1,8 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum TestCaseResult {
-  passed("PASSED"),
-  failed("FAILED");
-
-  final String value;
-
-  const TestCaseResult(this.value);
+  @JsonValue("PASSED")
+  passed,
+  @JsonValue("FAILED")
+  failed
 }

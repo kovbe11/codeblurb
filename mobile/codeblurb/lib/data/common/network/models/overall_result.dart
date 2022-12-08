@@ -1,8 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum OverallResult {
-  allPassed("ALL_PASSED"),
-  someFailed("TESTCASES_FAILED");
-
-  final String value;
-
-  const OverallResult(this.value);
+  @JsonValue("ALL_PASSED")
+  allPassed,
+  @JsonValue("TESTCASES_FAILED")
+  someFailed
 }
