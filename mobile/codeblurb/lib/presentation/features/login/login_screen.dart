@@ -18,7 +18,7 @@ class LoginScreen extends ConsumerWidget {
           ..whenData((data) {
             if (!state.isRefreshing) {
               if (state.hasValue) {
-                context.router.push(const CodeEditingRoute());
+                context.router.replace(const HomeRoute());
               }
             }
           }));
