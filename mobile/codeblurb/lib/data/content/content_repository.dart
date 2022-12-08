@@ -1,5 +1,12 @@
+import 'package:codeblurb/data/common/handle_request.dart';
+import 'package:codeblurb/data/common/network/models/my_content_bundles_separated_response.dart';
 import 'package:codeblurb/data/content/content_api.dart';
-import 'package:codeblurb/data/content/models/my_content_bundles_response.dart';
+import 'package:codeblurb/data/content/models/code_quiz_solution_request.dart';
+import 'package:codeblurb/data/content/models/code_quiz_solution_response.dart';
+import 'package:codeblurb/data/content/models/code_solution_request.dart';
+import 'package:codeblurb/data/content/models/code_solution_response.dart';
+import 'package:codeblurb/data/content/models/quiz_solution_request.dart';
+import 'package:codeblurb/data/content/models/quiz_solution_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final contentRepoProvider = Provider<ContentRepository>(
@@ -12,20 +19,40 @@ class ContentRepository {
 
   ContentRepository(this._contentApi);
 
-  Future<dynamic> getQuizResultFor({required int contentId}) async {
-    return _contentApi.getQuizResult(contentId: contentId);
+  Future<QuizSolutionResponse> sendQuizSolution(
+      {required int contentId, required QuizSolutionRequest answers}) async {
+    return handleRequest(
+      request: _contentApi.sendQuizSolution(
+        contentId: contentId,
+        body: answers,
+      ),
+      jsonParser: QuizSolutionResponse.fromJson,
+    );
   }
 
-  Future<dynamic> getCodeSolutionResultFor({required int contentId}) async {
-    return _contentApi.getCodeSolutionResult(contentId: contentId);
+  Future<CodeSolutionResponse> sendCodeSolution(
+      {required int contentId,
+      required CodeSolutionRequest codeSolution}) async {
+    return handleRequest(
+        request: _contentApi.sendCodeSolution(
+            contentId: contentId, body: codeSolution),
+        jsonParser: CodeSolutionResponse.fromJson);
   }
 
-  Future<dynamic> getCodeQuizSolutionResultFor({required int contentId}) async {
-    return _contentApi.getCodeQuizSolutionResult(contentId: contentId);
+  Future<CodeQuizSolutionResponse> getCodeQuizSolutionResultFor(
+      {required int contentId,
+      required CodeQuizSolutionRequest solutions}) async {
+    return handleRequest(
+      request: _contentApi.sendCodeQuizSolution(
+          contentId: contentId, body: solutions),
+      jsonParser: CodeQuizSolutionResponse.fromJson,
+    );
   }
 
-  Future<MyContentBundlesResponse> getMyContent() async {
-    final response = await _contentApi.getMyContent();
-    return MyContentBundlesResponse.fromJson(response.data);
+  Future<MyContentBundlesSeparatedResponse> getMyContent() async {
+    return handleRequest(
+      request: _contentApi.getMyContent(),
+      jsonParser: MyContentBundlesSeparatedResponse.fromJson,
+    );
   }
 }

@@ -1,15 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'my_content_bundles_response.dart';
+part of 'my_content_bundles_separated_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MyContentBundlesResponse _$MyContentBundlesResponseFromJson(
+MyContentBundlesSeparatedResponse _$MyContentBundlesSeparatedResponseFromJson(
         Map<String, dynamic> json) =>
-    MyContentBundlesResponse(
+    MyContentBundlesSeparatedResponse(
       (json['contentBundles'] as List<dynamic>)
-          .map((e) => ContentBundleResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) => SeparatedContentBundleResponse.fromJson(
+              e as Map<String, dynamic>))
           .toList(),
     );

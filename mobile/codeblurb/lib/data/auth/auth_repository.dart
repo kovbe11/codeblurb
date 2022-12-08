@@ -4,6 +4,7 @@ import 'package:codeblurb/data/auth/models/login_request.dart';
 import 'package:codeblurb/data/auth/models/login_response.dart';
 import 'package:codeblurb/data/auth/models/refresh_token_request.dart';
 import 'package:codeblurb/data/auth/models/refresh_token_response.dart';
+import 'package:codeblurb/data/common/handle_request.dart';
 import 'package:codeblurb/providers/core_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,34 +21,43 @@ class AuthRepository {
 
   AuthRepository(this._authApi, this._sharedPreferences);
 
-  Future<dynamic> register() async {
-    return _authApi.register();
+  Future<void> register() async {
+    return handleRequest(
+      request: _authApi.register(),
+      jsonParser: (p0) {},
+    );
   }
 
-  Future<dynamic> refreshToken() async {
-    final response = await _authApi.refreshToken(RefreshTokenRequest(
-      _sharedPreferences.getString(AppConstants.refreshToken) ?? '',
-    ));
-    final refreshResponse = RefreshTokenResponse.fromJson(response.data);
+  Future<void> refreshToken() async {
+    final refreshResponse = await handleRequest(
+        request: _authApi.refreshToken(RefreshTokenRequest(
+          _sharedPreferences.getString(AppConstants.refreshToken) ?? '',
+        )),
+        jsonParser: RefreshTokenResponse.fromJson);
     await _saveTokens(
         access: refreshResponse.accessToken,
         refresh: refreshResponse.refreshToken);
   }
 
-  Future<dynamic> logout() async {
-    return _authApi.logout();
+  Future<void> logout() async {
+    return handleRequest(
+        request: _authApi.logout(), jsonParser: (json) => json);
   }
 
   Future<void> login(
       {required String username, required String password}) async {
-    final response = await _authApi.login(LoginRequest(username, password));
-    final loginResponse = LoginResponse.fromJson(response.data);
+    final loginResponse = await handleRequest(
+        request: _authApi.login(LoginRequest(username, password)),
+        jsonParser: LoginResponse.fromJson);
     await _saveTokens(
         access: loginResponse.accessToken, refresh: loginResponse.refreshToken);
   }
 
-  Future<dynamic> forceLogout() async {
-    return _authApi.forceLogout();
+  Future<void> forceLogout() async {
+    return handleRequest<void>(
+      request: _authApi.forceLogout(),
+      jsonParser: (json) {},
+    );
   }
 
   Future<void> _saveTokens({required String access, required String refresh}) {

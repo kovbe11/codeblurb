@@ -5,7 +5,7 @@ part 'quiz_solution_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class QuizSolutionResponse {
-  @JsonKey(name: 'correctAnsweredQuestionIds')
+  @JsonKey(name: 'correctAnswerQuestionIds')
   final List<int> correctlyAnsweredQuestionIds;
   final List<IncorrectQuizSolutionResponse> incorrectSolutions;
 

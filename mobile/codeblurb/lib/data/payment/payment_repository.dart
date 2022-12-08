@@ -1,3 +1,5 @@
+import 'package:codeblurb/data/common/handle_request.dart';
+import 'package:codeblurb/data/payment/models/previous_payments_response.dart';
 import 'package:codeblurb/data/payment/payment_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,11 +13,15 @@ class PaymentRepository {
 
   PaymentRepository(this._paymentApi);
 
-  Future<dynamic> getPayments() async {
-    return _paymentApi.getPayments();
+  Future<PreviousPaymentsResponse> getPayments() async {
+    return handleRequest(
+      request: _paymentApi.getPayments(),
+      jsonParser: PreviousPaymentsResponse.fromJson,
+    );
   }
 
   Future<dynamic> checkout() async {
-    return _paymentApi.checkout();
+    return handleRequest(
+        request: _paymentApi.checkout(), jsonParser: (json) {});
   }
 }

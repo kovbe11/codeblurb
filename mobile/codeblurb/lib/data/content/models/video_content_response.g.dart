@@ -1,13 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'content_bundle_response.dart';
+part of 'video_content_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ContentBundleResponse _$ContentBundleResponseFromJson(
+VideoContentResponse _$VideoContentResponseFromJson(
         Map<String, dynamic> json) =>
-    ContentBundleResponse(
-      json['includedContent'] as List<dynamic>,
+    VideoContentResponse(
+      json['name'] as String,
+      json['description'] as String,
+      json['resourceUrl'] as String,
     );
