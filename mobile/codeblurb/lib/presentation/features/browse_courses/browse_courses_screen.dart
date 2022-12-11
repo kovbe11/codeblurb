@@ -37,6 +37,30 @@ class BrowseCoursesScreen extends StatelessWidget {
       9.99,
       MinimalContentBundleResponse([]),
     ),
+    ShoppingItemResponse(
+      2,
+      "Course 2",
+      9.99,
+      MinimalContentBundleResponse([]),
+    ),
+    ShoppingItemResponse(
+      3,
+      "Course 3",
+      9.99,
+      MinimalContentBundleResponse([]),
+    ),
+    ShoppingItemResponse(
+      4,
+      "Course 4",
+      9.99,
+      MinimalContentBundleResponse([]),
+    ),
+    ShoppingItemResponse(
+      5,
+      "Course 5",
+      9.99,
+      MinimalContentBundleResponse([]),
+    ),
   ];
 
   @override
@@ -44,6 +68,12 @@ class BrowseCoursesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Browse Courses'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -51,6 +81,7 @@ class BrowseCoursesScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.separated(
+                  padding: const EdgeInsets.only(top: 16.0),
                   itemCount: shoppingItems.length,
                   separatorBuilder: (context, index) => const SizedBox(
                         height: 12.0,

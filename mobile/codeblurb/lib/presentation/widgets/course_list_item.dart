@@ -16,8 +16,13 @@ class CourseListItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(6.0),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-            color: Colors.green, borderRadius: BorderRadius.circular(6.0)),
+        decoration: BoxDecoration(boxShadow: const [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0),
+            blurRadius: 6.0,
+          ),
+        ], color: Colors.green, borderRadius: BorderRadius.circular(6.0)),
         child: SizedBox(
           height: _imageSize,
           child:
