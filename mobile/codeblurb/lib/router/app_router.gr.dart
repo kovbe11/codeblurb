@@ -25,13 +25,13 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const LoginScreen());
     },
-    DraggableCodeEditingRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-          routeData: routeData, child: const DraggableCodeEditingScreen());
-    },
     CodeEditingRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const CodeEditingScreen());
+    },
+    ShoppingCartRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const ShoppingCartScreen());
     },
     HomeRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
@@ -69,9 +69,8 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/splash-screen'),
         RouteConfig(LoginRoute.name, path: '/'),
-        RouteConfig(DraggableCodeEditingRoute.name,
-            path: '/draggable-code-editing-screen'),
         RouteConfig(CodeEditingRoute.name, path: '/code-editing-screen'),
+        RouteConfig(ShoppingCartRoute.name, path: '/shopping-cart-screen'),
         RouteConfig(HomeRoute.name, path: '/home', children: [
           RouteConfig(BrowseCoursesRouter.name,
               path: 'browse',
@@ -115,22 +114,21 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DraggableCodeEditingScreen]
-class DraggableCodeEditingRoute extends PageRouteInfo<void> {
-  const DraggableCodeEditingRoute()
-      : super(DraggableCodeEditingRoute.name,
-            path: '/draggable-code-editing-screen');
-
-  static const String name = 'DraggableCodeEditingRoute';
-}
-
-/// generated route for
 /// [CodeEditingScreen]
 class CodeEditingRoute extends PageRouteInfo<void> {
   const CodeEditingRoute()
       : super(CodeEditingRoute.name, path: '/code-editing-screen');
 
   static const String name = 'CodeEditingRoute';
+}
+
+/// generated route for
+/// [ShoppingCartScreen]
+class ShoppingCartRoute extends PageRouteInfo<void> {
+  const ShoppingCartRoute()
+      : super(ShoppingCartRoute.name, path: '/shopping-cart-screen');
+
+  static const String name = 'ShoppingCartRoute';
 }
 
 /// generated route for
