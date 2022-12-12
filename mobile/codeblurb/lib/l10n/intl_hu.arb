@@ -19,5 +19,8 @@
   "welcomeMessage": "Welcome to CodeBlurb!",
   "signIn": "Sign In",
   "createAccount": "Create An Account",
-  "register": "Register"
+  "register": "Register",
+  "back": "Back",
+  "enterCredentials": "Enter Your Credentials",
+  "confirmPassword": "Confirm Password"
 }

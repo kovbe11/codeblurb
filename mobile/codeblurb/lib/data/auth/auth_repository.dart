@@ -4,6 +4,7 @@ import 'package:codeblurb/data/auth/models/login_request.dart';
 import 'package:codeblurb/data/auth/models/login_response.dart';
 import 'package:codeblurb/data/auth/models/refresh_token_request.dart';
 import 'package:codeblurb/data/auth/models/refresh_token_response.dart';
+import 'package:codeblurb/data/auth/models/register_request.dart';
 import 'package:codeblurb/data/common/handle_request.dart';
 import 'package:codeblurb/providers/core_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,11 +22,12 @@ class AuthRepository {
 
   AuthRepository(this._authApi, this._sharedPreferences);
 
-  Future<void> register() async {
-    return handleRequest(
-      request: _authApi.register(),
-      jsonParser: (p0) {},
+  Future<void> register(
+      {required String username, required String password}) async {
+    await _authApi.register(
+      RegisterRequest(username, password),
     );
+    await login(username: username, password: password);
   }
 
   Future<void> refreshToken() async {

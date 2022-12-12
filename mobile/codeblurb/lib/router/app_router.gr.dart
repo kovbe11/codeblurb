@@ -25,6 +25,10 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const LoginScreen());
     },
+    RegistrationRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const RegistrationScreen());
+    },
     CodeEditingRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const CodeEditingScreen());
@@ -75,6 +79,7 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/splash-screen'),
         RouteConfig(LoginRoute.name, path: '/'),
+        RouteConfig(RegistrationRoute.name, path: '/registration-screen'),
         RouteConfig(CodeEditingRoute.name, path: '/code-editing-screen'),
         RouteConfig(ShoppingCartRoute.name, path: '/shopping-cart-screen'),
         RouteConfig(CourseDetailsRoute.name, path: '/course-details-screen'),
@@ -118,6 +123,15 @@ class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/');
 
   static const String name = 'LoginRoute';
+}
+
+/// generated route for
+/// [RegistrationScreen]
+class RegistrationRoute extends PageRouteInfo<void> {
+  const RegistrationRoute()
+      : super(RegistrationRoute.name, path: '/registration-screen');
+
+  static const String name = 'RegistrationRoute';
 }
 
 /// generated route for
