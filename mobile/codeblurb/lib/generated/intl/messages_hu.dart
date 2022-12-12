@@ -25,6 +25,24 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "completed": MessageLookupByLibrary.simpleMessage("completed"),
-        "percentageComplete": m0
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("Create An Account"),
+        "hide": MessageLookupByLibrary.simpleMessage("hide"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "percentageComplete": m0,
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "show": MessageLookupByLibrary.simpleMessage("show"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "validationEmail": MessageLookupByLibrary.simpleMessage(
+            "This field requires a valid email address"),
+        "validationPasswordLength": MessageLookupByLibrary.simpleMessage(
+            "Password length must be at least 8 characters long"),
+        "validationPasswordMatch":
+            MessageLookupByLibrary.simpleMessage("Passwords must match"),
+        "validationRequired":
+            MessageLookupByLibrary.simpleMessage("This field cannot be empty"),
+        "welcomeMessage":
+            MessageLookupByLibrary.simpleMessage("Welcome to CodeBlurb!")
       };
 }

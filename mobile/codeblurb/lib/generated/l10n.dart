@@ -69,6 +69,126 @@ class S {
       args: [],
     );
   }
+
+  /// `show`
+  String get show {
+    return Intl.message(
+      'show',
+      name: 'show',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hide`
+  String get hide {
+    return Intl.message(
+      'hide',
+      name: 'hide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field cannot be empty`
+  String get validationRequired {
+    return Intl.message(
+      'This field cannot be empty',
+      name: 'validationRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field requires a valid email address`
+  String get validationEmail {
+    return Intl.message(
+      'This field requires a valid email address',
+      name: 'validationEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password length must be at least 8 characters long`
+  String get validationPasswordLength {
+    return Intl.message(
+      'Password length must be at least 8 characters long',
+      name: 'validationPasswordLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords must match`
+  String get validationPasswordMatch {
+    return Intl.message(
+      'Passwords must match',
+      name: 'validationPasswordMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to CodeBlurb!`
+  String get welcomeMessage {
+    return Intl.message(
+      'Welcome to CodeBlurb!',
+      name: 'welcomeMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create An Account`
+  String get createAccount {
+    return Intl.message(
+      'Create An Account',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

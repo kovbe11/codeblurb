@@ -1,18 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:codeblurb/core/app_ui_constants.dart';
 import 'package:flutter/material.dart';
 
 const _cardBorderWidth = 1.0;
 const _imageSize = 80.0;
 
 class AppListTile extends StatelessWidget {
-  AppListTile(
+  const AppListTile(
       {super.key,
       this.elevation = 5,
       required this.onTap,
       this.imageUrl,
       required this.cardContent});
-
-  final _borderRadius = BorderRadius.circular(6);
 
   final double elevation;
   final VoidCallback onTap;
@@ -23,11 +22,11 @@ class AppListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 5,
-      borderRadius: _borderRadius,
+      borderRadius: AppUIConstants.borderCircular6,
       child: SizedBox(
         height: _imageSize,
         child: ClipRRect(
-          borderRadius: _borderRadius,
+          borderRadius: AppUIConstants.borderCircular6,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
             onTap: onTap,
@@ -38,7 +37,7 @@ class AppListTile extends StatelessWidget {
                   color: Colors.black,
                   width: _cardBorderWidth,
                 ),
-                borderRadius: _borderRadius,
+                borderRadius: AppUIConstants.borderCircular6,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(_cardBorderWidth),
