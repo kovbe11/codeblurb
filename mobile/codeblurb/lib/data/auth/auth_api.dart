@@ -1,5 +1,6 @@
 import 'package:codeblurb/data/auth/models/login_request.dart';
 import 'package:codeblurb/data/auth/models/refresh_token_request.dart';
+import 'package:codeblurb/data/auth/models/register_request.dart';
 import 'package:codeblurb/data/common/network/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +15,8 @@ class AuthApi {
 
   final Dio _dio;
 
-  Future<Response> register() async {
-    return _dio.post('/auth/register');
+  Future<Response> register(RegisterRequest request) async {
+    return _dio.post('/auth/register', data: request.toJson());
   }
 
   Future<Response> refreshToken(RefreshTokenRequest request) async {

@@ -4,6 +4,7 @@ import 'package:codeblurb/presentation/features/code_editing/code_editing_screen
 import 'package:codeblurb/presentation/features/course_details/course_details_screen.dart';
 import 'package:codeblurb/presentation/features/login/login_screen.dart';
 import 'package:codeblurb/presentation/features/my_courses/my_courses_screen.dart';
+import 'package:codeblurb/presentation/features/registration/registration_screen.dart';
 import 'package:codeblurb/presentation/features/settings/settings_screen.dart';
 import 'package:codeblurb/presentation/features/shopping_cart/shopping_cart_screen.dart';
 import 'package:codeblurb/presentation/features/splash_screen/splash_screen.dart';
