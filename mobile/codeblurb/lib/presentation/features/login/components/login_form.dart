@@ -23,6 +23,7 @@ class _LoginForm extends ConsumerWidget {
           },
         ),
     );
+    WidgetsBinding.instance.addPostFrameCallback((_) => notifier.init());
 
     final l10n = S.of(context);
     return AutofillGroup(
@@ -34,7 +35,10 @@ class _LoginForm extends ConsumerWidget {
           const SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: ImageCard(image: AssetImage(Assets.codeblurbLogo.path)),
+            child: ImageCard(
+              image: AssetImage(Assets.codeblurbLogo.path),
+              height: 200,
+            ),
           ),
           const SizedBox(height: 25),
           Text(
