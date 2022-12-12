@@ -5,6 +5,7 @@ const _routes = [
   AutoRoute(page: LoginScreen, initial: true),
   AutoRoute(page: CodeEditingScreen),
   AutoRoute(page: ShoppingCartScreen),
+  AutoRoute(page: CourseDetailsScreen),
   AutoRoute(
     path: '/home',
     page: HomeScreen,

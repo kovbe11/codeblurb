@@ -50,11 +50,21 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `dummy`
-  String get dummy {
+  /// `{percentage}% completed`
+  String percentageComplete(int percentage) {
     return Intl.message(
-      'dummy',
-      name: 'dummy',
+      '$percentage% completed',
+      name: 'percentageComplete',
+      desc: '',
+      args: [percentage],
+    );
+  }
+
+  /// `completed`
+  String get completed {
+    return Intl.message(
+      'completed',
+      name: 'completed',
       desc: '',
       args: [],
     );

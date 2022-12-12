@@ -20,8 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'hu';
 
+  static String m0(percentage) => "${percentage}% completed";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "dummy": MessageLookupByLibrary.simpleMessage("tesztadat")
+        "completed": MessageLookupByLibrary.simpleMessage("completed"),
+        "percentageComplete": m0
       };
 }

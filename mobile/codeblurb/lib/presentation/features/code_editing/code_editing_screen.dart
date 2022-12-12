@@ -1,9 +1,7 @@
 import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_notifier_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_highlight/flutter_highlight.dart';
-import 'package:flutter_highlight/themes/github.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 part 'components/character_insertion_button.dart';
 part 'components/character_insertion_button_row.dart';
@@ -16,15 +14,21 @@ class CodeEditingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(codeEditingNotifierProvider.notifier);
     final state = ref.watch(codeEditingNotifierProvider);
+    final mediaQuery = MediaQuery.of(context);
 
     return _CodeEditingScreenWrapper(
       children: [
-        HighlightView(
-          state.code,
-          language: 'dart',
-          theme: githubTheme,
-          padding: const EdgeInsets.all(12),
-          textStyle: GoogleFonts.firaCode(fontSize: 16),
+        SizedBox(
+          height: mediaQuery.size.height / 2,
+          child: SyntaxView(
+            code: state.code,
+            syntax: Syntax.DART,
+            syntaxTheme: SyntaxTheme.vscodeDark(),
+            fontSize: 14.0,
+            withZoom: false,
+            withLinesCount: true,
+            expanded: true,
+          ),
         ),
         TextField(
           keyboardType: TextInputType.multiline,

@@ -1,3 +1,11 @@
 {
-  "dummy": "tesztadat"
+  "percentageComplete": "{percentage}% completed",
+  "@percentageComplete": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "completed": "completed"
 }
