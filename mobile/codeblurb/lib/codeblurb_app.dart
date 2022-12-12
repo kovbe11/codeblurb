@@ -1,3 +1,4 @@
+import 'package:codeblurb/core/app_theme.dart';
 import 'package:codeblurb/generated/l10n.dart';
 import 'package:codeblurb/router/app_router.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -12,9 +13,9 @@ class CodeblurbApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      darkTheme: ThemeData(),
-      themeMode: ThemeMode.system,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.dark,
       localizationsDelegates: const [
         S.delegate,
         ...GlobalMaterialLocalizations.delegates

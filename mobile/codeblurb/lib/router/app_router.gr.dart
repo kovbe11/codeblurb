@@ -33,6 +33,10 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const ShoppingCartScreen());
     },
+    CourseDetailsRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const CourseDetailsScreen());
+    },
     HomeRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const HomeScreen());
@@ -57,7 +61,7 @@ class _$AppRouter extends RootStackRouter {
     },
     MyCoursesRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
-          routeData: routeData, child: const MyCoursesScreen());
+          routeData: routeData, child: MyCoursesScreen());
     },
     SettingsRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
@@ -71,6 +75,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(LoginRoute.name, path: '/'),
         RouteConfig(CodeEditingRoute.name, path: '/code-editing-screen'),
         RouteConfig(ShoppingCartRoute.name, path: '/shopping-cart-screen'),
+        RouteConfig(CourseDetailsRoute.name, path: '/course-details-screen'),
         RouteConfig(HomeRoute.name, path: '/home', children: [
           RouteConfig(BrowseCoursesRouter.name,
               path: 'browse',
@@ -129,6 +134,15 @@ class ShoppingCartRoute extends PageRouteInfo<void> {
       : super(ShoppingCartRoute.name, path: '/shopping-cart-screen');
 
   static const String name = 'ShoppingCartRoute';
+}
+
+/// generated route for
+/// [CourseDetailsScreen]
+class CourseDetailsRoute extends PageRouteInfo<void> {
+  const CourseDetailsRoute()
+      : super(CourseDetailsRoute.name, path: '/course-details-screen');
+
+  static const String name = 'CourseDetailsRoute';
 }
 
 /// generated route for

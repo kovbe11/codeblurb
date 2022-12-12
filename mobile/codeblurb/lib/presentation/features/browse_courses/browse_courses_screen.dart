@@ -1,6 +1,6 @@
 import 'package:codeblurb/data/shopping/models/minimal_content_bundle_response.dart';
 import 'package:codeblurb/data/shopping/models/shopping_item_response.dart';
-import 'package:codeblurb/presentation/widgets/course_list_item.dart';
+import 'package:codeblurb/presentation/features/browse_courses/components/course_list_item.dart';
 import 'package:flutter/material.dart';
 
 class BrowseCoursesScreen extends StatelessWidget {
@@ -81,7 +81,7 @@ class BrowseCoursesScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.separated(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                   itemCount: shoppingItems.length,
                   separatorBuilder: (context, index) => const SizedBox(
                         height: 12.0,
