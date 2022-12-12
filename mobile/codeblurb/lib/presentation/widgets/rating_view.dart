@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingView extends StatelessWidget {
-  const RatingView(
-      {super.key,
-      this.initialRating,
-      this.canRate = false,
-      this.itemSize = 10,
-      this.itemPadding = 1});
+  const RatingView({
+    super.key,
+    this.initialRating,
+    this.canRate = false,
+    this.itemSize = 10,
+    this.itemPadding = 0,
+  });
 
   final double? initialRating;
   final bool canRate;

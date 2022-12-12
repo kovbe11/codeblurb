@@ -6,17 +6,24 @@ const _cardBorderWidth = 1.0;
 const _imageSize = 80.0;
 
 class AppListTile extends StatelessWidget {
-  const AppListTile(
-      {super.key,
-      this.elevation = 5,
-      required this.onTap,
-      this.imageUrl,
-      required this.cardContent});
+  const AppListTile({
+    super.key,
+    this.elevation = 5,
+    this.onTap,
+    this.imageUrl,
+    required this.cardContent,
+    this.crossAxisAlignment = CrossAxisAlignment.stretch,
+    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+    this.height = _imageSize,
+  });
 
   final double elevation;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String? imageUrl;
   final List<Widget> cardContent;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +31,12 @@ class AppListTile extends StatelessWidget {
       elevation: 5,
       borderRadius: AppUIConstants.borderCircular6,
       child: SizedBox(
-        height: _imageSize,
+        height: height,
         child: ClipRRect(
           borderRadius: AppUIConstants.borderCircular6,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
+            borderRadius: AppUIConstants.borderCircular6,
             onTap: onTap,
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -42,8 +50,8 @@ class AppListTile extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(_cardBorderWidth),
                 child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: crossAxisAlignment,
+                    mainAxisAlignment: mainAxisAlignment,
                     children: [
                       if (imageUrl != null)
                         CachedNetworkImage(

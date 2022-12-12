@@ -1,4 +1,3 @@
-import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/presentation/widgets/activity_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -37,18 +36,23 @@ class ImageCard extends StatelessWidget {
             if (wasSynchronouslyLoaded || frame != null) {
               return Container(
                 foregroundDecoration: BoxDecoration(
-                    gradient: RadialGradient(radius: 0.95, colors: [
-                  Colors.transparent,
-                  Colors.transparent,
-                  AppColors.baseDarkGrey.withOpacity(0.75),
-                ])),
+                  gradient: RadialGradient(
+                    radius: 0.8,
+                    colors: [
+                      Colors.transparent,
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.45),
+                    ],
+                  ),
+                ),
                 child: child,
               );
             } else {
               return Container(
-                  alignment: const Alignment(0, 0),
-                  constraints: const BoxConstraints.expand(),
-                  child: const ActivityIndicator(isLight: true));
+                alignment: const Alignment(0, 0),
+                constraints: BoxConstraints.tight(const Size(0, 0)),
+                child: const ActivityIndicator(isLight: true),
+              );
             }
           },
         ),

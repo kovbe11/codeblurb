@@ -41,6 +41,10 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const CourseDetailsScreen());
     },
+    CreatorProfileRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const CreatorProfileScreen());
+    },
     HomeRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const HomeScreen());
@@ -83,6 +87,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(CodeEditingRoute.name, path: '/code-editing-screen'),
         RouteConfig(ShoppingCartRoute.name, path: '/shopping-cart-screen'),
         RouteConfig(CourseDetailsRoute.name, path: '/course-details-screen'),
+        RouteConfig(CreatorProfileRoute.name, path: '/creator-profile-screen'),
         RouteConfig(HomeRoute.name, path: '/home', children: [
           RouteConfig(BrowseCoursesRouter.name,
               path: 'browse',
@@ -159,6 +164,15 @@ class CourseDetailsRoute extends PageRouteInfo<void> {
       : super(CourseDetailsRoute.name, path: '/course-details-screen');
 
   static const String name = 'CourseDetailsRoute';
+}
+
+/// generated route for
+/// [CreatorProfileScreen]
+class CreatorProfileRoute extends PageRouteInfo<void> {
+  const CreatorProfileRoute()
+      : super(CreatorProfileRoute.name, path: '/creator-profile-screen');
+
+  static const String name = 'CreatorProfileRoute';
 }
 
 /// generated route for

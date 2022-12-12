@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'register_request.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class RegisterRequest {
   final String username;
   final String password;
