@@ -7,6 +7,7 @@ const _routes = [
   AutoRoute(page: CodeEditingScreen),
   AutoRoute(page: ShoppingCartScreen),
   AutoRoute(page: CourseDetailsScreen),
+  AutoRoute(page: CreatorProfileScreen),
   AutoRoute(
     path: '/home',
     page: HomeScreen,

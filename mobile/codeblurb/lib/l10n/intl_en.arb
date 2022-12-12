@@ -22,5 +22,60 @@
   "register": "Register",
   "back": "Back",
   "enterCredentials": "Enter Your Credentials",
-  "confirmPassword": "Confirm Password"
+  "confirmPassword": "Confirm Password",
+  "studentsCount": "{count} students total",
+  "@studentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingsCount": "out of {count} ratings",
+  "@ratingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "createdBy": "Created by",
+  "lastUpdated": "Last updated {date}",
+  "@lastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "english": "English",
+  "german": "German",
+  "hungarian": "Hungarian",
+  "buyNow": "Buy now",
+  "deal": "{percentageOff} off - {daysCount} left at this price",
+  "@deal": {
+    "placeholders": {
+      "percentageOff": {
+        "type": "int"
+      },
+      "daysCount": {
+        "type": "int"
+      }
+    }
+  },
+  "curriculum": "Curriculum",
+  "video": "Video",
+  "coding": "Coding",
+  "quiz": "Quiz",
+  "curriculumContent": "{challengeCount} challenges · {videoCount} videos",
+  "@curriculumContent": {
+    "placeholders": {
+      "challengeCount": {
+        "type": "int"
+      },
+      "videoCount": {
+        "type": "int"
+      }
+    }
+  }
 }

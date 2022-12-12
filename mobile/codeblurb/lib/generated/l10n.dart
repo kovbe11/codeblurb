@@ -219,6 +219,146 @@ class S {
       args: [],
     );
   }
+
+  /// `{count} students total`
+  String studentsCount(int count) {
+    return Intl.message(
+      '$count students total',
+      name: 'studentsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `out of {count} ratings`
+  String ratingsCount(int count) {
+    return Intl.message(
+      'out of $count ratings',
+      name: 'ratingsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Created by`
+  String get createdBy {
+    return Intl.message(
+      'Created by',
+      name: 'createdBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last updated {date}`
+  String lastUpdated(String date) {
+    return Intl.message(
+      'Last updated $date',
+      name: 'lastUpdated',
+      desc: '',
+      args: [date],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `German`
+  String get german {
+    return Intl.message(
+      'German',
+      name: 'german',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hungarian`
+  String get hungarian {
+    return Intl.message(
+      'Hungarian',
+      name: 'hungarian',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy now`
+  String get buyNow {
+    return Intl.message(
+      'Buy now',
+      name: 'buyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{percentageOff} off - {daysCount} left at this price`
+  String deal(int percentageOff, int daysCount) {
+    return Intl.message(
+      '$percentageOff off - $daysCount left at this price',
+      name: 'deal',
+      desc: '',
+      args: [percentageOff, daysCount],
+    );
+  }
+
+  /// `Curriculum`
+  String get curriculum {
+    return Intl.message(
+      'Curriculum',
+      name: 'curriculum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Video`
+  String get video {
+    return Intl.message(
+      'Video',
+      name: 'video',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coding`
+  String get coding {
+    return Intl.message(
+      'Coding',
+      name: 'coding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quiz`
+  String get quiz {
+    return Intl.message(
+      'Quiz',
+      name: 'quiz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{challengeCount} challenges · {videoCount} videos`
+  String curriculumContent(int challengeCount, int videoCount) {
+    return Intl.message(
+      '$challengeCount challenges · $videoCount videos',
+      name: 'curriculumContent',
+      desc: '',
+      args: [challengeCount, videoCount],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
