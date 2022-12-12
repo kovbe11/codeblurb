@@ -1,4 +1,5 @@
 import 'package:codeblurb/data/auth/auth_repository.dart';
+import 'package:codeblurb/presentation/extensions/build_context_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,19 +13,17 @@ class LoginNotifier extends StateNotifier<AsyncValue<void>> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> login() async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(
-      () => _authRepo.login(
-        username: "testUser",
-        password: "testPassword",
-      ),
-    );
+  Future<void> login(BuildContext context) async {
+    if (context.isFormValid) {
+      state = const AsyncLoading();
+      state = await AsyncValue.guard(
+        () => _authRepo.login(
+          username: usernameController.text,
+          password: passwordController.text,
+        ),
+      );
+    }
   }
-
-  Future<void> logout() => _authRepo.logout();
-
-  Future<void> forceLogout() => _authRepo.forceLogout();
 
   @override
   void dispose() {

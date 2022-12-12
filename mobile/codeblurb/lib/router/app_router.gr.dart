@@ -60,8 +60,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: BrowseCoursesScreen(key: args.key));
     },
     MyCoursesRoute.name: (routeData) {
+      final args = routeData.argsAs<MyCoursesRouteArgs>(
+          orElse: () => const MyCoursesRouteArgs());
       return CupertinoPageX<dynamic>(
-          routeData: routeData, child: MyCoursesScreen());
+          routeData: routeData, child: MyCoursesScreen(key: args.key));
     },
     SettingsRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
@@ -206,10 +208,23 @@ class BrowseCoursesRouteArgs {
 
 /// generated route for
 /// [MyCoursesScreen]
-class MyCoursesRoute extends PageRouteInfo<void> {
-  const MyCoursesRoute() : super(MyCoursesRoute.name, path: '');
+class MyCoursesRoute extends PageRouteInfo<MyCoursesRouteArgs> {
+  MyCoursesRoute({Key? key})
+      : super(MyCoursesRoute.name,
+            path: '', args: MyCoursesRouteArgs(key: key));
 
   static const String name = 'MyCoursesRoute';
+}
+
+class MyCoursesRouteArgs {
+  const MyCoursesRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MyCoursesRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -13,7 +13,7 @@ Future<T> handleRequest<T>({
 }) async {
   try {
     final response = await request;
-    return jsonParser.call(response.data);
+    return jsonParser(response.data);
   } on DioError catch (e) {
     final errorData = e.response?.data;
     if (errorData != null && onDioError == null) {

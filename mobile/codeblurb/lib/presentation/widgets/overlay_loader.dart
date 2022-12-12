@@ -4,7 +4,7 @@ class OverlayLoader {
   static OverlayEntry? _currentLoader;
   static void show(
     BuildContext context, {
-    Color overlayColor = const Color(0x99ffffff),
+    Color overlayColor = const Color(0x55ffffff),
   }) {
     if (_currentLoader != null) return;
     _currentLoader = OverlayEntry(

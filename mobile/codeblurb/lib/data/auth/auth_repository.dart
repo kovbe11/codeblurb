@@ -40,8 +40,8 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    return handleRequest(
-        request: _authApi.logout(), jsonParser: (json) => json);
+    await _authApi.logout();
+    await _clearTokens();
   }
 
   Future<void> login(
@@ -54,16 +54,21 @@ class AuthRepository {
   }
 
   Future<void> forceLogout() async {
-    return handleRequest<void>(
-      request: _authApi.forceLogout(),
-      jsonParser: (json) {},
-    );
+    await _authApi.forceLogout();
+    await _clearTokens();
   }
 
   Future<void> _saveTokens({required String access, required String refresh}) {
     return Future.wait([
       _sharedPreferences.setString(AppConstants.accessToken, access),
       _sharedPreferences.setString(AppConstants.refreshToken, refresh)
+    ]);
+  }
+
+  Future<void> _clearTokens() {
+    return Future.wait([
+      _sharedPreferences.remove(AppConstants.accessToken),
+      _sharedPreferences.remove(AppConstants.refreshToken)
     ]);
   }
 }
