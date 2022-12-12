@@ -6,14 +6,21 @@ class ImageCard extends StatelessWidget {
   const ImageCard({
     super.key,
     required this.image,
+    this.width,
+    this.height,
+    this.fit = BoxFit.cover,
   });
 
+  final double? height;
+  final double? width;
   final ImageProvider<Object> image;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: height,
+      width: width,
       child: Card(
         margin: EdgeInsets.zero,
         semanticContainer: true,
@@ -24,7 +31,7 @@ class ImageCard extends StatelessWidget {
         elevation: 5,
         child: Image(
           image: image,
-          fit: BoxFit.fill,
+          fit: fit,
           frameBuilder: (BuildContext context, Widget child, int? frame,
               bool wasSynchronouslyLoaded) {
             if (wasSynchronouslyLoaded || frame != null) {
