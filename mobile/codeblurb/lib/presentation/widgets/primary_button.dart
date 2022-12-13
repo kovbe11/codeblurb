@@ -23,6 +23,7 @@ class PrimaryButton extends StatelessWidget {
       side: const BorderSide(color: AppColors.baseDarkGrey),
       surfaceTintColor: Colors.white,
       minimumSize: const Size.fromHeight(60),
+      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       shape: const RoundedRectangleBorder(
           borderRadius: AppUIConstants.borderCircular30),
     );

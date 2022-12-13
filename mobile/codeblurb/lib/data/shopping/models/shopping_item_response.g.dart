@@ -14,4 +14,8 @@ ShoppingItemResponse _$ShoppingItemResponseFromJson(
       (json['price'] as num).toDouble(),
       MinimalContentBundleResponse.fromJson(
           json['contentBundle'] as Map<String, dynamic>),
+      json['imageUrl'] as String,
+      (json['instructorNames'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );

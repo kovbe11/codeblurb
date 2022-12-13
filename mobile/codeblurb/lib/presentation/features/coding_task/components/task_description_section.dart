@@ -1,3 +1,4 @@
+import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/core/app_ui_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class TaskDescriptionSection extends StatelessWidget {
       borderRadius: AppUIConstants.borderCircular6,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Colors.black45,
+          color: AppColors.baseDarkGrey,
           border: Border.all(
             color: Colors.black,
             width: 1,

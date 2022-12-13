@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/data/shopping/models/shopping_item_response.dart';
 import 'package:codeblurb/presentation/widgets/app_list_tile.dart';
 import 'package:codeblurb/presentation/widgets/rating_view.dart';
@@ -16,8 +19,7 @@ class CourseListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppListTile(
       onTap: () => context.router.push(const CourseDetailsRoute()),
-      imageUrl:
-          'https://images.unsplash.com/photo-1670481382179-3968ad563542?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1441&q=80',
+      imageUrl: shoppingItem.imageUrl,
       cardContent: [
         Expanded(
           child: Padding(
@@ -31,10 +33,11 @@ class CourseListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-                const Text(
-                  "Denis Panjuta, Angela Yu",
+                Text(
+                  shoppingItem.instructorNames.join(', '),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  style: const TextStyle(color: AppColors.baseBlue),
                 )
               ],
             ),
@@ -46,7 +49,7 @@ class CourseListItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const RatingView(initialRating: 2),
+              RatingView(initialRating: Random().nextDouble() * 5),
               Text("${shoppingItem.price}\$"),
             ],
           ),

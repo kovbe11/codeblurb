@@ -30,14 +30,17 @@ class _State extends ConsumerState<CodeEditingScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    DefaultTabController.of(context)?.addListener(() {
-      final index = DefaultTabController.of(context)?.index ?? 0;
-      if (index == 1) {
-        _focusField();
-      } else {
-        _unfocus();
-      }
-    });
+
+    if (mounted) {
+      DefaultTabController.of(context)?.addListener(() {
+        final index = DefaultTabController.of(context)?.index ?? 0;
+        if (index == 1) {
+          _focusField();
+        } else {
+          _unfocus();
+        }
+      });
+    }
   }
 
   void _focusField() {
@@ -48,7 +51,9 @@ class _State extends ConsumerState<CodeEditingScreen> {
   }
 
   void _unfocus() {
-    FocusManager.instance.primaryFocus?.unfocus();
+    if (mounted) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
     setState(() {
       _isFocused = false;
     });

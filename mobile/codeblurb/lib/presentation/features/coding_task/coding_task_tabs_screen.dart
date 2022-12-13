@@ -1,3 +1,4 @@
+import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/presentation/features/code_editing/code_editing_screen.dart';
 import 'package:codeblurb/presentation/features/coding_task/components/coding_problem_tab.dart';
 import 'package:codeblurb/presentation/features/coding_task/components/results_tab.dart';
@@ -14,6 +15,7 @@ class CodingTaskTabsScreen extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: true,
           bottom: const TabBar(
+            indicatorColor: AppColors.baseBlue,
             tabs: [
               Tab(icon: Icon(Icons.golf_course_sharp), text: "Problem"),
               Tab(icon: Icon(Icons.code), text: "Code"),
