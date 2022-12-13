@@ -59,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "show": MessageLookupByLibrary.simpleMessage("show"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "startChallenge":
+            MessageLookupByLibrary.simpleMessage("Start the challenge"),
         "studentsCount": m5,
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "validationEmail": MessageLookupByLibrary.simpleMessage(

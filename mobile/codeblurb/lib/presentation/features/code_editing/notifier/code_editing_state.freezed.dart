@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CodeEditingState {
   String get code => throw _privateConstructorUsedError;
   int get cursorPosition => throw _privateConstructorUsedError;
+  bool get isFocused => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CodeEditingStateCopyWith<CodeEditingState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $CodeEditingStateCopyWith<$Res> {
   factory $CodeEditingStateCopyWith(
           CodeEditingState value, $Res Function(CodeEditingState) then) =
       _$CodeEditingStateCopyWithImpl<$Res>;
-  $Res call({String code, int cursorPosition});
+  $Res call({String code, int cursorPosition, bool isFocused});
 }
 
 /// @nodoc
@@ -45,6 +46,7 @@ class _$CodeEditingStateCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? cursorPosition = freezed,
+    Object? isFocused = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
@@ -55,6 +57,10 @@ class _$CodeEditingStateCopyWithImpl<$Res>
           ? _value.cursorPosition
           : cursorPosition // ignore: cast_nullable_to_non_nullable
               as int,
+      isFocused: isFocused == freezed
+          ? _value.isFocused
+          : isFocused // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -66,7 +72,7 @@ abstract class _$$_CodeEditingStateCopyWith<$Res>
           _$_CodeEditingState value, $Res Function(_$_CodeEditingState) then) =
       __$$_CodeEditingStateCopyWithImpl<$Res>;
   @override
-  $Res call({String code, int cursorPosition});
+  $Res call({String code, int cursorPosition, bool isFocused});
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class __$$_CodeEditingStateCopyWithImpl<$Res>
   $Res call({
     Object? code = freezed,
     Object? cursorPosition = freezed,
+    Object? isFocused = freezed,
   }) {
     return _then(_$_CodeEditingState(
       code: code == freezed
@@ -94,6 +101,10 @@ class __$$_CodeEditingStateCopyWithImpl<$Res>
           ? _value.cursorPosition
           : cursorPosition // ignore: cast_nullable_to_non_nullable
               as int,
+      isFocused: isFocused == freezed
+          ? _value.isFocused
+          : isFocused // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -101,7 +112,8 @@ class __$$_CodeEditingStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CodeEditingState implements _CodeEditingState {
-  const _$_CodeEditingState({this.code = "", this.cursorPosition = 0});
+  const _$_CodeEditingState(
+      {this.code = "", this.cursorPosition = 0, this.isFocused = false});
 
   @override
   @JsonKey()
@@ -109,10 +121,13 @@ class _$_CodeEditingState implements _CodeEditingState {
   @override
   @JsonKey()
   final int cursorPosition;
+  @override
+  @JsonKey()
+  final bool isFocused;
 
   @override
   String toString() {
-    return 'CodeEditingState(code: $code, cursorPosition: $cursorPosition)';
+    return 'CodeEditingState(code: $code, cursorPosition: $cursorPosition, isFocused: $isFocused)';
   }
 
   @override
@@ -122,14 +137,16 @@ class _$_CodeEditingState implements _CodeEditingState {
             other is _$_CodeEditingState &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality()
-                .equals(other.cursorPosition, cursorPosition));
+                .equals(other.cursorPosition, cursorPosition) &&
+            const DeepCollectionEquality().equals(other.isFocused, isFocused));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(cursorPosition));
+      const DeepCollectionEquality().hash(cursorPosition),
+      const DeepCollectionEquality().hash(isFocused));
 
   @JsonKey(ignore: true)
   @override
@@ -139,12 +156,16 @@ class _$_CodeEditingState implements _CodeEditingState {
 
 abstract class _CodeEditingState implements CodeEditingState {
   const factory _CodeEditingState(
-      {final String code, final int cursorPosition}) = _$_CodeEditingState;
+      {final String code,
+      final int cursorPosition,
+      final bool isFocused}) = _$_CodeEditingState;
 
   @override
   String get code;
   @override
   int get cursorPosition;
+  @override
+  bool get isFocused;
   @override
   @JsonKey(ignore: true)
   _$$_CodeEditingStateCopyWith<_$_CodeEditingState> get copyWith =>

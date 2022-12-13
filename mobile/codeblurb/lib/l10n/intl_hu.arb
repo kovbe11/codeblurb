@@ -73,5 +73,6 @@
         "type": "int"
       }
     }
-  }
+  },
+  "startChallenge": "Start the challenge"
 }

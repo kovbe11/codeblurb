@@ -45,6 +45,10 @@ class _$AppRouter extends RootStackRouter {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const CreatorProfileScreen());
     },
+    CodingTaskTabsRoute.name: (routeData) {
+      return CupertinoPageX<dynamic>(
+          routeData: routeData, child: const CodingTaskTabsScreen());
+    },
     HomeRoute.name: (routeData) {
       return CupertinoPageX<dynamic>(
           routeData: routeData, child: const HomeScreen());
@@ -88,6 +92,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(ShoppingCartRoute.name, path: '/shopping-cart-screen'),
         RouteConfig(CourseDetailsRoute.name, path: '/course-details-screen'),
         RouteConfig(CreatorProfileRoute.name, path: '/creator-profile-screen'),
+        RouteConfig(CodingTaskTabsRoute.name, path: '/coding-task-tabs-screen'),
         RouteConfig(HomeRoute.name, path: '/home', children: [
           RouteConfig(BrowseCoursesRouter.name,
               path: 'browse',
@@ -173,6 +178,15 @@ class CreatorProfileRoute extends PageRouteInfo<void> {
       : super(CreatorProfileRoute.name, path: '/creator-profile-screen');
 
   static const String name = 'CreatorProfileRoute';
+}
+
+/// generated route for
+/// [CodingTaskTabsScreen]
+class CodingTaskTabsRoute extends PageRouteInfo<void> {
+  const CodingTaskTabsRoute()
+      : super(CodingTaskTabsRoute.name, path: '/coding-task-tabs-screen');
+
+  static const String name = 'CodingTaskTabsRoute';
 }
 
 /// generated route for

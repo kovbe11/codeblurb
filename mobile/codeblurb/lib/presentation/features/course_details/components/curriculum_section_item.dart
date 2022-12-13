@@ -20,7 +20,7 @@ class CurriculumSectionItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         height: 55,
-        onTap: () => context.router.push(const CodeEditingRoute()),
+        onTap: () => context.router.push(const CodingTaskTabsRoute()),
         cardContent: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

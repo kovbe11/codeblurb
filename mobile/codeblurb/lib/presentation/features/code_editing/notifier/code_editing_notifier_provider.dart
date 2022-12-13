@@ -3,18 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'code_editing_notifier.dart';
 import 'code_editing_state.dart';
 
-const _dummyCode = '''main() {
-  print("Hello, World!");
-  print("Hello, World!");
+const _dummyCode = '''
+// Your First Program
 
-  print("Hello, World!");
-
-  print("Hello, World!");
-
-  print("Hello, World!");
-
-  print("Hello, World!");
-
+class HelloWorld {
+    public static void main(String[] args) {
+        //Write your solution here 
+    }
 }
 ''';
 

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/presentation/features/home/tab_type.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,6 @@ class HomeScreen extends StatelessWidget {
         bottomNavigationBuilder: (_, tabsRouter) {
           return BottomNavigationBar(
             elevation: 10,
-            backgroundColor: AppColors.baseDark,
             items: TabType.values
                 .map(
                   (tabType) => const BottomNavigationBarItem(
