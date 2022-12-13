@@ -7,5 +7,6 @@ class CodeEditingState with _$CodeEditingState {
   const factory CodeEditingState({
     @Default("") String code,
     @Default(0) int cursorPosition,
+    @Default(false) bool isFocused,
   }) = _CodeEditingState;
 }

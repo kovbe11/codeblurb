@@ -2,9 +2,10 @@ part of "../code_editing_screen.dart";
 
 class _CharacterInsertionButton extends StatelessWidget {
   const _CharacterInsertionButton(
-      {required this.buttonText, required this.onTap});
+      {this.buttonText, required this.onTap, this.icon});
 
-  final String buttonText;
+  final String? buttonText;
+  final IconData? icon;
   final VoidCallback onTap;
 
   @override
@@ -15,10 +16,28 @@ class _CharacterInsertionButton extends StatelessWidget {
         margin: const EdgeInsets.all(5),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Colors.green, borderRadius: BorderRadius.circular(5)),
-        height: 40,
-        width: 30,
-        child: Text(buttonText),
+          color: AppColors.baseBlue,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: SizedBox(
+          height: 40,
+          width: 33,
+          child: icon != null
+              ? Icon(icon)
+              : ColoredBox(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: AutoSizeText(
+                      buttonText ?? "",
+                      minFontSize: buttonText?.length == 1 ? 20 : 15,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+        ),
       ),
     );
   }

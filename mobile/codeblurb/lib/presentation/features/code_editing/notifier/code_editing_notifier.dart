@@ -11,6 +11,10 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
 
   final Reader _read;
 
+  void setIsFocused(bool value) {
+    state = state.copyWith(isFocused: value);
+  }
+
   void setCode(String code) {
     state = state.copyWith(code: code);
   }
@@ -18,7 +22,9 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
   void insertCurlyBraces() => _insertCodeToCurrentPosition(code: '{}');
   void insertParentheses() => _insertCodeToCurrentPosition(code: '()');
 
-  void insertSemicolon() => _insertCodeToCurrentPosition(code: ';');
+  void insertQuotes() => _insertCodeToCurrentPosition(code: '""');
+
+  void insertCode(String code) => _insertCodeToCurrentPosition(code: code);
 
   void insertSquareBrackets() => _insertCodeToCurrentPosition(code: '[]');
 

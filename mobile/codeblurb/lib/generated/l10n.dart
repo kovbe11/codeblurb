@@ -359,6 +359,16 @@ class S {
       args: [challengeCount, videoCount],
     );
   }
+
+  /// `Start the challenge`
+  String get startChallenge {
+    return Intl.message(
+      'Start the challenge',
+      name: 'startChallenge',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

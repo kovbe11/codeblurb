@@ -13,11 +13,14 @@ class _CodeEditingScreenWrapper extends StatelessWidget {
             return SingleChildScrollView(
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                    minWidth: constraints.maxWidth,
-                    minHeight: constraints.maxHeight),
+                  minWidth: constraints.maxWidth,
+                  minHeight: constraints.maxHeight,
+                ),
                 child: IntrinsicHeight(
                   child: Column(
-                      mainAxisSize: MainAxisSize.max, children: children),
+                    mainAxisSize: MainAxisSize.max,
+                    children: children,
+                  ),
                 ),
               ),
             );
