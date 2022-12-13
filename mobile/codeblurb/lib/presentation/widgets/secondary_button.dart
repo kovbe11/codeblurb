@@ -17,12 +17,13 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = ElevatedButton.styleFrom(
-      backgroundColor: AppColors.baseDarkGrey,
+      backgroundColor: AppColors.baseDark,
       foregroundColor: AppColors.baseBlue,
       shadowColor: AppColors.baseDark,
       side: const BorderSide(color: AppColors.baseBlue),
       surfaceTintColor: AppColors.baseBlue,
       minimumSize: const Size.fromHeight(60),
+      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       shape: const RoundedRectangleBorder(
           borderRadius: AppUIConstants.borderCircular30),
     );

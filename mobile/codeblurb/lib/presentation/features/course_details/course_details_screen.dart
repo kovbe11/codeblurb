@@ -24,13 +24,12 @@ class CourseDetailsScreen extends StatelessWidget {
             children: [
               const ImageCard(
                 image: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Ss3LmcZNyQpID0amZAhilwL35psjlUs1j_Xmhr2pis1rdLr0yRL3AgAkWUMhwj1vdf0&usqp=CAU',
-                ),
+                    'https://fireship.io/courses/javascript/img/featured.png'),
                 width: double.infinity,
               ),
               const SizedBox(height: 15),
               const Text(
-                "Flutter bloc course from novice to expert uramatyam mennyi szoveg",
+                "That Weird JavaScript Course",
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w600,
@@ -38,28 +37,28 @@ class CourseDetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                "Flutter bloc course subtitle that proves this course contains every bit of information you could ever need, also the underlyi ",
+                'That Weird JavaScript Course takes a unique approach. Not only will you learn practical techniques for building apps, but you will also gain knowledge about the world’s most widely-used programming language. My mission is to make you a well-rounded JavaScript and NodeJs developer.',
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
               ),
               const SizedBox(height: 15),
               const RatingSection(
-                rating: 4.69796,
+                rating: 4.99796,
                 raterCount: 123,
                 totalStudentCount: 23522,
               ),
               const SizedBox(height: 10),
               CourseCreationSection(
-                creatorName: 'Denis Panjuta',
+                creatorName: 'Jeff Delaney',
                 lastUpdated: DateTime.now(),
               ),
               const SizedBox(height: 25),
               const BuyCourseSection(
-                originalPrice: 9.99,
+                originalPrice: 119.99,
                 daysLeftOfOffer: 3,
-                discountedPrice: 5.99,
+                discountedPrice: 59.99,
               ),
               const SizedBox(height: 20),
               CurriculumSection(),

@@ -35,7 +35,7 @@ class CurriculumSectionItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'section title',
+                'JavaScript Basics',
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
