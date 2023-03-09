@@ -1,0 +1,29 @@
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "testUser",
+  "password": "testPassword"
+}
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "testUser",
+  "password": "testPassword"
+}
+
+###
+POST http://localhost:8080/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyN2U5ZmNiOS03M2Q5LTQ2M2ItYmYzYi1kM2I4YTNhNGY1NjYiLCJzdWIiOiJyZWZyZXNodG9rZW4iLCJhdWQiOiJ0ZXN0VXNlciIsImlzcyI6ImNvZGVibHVyYiIsImN1c3RvbWVySWQiOjQsImV4cCI6MTY2NTc2MDU5N30.0_iXtIWJpFsW0_k1QNhsVXN8gqILK8tl1_faVe3T-BjqXwp4--ep5es8BJDakmUBfMAaO0SrKQVTgYWKylE8IA"
+}
+
+###
+POST http://localhost:8080/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2YzU1ZjQ5My02Y2RlLTQwMTUtYWIxMS03ODY1MGM0NjIxYzUiLCJzdWIiOiJhY2Nlc3N0b2tlbiIsImF1ZCI6InRlc3RVc2VyIiwiaXNzIjoiY29kZWJsdXJiIiwiY3VzdG9tZXJJZCI6NCwiZXhwIjoxNjY1ODU0MTY4fQ.hB9amQ2DGOz_GLIkwKsxRmAHcRZq6BNx7pxW_H3YmviA9dDukYzfO-qkaPD9jOud387FG_veBqsVoQtE7CFMnA
