@@ -1,3 +1,4 @@
+import 'package:codeblurb/core/themes/app_theme.dart';
 import 'package:codeblurb/generated/l10n.dart';
 import 'package:codeblurb/router/app_router.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -5,17 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class CodeblurbApp extends StatelessWidget {
-  const CodeblurbApp({super.key});
+  CodeblurbApp({super.key});
+  final router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    final router = AppRouter();
-
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      darkTheme: ThemeData(),
-      themeMode: ThemeMode.system,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.dark,
       localizationsDelegates: const [
         S.delegate,
         ...GlobalMaterialLocalizations.delegates

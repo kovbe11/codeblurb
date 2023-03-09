@@ -12,7 +12,8 @@ import 'package:flutter/widgets.dart';
 class Assets {
   Assets._();
 
-  static const String gitkeep = 'assets/.gitkeep';
+  static const AssetGenImage codeblurbLogo =
+      AssetGenImage('assets/codeblurb_logo.png');
 }
 
 class AssetGenImage {

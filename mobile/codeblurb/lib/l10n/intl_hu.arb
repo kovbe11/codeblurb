@@ -1,3 +1,78 @@
 {
-  "dummy": "tesztadat"
+  "percentageComplete": "{percentage}% completed",
+  "@percentageComplete": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "completed": "completed",
+  "show": "show",
+  "hide": "hide",
+  "validationRequired": "This field cannot be empty",
+  "validationEmail": "This field requires a valid email address",
+  "validationPasswordLength": "Password length must be at least 8 characters long",
+  "validationPasswordMatch": "Passwords must match",
+  "username": "Username",
+  "password": "Password",
+  "welcomeMessage": "Welcome to CodeBlurb!",
+  "signIn": "Sign In",
+  "createAccount": "Create An Account",
+  "register": "Register",
+  "back": "Back",
+  "enterCredentials": "Enter Your Credentials",
+  "confirmPassword": "Confirm Password",
+  "studentsCount": "{count} students total",
+  "@studentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ratingsCount": "out of {count} ratings",
+  "@ratingsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "createdBy": "Created by ",
+  "lastUpdated": "Last updated {date}",
+  "@lastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "english": "English",
+  "german": "German",
+  "hungarian": "Hungarian",
+  "buyNow": "Buy now",
+  "deal": "{percentageOff} off - {daysCount} left at this price",
+  "@deal": {
+    "placeholders": {
+      "percentageOff": {
+        "type": "int"
+      },
+      "daysCount": {
+        "type": "int"
+      }
+    }
+  },
+  "curriculumContent": "{challengeCount} challenges · {videoCount} videos",
+  "@curriculumContent": {
+    "placeholders": {
+      "challengeCount": {
+        "type": "int"
+      },
+      "videoCount": {
+        "type": "int"
+      }
+    }
+  },
+  "startChallenge": "Start the challenge"
 }
