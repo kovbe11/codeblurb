@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:codeblurb/presentation/features/browse_courses/browse_courses_screen.dart';
 import 'package:codeblurb/presentation/features/code_editing/code_editing_screen.dart';
 import 'package:codeblurb/presentation/features/coding_task/coding_task_tabs_screen.dart';

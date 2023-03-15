@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'view_state.dart';
 
@@ -26,10 +26,10 @@ mixin _$ViewState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(T value)? data,
-    TResult Function(String message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(T value)? data,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$ViewState<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ViewStateIdle<T> value)? idle,
-    TResult Function(_ViewStateLoading<T> value)? loading,
-    TResult Function(_ViewStateData<T> value)? data,
-    TResult Function(_ViewStateError<T> value)? error,
+    TResult? Function(_ViewStateIdle<T> value)? idle,
+    TResult? Function(_ViewStateLoading<T> value)? loading,
+    TResult? Function(_ViewStateData<T> value)? data,
+    TResult? Function(_ViewStateError<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,16 +72,18 @@ mixin _$ViewState<T> {
 abstract class $ViewStateCopyWith<T, $Res> {
   factory $ViewStateCopyWith(
           ViewState<T> value, $Res Function(ViewState<T>) then) =
-      _$ViewStateCopyWithImpl<T, $Res>;
+      _$ViewStateCopyWithImpl<T, $Res, ViewState<T>>;
 }
 
 /// @nodoc
-class _$ViewStateCopyWithImpl<T, $Res> implements $ViewStateCopyWith<T, $Res> {
+class _$ViewStateCopyWithImpl<T, $Res, $Val extends ViewState<T>>
+    implements $ViewStateCopyWith<T, $Res> {
   _$ViewStateCopyWithImpl(this._value, this._then);
 
-  final ViewState<T> _value;
   // ignore: unused_field
-  final $Res Function(ViewState<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -93,14 +95,11 @@ abstract class _$$_ViewStateIdleCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_ViewStateIdleCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res>
+    extends _$ViewStateCopyWithImpl<T, $Res, _$_ViewStateIdle<T>>
     implements _$$_ViewStateIdleCopyWith<T, $Res> {
   __$$_ViewStateIdleCopyWithImpl(
       _$_ViewStateIdle<T> _value, $Res Function(_$_ViewStateIdle<T>) _then)
-      : super(_value, (v) => _then(v as _$_ViewStateIdle<T>));
-
-  @override
-  _$_ViewStateIdle<T> get _value => super._value as _$_ViewStateIdle<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -136,10 +135,10 @@ class _$_ViewStateIdle<T> extends _ViewStateIdle<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(T value)? data,
-    TResult Function(String message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(T value)? data,
+    TResult? Function(String message)? error,
   }) {
     return idle?.call();
   }
@@ -173,10 +172,10 @@ class _$_ViewStateIdle<T> extends _ViewStateIdle<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ViewStateIdle<T> value)? idle,
-    TResult Function(_ViewStateLoading<T> value)? loading,
-    TResult Function(_ViewStateData<T> value)? data,
-    TResult Function(_ViewStateError<T> value)? error,
+    TResult? Function(_ViewStateIdle<T> value)? idle,
+    TResult? Function(_ViewStateLoading<T> value)? loading,
+    TResult? Function(_ViewStateData<T> value)? data,
+    TResult? Function(_ViewStateError<T> value)? error,
   }) {
     return idle?.call(this);
   }
@@ -211,14 +210,11 @@ abstract class _$$_ViewStateLoadingCopyWith<T, $Res> {
 
 /// @nodoc
 class __$$_ViewStateLoadingCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res>
+    extends _$ViewStateCopyWithImpl<T, $Res, _$_ViewStateLoading<T>>
     implements _$$_ViewStateLoadingCopyWith<T, $Res> {
   __$$_ViewStateLoadingCopyWithImpl(_$_ViewStateLoading<T> _value,
       $Res Function(_$_ViewStateLoading<T>) _then)
-      : super(_value, (v) => _then(v as _$_ViewStateLoading<T>));
-
-  @override
-  _$_ViewStateLoading<T> get _value => super._value as _$_ViewStateLoading<T>;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -254,10 +250,10 @@ class _$_ViewStateLoading<T> extends _ViewStateLoading<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(T value)? data,
-    TResult Function(String message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(T value)? data,
+    TResult? Function(String message)? error,
   }) {
     return loading?.call();
   }
@@ -291,10 +287,10 @@ class _$_ViewStateLoading<T> extends _ViewStateLoading<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ViewStateIdle<T> value)? idle,
-    TResult Function(_ViewStateLoading<T> value)? loading,
-    TResult Function(_ViewStateData<T> value)? data,
-    TResult Function(_ViewStateError<T> value)? error,
+    TResult? Function(_ViewStateIdle<T> value)? idle,
+    TResult? Function(_ViewStateLoading<T> value)? loading,
+    TResult? Function(_ViewStateData<T> value)? data,
+    TResult? Function(_ViewStateError<T> value)? error,
   }) {
     return loading?.call(this);
   }
@@ -325,26 +321,25 @@ abstract class _$$_ViewStateDataCopyWith<T, $Res> {
   factory _$$_ViewStateDataCopyWith(
           _$_ViewStateData<T> value, $Res Function(_$_ViewStateData<T>) then) =
       __$$_ViewStateDataCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({T value});
 }
 
 /// @nodoc
 class __$$_ViewStateDataCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res>
+    extends _$ViewStateCopyWithImpl<T, $Res, _$_ViewStateData<T>>
     implements _$$_ViewStateDataCopyWith<T, $Res> {
   __$$_ViewStateDataCopyWithImpl(
       _$_ViewStateData<T> _value, $Res Function(_$_ViewStateData<T>) _then)
-      : super(_value, (v) => _then(v as _$_ViewStateData<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ViewStateData<T> get _value => super._value as _$_ViewStateData<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = freezed,
   }) {
     return _then(_$_ViewStateData<T>(
-      value == freezed
+      freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as T,
@@ -379,6 +374,7 @@ class _$_ViewStateData<T> extends _ViewStateData<T> {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViewStateDataCopyWith<T, _$_ViewStateData<T>> get copyWith =>
       __$$_ViewStateDataCopyWithImpl<T, _$_ViewStateData<T>>(this, _$identity);
 
@@ -396,10 +392,10 @@ class _$_ViewStateData<T> extends _ViewStateData<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(T value)? data,
-    TResult Function(String message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(T value)? data,
+    TResult? Function(String message)? error,
   }) {
     return data?.call(value);
   }
@@ -433,10 +429,10 @@ class _$_ViewStateData<T> extends _ViewStateData<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ViewStateIdle<T> value)? idle,
-    TResult Function(_ViewStateLoading<T> value)? loading,
-    TResult Function(_ViewStateData<T> value)? data,
-    TResult Function(_ViewStateError<T> value)? error,
+    TResult? Function(_ViewStateIdle<T> value)? idle,
+    TResult? Function(_ViewStateLoading<T> value)? loading,
+    TResult? Function(_ViewStateData<T> value)? data,
+    TResult? Function(_ViewStateError<T> value)? error,
   }) {
     return data?.call(this);
   }
@@ -472,26 +468,25 @@ abstract class _$$_ViewStateErrorCopyWith<T, $Res> {
   factory _$$_ViewStateErrorCopyWith(_$_ViewStateError<T> value,
           $Res Function(_$_ViewStateError<T>) then) =
       __$$_ViewStateErrorCopyWithImpl<T, $Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
 class __$$_ViewStateErrorCopyWithImpl<T, $Res>
-    extends _$ViewStateCopyWithImpl<T, $Res>
+    extends _$ViewStateCopyWithImpl<T, $Res, _$_ViewStateError<T>>
     implements _$$_ViewStateErrorCopyWith<T, $Res> {
   __$$_ViewStateErrorCopyWithImpl(
       _$_ViewStateError<T> _value, $Res Function(_$_ViewStateError<T>) _then)
-      : super(_value, (v) => _then(v as _$_ViewStateError<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ViewStateError<T> get _value => super._value as _$_ViewStateError<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$_ViewStateError<T>(
-      message == freezed
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -517,15 +512,15 @@ class _$_ViewStateError<T> extends _ViewStateError<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ViewStateError<T> &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ViewStateErrorCopyWith<T, _$_ViewStateError<T>> get copyWith =>
       __$$_ViewStateErrorCopyWithImpl<T, _$_ViewStateError<T>>(
           this, _$identity);
@@ -544,10 +539,10 @@ class _$_ViewStateError<T> extends _ViewStateError<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function()? loading,
-    TResult Function(T value)? data,
-    TResult Function(String message)? error,
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(T value)? data,
+    TResult? Function(String message)? error,
   }) {
     return error?.call(message);
   }
@@ -581,10 +576,10 @@ class _$_ViewStateError<T> extends _ViewStateError<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ViewStateIdle<T> value)? idle,
-    TResult Function(_ViewStateLoading<T> value)? loading,
-    TResult Function(_ViewStateData<T> value)? data,
-    TResult Function(_ViewStateError<T> value)? error,
+    TResult? Function(_ViewStateIdle<T> value)? idle,
+    TResult? Function(_ViewStateLoading<T> value)? loading,
+    TResult? Function(_ViewStateData<T> value)? data,
+    TResult? Function(_ViewStateError<T> value)? error,
   }) {
     return error?.call(this);
   }
