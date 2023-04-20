@@ -1,8 +1,13 @@
-import { useCallback } from "react";
+import { isLoggedInAtom } from "@/store/jotaiAtoms";
+import { useSetAtom } from "jotai";
+import jwtDecode from "jwt-decode";
+import { useCallback, useMemo } from "react";
 import { useLocalStorage } from "react-use";
 import { LoginResponse } from "./../network/models/loginResponse";
 
 const useAuth = () => {
+  const setIsLoggedIn = useSetAtom(isLoggedInAtom);
+
   const [accessToken, setAccessToken, removeAccessToken] =
     useLocalStorage<string>("accessToken", undefined, {
       raw: true,
@@ -15,19 +20,26 @@ const useAuth = () => {
   const logout = useCallback(() => {
     removeAccessToken();
     removeRefreshToken();
-    logout();
+    setIsLoggedIn(false);
   }, []);
 
+  const userId = useMemo(
+    () => (accessToken ? (jwtDecode(accessToken) as any).userId : undefined),
+    [accessToken]
+  );
+
   const login = useCallback((tokens: LoginResponse) => {
-    setRefreshToken(tokens.accessToken);
-    setAccessToken(tokens.refreshToken);
+    setIsLoggedIn(true);
+    setRefreshToken(tokens.refreshToken);
+    setAccessToken(tokens.accessToken);
   }, []);
 
   return {
-    isLoggedIn: !!accessToken,
+    isLoggedIn: !!userId,
     login,
     logout,
     tokens: { accessToken, refresh: refreshToken },
+    userId,
   };
 };
 

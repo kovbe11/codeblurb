@@ -1,21 +1,30 @@
-import client from "@/network/client";
+import useAuth from "@/hooks/useAuth";
+import client from "@/network/axiosClient";
+import { LoginResponse } from "@/network/models/loginResponse";
 import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import Loader from "../common/Loader";
 
 const LoginPage: FC = () => {
-  const navigate = useNavigate();
-
+  const { login: saveTokens } = useAuth();
   const { mutate: login, isLoading } = useMutation({
     mutationKey: [`/login/`],
-    mutationFn: () =>
-      client.post("/auth/login/", {
+    mutationFn: async () => {
+      const response = await client.post<LoginResponse>("/auth/login/", {
         username: "admin",
         password: "admin",
-      }),
-    onSuccess: () => navigate("/home", { replace: true }),
-    onError: (error) => console.log(error),
+      });
+      //   saveTokens(response.data);
+    },
+    onError: (error) => {
+      //TODO remove following
+      saveTokens({
+        accessToken:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VySWQiOjEsImV4cCI6MTY5OTk5OTk5OX0.apqA1rdc_A41nHHVfKUjqJ9QjSZrDGFRPZMrv2l-rdw",
+        refreshToken:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VySWQiOjEsImV4cCI6MTY5OTk5OTk5OX0.apqA1rdc_A41nHHVfKUjqJ9QjSZrDGFRPZMrv2l-rdw",
+      });
+    },
   });
 
   return (

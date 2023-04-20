@@ -3,14 +3,14 @@ import { useAtomValue } from "jotai";
 import { FC } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-const RequireAuth: FC = () => {
+const RedirectIfLoggedIn: FC = () => {
   const isLoggedIn = useAtomValue(isLoggedInAtom);
   const location = useLocation();
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (isLoggedIn) {
+    return <Navigate to="/home" state={{ from: location }} replace />;
   }
   return <Outlet />;
 };
 
-export default RequireAuth;
+export default RedirectIfLoggedIn;

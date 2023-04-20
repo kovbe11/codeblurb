@@ -11,8 +11,10 @@ const client = axios.create({
 client.interceptors.request.use(async (req) => {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
+
   const isExpired =
-    !accessToken || (jwt_decode(accessToken) as any).exp.diff(dayjs()) < 1;
+    !accessToken ||
+    dayjs((jwt_decode(accessToken) as any).exp * 1000).diff(dayjs()) < 1;
 
   if (!isExpired || !refreshToken) {
     req.headers.Authorization = `Bearer ${accessToken}`;
