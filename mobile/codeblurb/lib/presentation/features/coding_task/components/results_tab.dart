@@ -43,12 +43,12 @@ class ResultsTab extends StatelessWidget {
                   children: [
                     Text(
                       "Tests overall",
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const Spacer(),
                     GestureDetector(
                       onTap: () =>
-                          DefaultTabController.of(context)?.animateTo(1),
+                          DefaultTabController.of(context).animateTo(1),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                             color: Colors.orange.shade700.withOpacity(0.3),

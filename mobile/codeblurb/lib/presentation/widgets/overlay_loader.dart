@@ -20,7 +20,7 @@ class OverlayLoader {
         ],
       ),
     );
-    Overlay.of(context)?.insert(_currentLoader!);
+    Overlay.of(context).insert(_currentLoader!);
   }
 
   static void hide() {

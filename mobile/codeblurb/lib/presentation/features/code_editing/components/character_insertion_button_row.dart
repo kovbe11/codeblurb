@@ -9,7 +9,7 @@ class _CharacterInsertionButtonRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(codeEditingNotifierProvider.notifier);
+    final notifier = ref.watch(codeEditingNotifierProvider("").notifier);
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     return ColoredBox(
       color: Theme.of(context).scaffoldBackgroundColor,

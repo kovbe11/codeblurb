@@ -1,15 +1,18 @@
 import 'package:codeblurb/data/shopping/shopping_repository.dart';
 import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
-  CodeEditingNotifier(String starterCode, this._read)
-      : super(CodeEditingState(code: starterCode));
+part 'code_editing_notifier.g.dart';
+
+@riverpod
+class CodeEditingNotifier extends _$CodeEditingNotifier {
+  @override
+  CodeEditingState build(String starterCode) {
+    return CodeEditingState(code: starterCode);
+  }
 
   late final codeEditingController = TextEditingController(text: state.code);
-
-  final Reader _read;
 
   void setIsFocused(bool value) {
     state = state.copyWith(isFocused: value);
@@ -32,9 +35,8 @@ class CodeEditingNotifier extends StateNotifier<CodeEditingState> {
 
   void insertEqualSign() => _insertCodeToCurrentPosition(
       code: ' = ', cursorOffsetFromInsertionPoint: 3);
-
   void onPress() async {
-    await _read(shoppingRepoProvider).getAvailableShoppingItems();
+    await ref.read(shoppingRepoProvider).getAvailableShoppingItems();
   }
 
   void _insertCodeToCurrentPosition(

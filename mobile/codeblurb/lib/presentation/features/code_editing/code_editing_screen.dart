@@ -1,7 +1,7 @@
 import "package:auto_size_text/auto_size_text.dart";
 import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/core/app_ui_constants.dart';
-import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_notifier_provider.dart';
+import 'package:codeblurb/presentation/features/code_editing/notifier/code_editing_notifier.dart';
 import 'package:codeblurb/presentation/widgets/overlay_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,8 +32,8 @@ class _State extends ConsumerState<CodeEditingScreen> {
     super.didChangeDependencies();
 
     if (mounted) {
-      DefaultTabController.of(context)?.addListener(() {
-        final index = DefaultTabController.of(context)?.index ?? 0;
+      DefaultTabController.of(context).addListener(() {
+        final index = DefaultTabController.of(context).index;
         if (index == 1) {
           _focusField();
         } else {
@@ -65,12 +65,12 @@ class _State extends ConsumerState<CodeEditingScreen> {
     await Future.delayed(const Duration(seconds: 1));
     OverlayLoader.hide();
     // ignore: use_build_context_synchronously
-    DefaultTabController.of(context)?.animateTo(2);
+    DefaultTabController.of(context).animateTo(2);
   }
 
   @override
   Widget build(BuildContext context) {
-    final notifier = ref.watch(codeEditingNotifierProvider.notifier);
+    final notifier = ref.watch(codeEditingNotifierProvider("").notifier);
 
     return _CodeEditingScreenWrapper(
       children: [

@@ -5,15 +5,19 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 
 class Assets {
   Assets._();
 
+  static const String gitkeep = 'assets/.gitkeep';
   static const AssetGenImage codeblurbLogo =
       AssetGenImage('assets/codeblurb_logo.png');
+
+  /// List of all assets
+  List<dynamic> get values => [gitkeep, codeblurbLogo];
 }
 
 class AssetGenImage {
@@ -73,6 +77,8 @@ class AssetGenImage {
       cacheHeight: cacheHeight,
     );
   }
+
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 

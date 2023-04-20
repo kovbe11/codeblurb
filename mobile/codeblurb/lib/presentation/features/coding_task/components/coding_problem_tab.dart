@@ -22,7 +22,7 @@ class CodingProblemTab extends StatelessWidget {
               children: [
                 Text(
                   "Your first Java program",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 10),
                 const TaskDescriptionSection(
@@ -50,7 +50,7 @@ class CodingProblemTab extends StatelessWidget {
           const Spacer(),
           PrimaryButton(
             title: l10n.startChallenge,
-            onTap: () => DefaultTabController.of(context)?.animateTo(1),
+            onTap: () => DefaultTabController.of(context).animateTo(1),
           ),
           SizedBox(height: bottomPadding)
         ],

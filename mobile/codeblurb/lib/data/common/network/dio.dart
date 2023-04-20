@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:codeblurb/core/app_constants.dart';
-import 'package:codeblurb/data/auth/auth_repository.dart';
 import 'package:codeblurb/providers/core_providers.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -20,14 +19,14 @@ final dioProvider = Provider<Dio>(
       _AuthInterceptor(ref.watch(sharedPrefsProvider)),
       InterceptorsWrapper(onError: (error, handler) async {
         if (error.response?.statusCode == 401) {
-          await ref.read(authRepoProvider).refreshToken();
+          // await ref.read(authRepoProvider).refreshToken();
           _retry(error.requestOptions, dio);
         }
         handler.next(error);
       }),
     ]);
 
-    (dio.transformer as DefaultTransformer).jsonDecodeCallback = _parseJson;
+    (dio.transformer as BackgroundTransformer).jsonDecodeCallback = _parseJson;
 
     return dio;
   },
