@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import "package:auto_size_text/auto_size_text.dart";
 import 'package:codeblurb/core/app_colors.dart';
 import 'package:codeblurb/core/app_ui_constants.dart';
@@ -10,6 +11,7 @@ part 'components/character_insertion_button.dart';
 part 'components/character_insertion_button_row.dart';
 part 'components/code_editing_screen_wrapper.dart';
 
+@RoutePage()
 class CodeEditingScreen extends ConsumerStatefulWidget {
   const CodeEditingScreen({super.key});
 
@@ -19,44 +21,15 @@ class CodeEditingScreen extends ConsumerStatefulWidget {
 
 class _State extends ConsumerState<CodeEditingScreen> {
   late final FocusNode node;
-  bool _isFocused = false;
 
   @override
   void initState() {
     super.initState();
-    node = FocusNode();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    if (mounted) {
-      DefaultTabController.of(context).addListener(() {
-        final index = DefaultTabController.of(context).index;
-        if (index == 1) {
-          _focusField();
-        } else {
-          _unfocus();
-        }
-      });
-    }
-  }
-
-  void _focusField() {
-    node.requestFocus();
-    setState(() {
-      _isFocused = true;
-    });
+    node = FocusNode()..requestFocus();
   }
 
   void _unfocus() {
-    if (mounted) {
-      FocusManager.instance.primaryFocus?.unfocus();
-    }
-    setState(() {
-      _isFocused = false;
-    });
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 
   void _runCode() async {
@@ -91,11 +64,10 @@ class _State extends ConsumerState<CodeEditingScreen> {
             ),
           ),
         ),
-        if (_isFocused)
-          _CharacterInsertionButtonRow(
-            onUnfocus: _unfocus,
-            onRunCode: _runCode,
-          ),
+        _CharacterInsertionButtonRow(
+          onUnfocus: _unfocus,
+          onRunCode: _runCode,
+        )
       ],
     );
   }

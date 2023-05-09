@@ -1,41 +1,29 @@
 part of 'app_router.dart';
 
-const _routes = [
-  AutoRoute(page: SplashScreen),
-  AutoRoute(page: LoginScreen, initial: true),
-  AutoRoute(page: RegistrationScreen),
-  AutoRoute(page: CodeEditingScreen),
-  AutoRoute(page: ShoppingCartScreen),
-  AutoRoute(page: CourseDetailsScreen),
-  AutoRoute(page: CreatorProfileScreen),
-  AutoRoute(page: CodingTaskTabsScreen),
+final _routes = [
+  AutoRoute(page: SplashRoute.page),
+  AutoRoute(page: LoginRoute.page, initial: true),
+  AutoRoute(page: RegistrationRoute.page),
+  AutoRoute(page: CodeEditingRoute.page),
+  AutoRoute(page: ShoppingCartRoute.page),
+  AutoRoute(page: CourseDetailsRoute.page),
+  AutoRoute(page: CreatorProfileRoute.page),
+  AutoRoute(page: CodingTaskTabsRoute.page),
   AutoRoute(
     path: '/home',
-    page: HomeScreen,
+    page: HomeRoute.page,
     children: [
       AutoRoute(
         path: 'browse',
-        name: 'BrowseCoursesRouter',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(path: '', page: BrowseCoursesScreen),
-        ],
+        page: BrowseCoursesRouter.page,
       ),
       AutoRoute(
         path: 'my-courses',
-        name: 'MyCoursesRouter',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(path: '', page: MyCoursesScreen),
-        ],
+        page: MyCoursesRouter.page,
       ),
       AutoRoute(
         path: 'settings',
-        name: 'SettingsRouter',
-        page: EmptyRouterPage,
-        children: [
-          AutoRoute(path: '', page: SettingsScreen),
-        ],
+        page: SettingsRouter.page,
       ),
     ],
   ),

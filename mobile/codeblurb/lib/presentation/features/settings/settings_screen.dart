@@ -7,6 +7,7 @@ import 'package:codeblurb/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage(name: "SettingsRouter")
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 

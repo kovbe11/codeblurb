@@ -5,6 +5,7 @@ import 'package:codeblurb/presentation/features/browse_courses/components/course
 import 'package:codeblurb/router/app_router.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage(name: 'BrowseCoursesRouter')
 class BrowseCoursesScreen extends StatelessWidget {
   BrowseCoursesScreen({super.key});
 

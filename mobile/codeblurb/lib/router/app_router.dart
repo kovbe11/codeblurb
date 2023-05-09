@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:codeblurb/presentation/features/browse_courses/browse_courses_screen.dart';
 import 'package:codeblurb/presentation/features/code_editing/code_editing_screen.dart';
 import 'package:codeblurb/presentation/features/coding_task/coding_task_tabs_screen.dart';
@@ -18,8 +17,8 @@ import '../presentation/features/home/home_screen.dart';
 part 'app_router.gr.dart';
 part 'routes.dart';
 
-@CupertinoAutoRouter(
-  routes: _routes,
-  replaceInRouteName: 'Screen,Route',
-)
-class AppRouter extends _$AppRouter {}
+@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => _routes;
+}

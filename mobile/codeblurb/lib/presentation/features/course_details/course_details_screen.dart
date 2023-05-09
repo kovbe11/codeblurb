@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:codeblurb/presentation/features/course_details/components/buy_course_section.dart';
 import 'package:codeblurb/presentation/features/course_details/components/course_creation_section.dart';
 import 'package:codeblurb/presentation/features/course_details/components/curriculum_section.dart';
@@ -5,6 +6,7 @@ import 'package:codeblurb/presentation/features/course_details/components/rating
 import 'package:codeblurb/presentation/widgets/image_card.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class CourseDetailsScreen extends StatelessWidget {
   const CourseDetailsScreen({super.key});
 

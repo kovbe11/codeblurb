@@ -16,6 +16,7 @@ import 'notifier/login_notifier_provider.dart';
 
 part 'components/login_form.dart';
 
+@RoutePage()
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 

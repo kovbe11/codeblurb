@@ -1,291 +1,139 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'app_router.dart';
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    SplashRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const SplashScreen(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const LoginScreen(),
-      );
-    },
-    RegistrationRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const RegistrationScreen(),
-      );
-    },
     CodeEditingRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CodeEditingScreen(),
       );
     },
-    ShoppingCartRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const ShoppingCartScreen(),
-      );
-    },
     CourseDetailsRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CourseDetailsScreen(),
       );
     },
-    CreatorProfileRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const CreatorProfileScreen(),
-      );
-    },
-    CodingTaskTabsRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const CodingTaskTabsScreen(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    BrowseCoursesRouter.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const EmptyRouterPage(),
-      );
-    },
-    MyCoursesRouter.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const EmptyRouterPage(),
-      );
-    },
     SettingsRouter.name: (routeData) {
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: const EmptyRouterPage(),
-      );
-    },
-    BrowseCoursesRoute.name: (routeData) {
-      final args = routeData.argsAs<BrowseCoursesRouteArgs>(
-          orElse: () => const BrowseCoursesRouteArgs());
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: BrowseCoursesScreen(key: args.key),
-      );
-    },
-    MyCoursesRoute.name: (routeData) {
-      final args = routeData.argsAs<MyCoursesRouteArgs>(
-          orElse: () => const MyCoursesRouteArgs());
-      return CupertinoPageX<dynamic>(
-        routeData: routeData,
-        child: MyCoursesScreen(key: args.key),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return CupertinoPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SettingsScreen(),
       );
     },
+    HomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeScreen(),
+      );
+    },
+    RegistrationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegistrationScreen(),
+      );
+    },
+    CreatorProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreatorProfileScreen(),
+      );
+    },
+    BrowseCoursesRouter.name: (routeData) {
+      final args = routeData.argsAs<BrowseCoursesRouterArgs>(
+          orElse: () => const BrowseCoursesRouterArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: BrowseCoursesScreen(key: args.key),
+      );
+    },
+    CodingTaskTabsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CodingTaskTabsScreen(),
+      );
+    },
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
+    },
+    MyCoursesRouter.name: (routeData) {
+      final args = routeData.argsAs<MyCoursesRouterArgs>(
+          orElse: () => const MyCoursesRouterArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MyCoursesScreen(key: args.key),
+      );
+    },
+    ShoppingCartRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ShoppingCartScreen(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LoginScreen(),
+      );
+    },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          SplashRoute.name,
-          path: '/splash-screen',
-        ),
-        RouteConfig(
-          LoginRoute.name,
-          path: '/',
-        ),
-        RouteConfig(
-          RegistrationRoute.name,
-          path: '/registration-screen',
-        ),
-        RouteConfig(
-          CodeEditingRoute.name,
-          path: '/code-editing-screen',
-        ),
-        RouteConfig(
-          ShoppingCartRoute.name,
-          path: '/shopping-cart-screen',
-        ),
-        RouteConfig(
-          CourseDetailsRoute.name,
-          path: '/course-details-screen',
-        ),
-        RouteConfig(
-          CreatorProfileRoute.name,
-          path: '/creator-profile-screen',
-        ),
-        RouteConfig(
-          CodingTaskTabsRoute.name,
-          path: '/coding-task-tabs-screen',
-        ),
-        RouteConfig(
-          HomeRoute.name,
-          path: '/home',
-          children: [
-            RouteConfig(
-              BrowseCoursesRouter.name,
-              path: 'browse',
-              parent: HomeRoute.name,
-              children: [
-                RouteConfig(
-                  BrowseCoursesRoute.name,
-                  path: '',
-                  parent: BrowseCoursesRouter.name,
-                )
-              ],
-            ),
-            RouteConfig(
-              MyCoursesRouter.name,
-              path: 'my-courses',
-              parent: HomeRoute.name,
-              children: [
-                RouteConfig(
-                  MyCoursesRoute.name,
-                  path: '',
-                  parent: MyCoursesRouter.name,
-                )
-              ],
-            ),
-            RouteConfig(
-              SettingsRouter.name,
-              path: 'settings',
-              parent: HomeRoute.name,
-              children: [
-                RouteConfig(
-                  SettingsRoute.name,
-                  path: '',
-                  parent: SettingsRouter.name,
-                )
-              ],
-            ),
-          ],
-        ),
-      ];
-}
-
-/// generated route for
-/// [SplashScreen]
-class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute()
-      : super(
-          SplashRoute.name,
-          path: '/splash-screen',
-        );
-
-  static const String name = 'SplashRoute';
-}
-
-/// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute()
-      : super(
-          LoginRoute.name,
-          path: '/',
-        );
-
-  static const String name = 'LoginRoute';
-}
-
-/// generated route for
-/// [RegistrationScreen]
-class RegistrationRoute extends PageRouteInfo<void> {
-  const RegistrationRoute()
-      : super(
-          RegistrationRoute.name,
-          path: '/registration-screen',
-        );
-
-  static const String name = 'RegistrationRoute';
 }
 
 /// generated route for
 /// [CodeEditingScreen]
 class CodeEditingRoute extends PageRouteInfo<void> {
-  const CodeEditingRoute()
+  const CodeEditingRoute({List<PageRouteInfo>? children})
       : super(
           CodeEditingRoute.name,
-          path: '/code-editing-screen',
+          initialChildren: children,
         );
 
   static const String name = 'CodeEditingRoute';
-}
 
-/// generated route for
-/// [ShoppingCartScreen]
-class ShoppingCartRoute extends PageRouteInfo<void> {
-  const ShoppingCartRoute()
-      : super(
-          ShoppingCartRoute.name,
-          path: '/shopping-cart-screen',
-        );
-
-  static const String name = 'ShoppingCartRoute';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [CourseDetailsScreen]
 class CourseDetailsRoute extends PageRouteInfo<void> {
-  const CourseDetailsRoute()
+  const CourseDetailsRoute({List<PageRouteInfo>? children})
       : super(
           CourseDetailsRoute.name,
-          path: '/course-details-screen',
+          initialChildren: children,
         );
 
   static const String name = 'CourseDetailsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [CreatorProfileScreen]
-class CreatorProfileRoute extends PageRouteInfo<void> {
-  const CreatorProfileRoute()
+/// [SettingsScreen]
+class SettingsRouter extends PageRouteInfo<void> {
+  const SettingsRouter({List<PageRouteInfo>? children})
       : super(
-          CreatorProfileRoute.name,
-          path: '/creator-profile-screen',
+          SettingsRouter.name,
+          initialChildren: children,
         );
 
-  static const String name = 'CreatorProfileRoute';
-}
+  static const String name = 'SettingsRouter';
 
-/// generated route for
-/// [CodingTaskTabsScreen]
-class CodingTaskTabsRoute extends PageRouteInfo<void> {
-  const CodingTaskTabsRoute()
-      : super(
-          CodingTaskTabsRoute.name,
-          path: '/coding-task-tabs-screen',
-        );
-
-  static const String name = 'CodingTaskTabsRoute';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -294,108 +142,152 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
       : super(
           HomeRoute.name,
-          path: '/home',
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [EmptyRouterPage]
-class BrowseCoursesRouter extends PageRouteInfo<void> {
-  const BrowseCoursesRouter({List<PageRouteInfo>? children})
+/// [RegistrationScreen]
+class RegistrationRoute extends PageRouteInfo<void> {
+  const RegistrationRoute({List<PageRouteInfo>? children})
       : super(
-          BrowseCoursesRouter.name,
-          path: 'browse',
+          RegistrationRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'BrowseCoursesRouter';
+  static const String name = 'RegistrationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [EmptyRouterPage]
-class MyCoursesRouter extends PageRouteInfo<void> {
-  const MyCoursesRouter({List<PageRouteInfo>? children})
+/// [CreatorProfileScreen]
+class CreatorProfileRoute extends PageRouteInfo<void> {
+  const CreatorProfileRoute({List<PageRouteInfo>? children})
       : super(
-          MyCoursesRouter.name,
-          path: 'my-courses',
+          CreatorProfileRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MyCoursesRouter';
-}
+  static const String name = 'CreatorProfileRoute';
 
-/// generated route for
-/// [EmptyRouterPage]
-class SettingsRouter extends PageRouteInfo<void> {
-  const SettingsRouter({List<PageRouteInfo>? children})
-      : super(
-          SettingsRouter.name,
-          path: 'settings',
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingsRouter';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [BrowseCoursesScreen]
-class BrowseCoursesRoute extends PageRouteInfo<BrowseCoursesRouteArgs> {
-  BrowseCoursesRoute({Key? key})
-      : super(
-          BrowseCoursesRoute.name,
-          path: '',
-          args: BrowseCoursesRouteArgs(key: key),
+class BrowseCoursesRouter extends PageRouteInfo<BrowseCoursesRouterArgs> {
+  BrowseCoursesRouter({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BrowseCoursesRouter.name,
+          args: BrowseCoursesRouterArgs(key: key),
+          initialChildren: children,
         );
 
-  static const String name = 'BrowseCoursesRoute';
+  static const String name = 'BrowseCoursesRouter';
+
+  static const PageInfo<BrowseCoursesRouterArgs> page =
+      PageInfo<BrowseCoursesRouterArgs>(name);
 }
 
-class BrowseCoursesRouteArgs {
-  const BrowseCoursesRouteArgs({this.key});
+class BrowseCoursesRouterArgs {
+  const BrowseCoursesRouterArgs({this.key});
 
   final Key? key;
 
   @override
   String toString() {
-    return 'BrowseCoursesRouteArgs{key: $key}';
+    return 'BrowseCoursesRouterArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [CodingTaskTabsScreen]
+class CodingTaskTabsRoute extends PageRouteInfo<void> {
+  const CodingTaskTabsRoute({List<PageRouteInfo>? children})
+      : super(
+          CodingTaskTabsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CodingTaskTabsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [MyCoursesScreen]
-class MyCoursesRoute extends PageRouteInfo<MyCoursesRouteArgs> {
-  MyCoursesRoute({Key? key})
-      : super(
-          MyCoursesRoute.name,
-          path: '',
-          args: MyCoursesRouteArgs(key: key),
+class MyCoursesRouter extends PageRouteInfo<MyCoursesRouterArgs> {
+  MyCoursesRouter({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MyCoursesRouter.name,
+          args: MyCoursesRouterArgs(key: key),
+          initialChildren: children,
         );
 
-  static const String name = 'MyCoursesRoute';
+  static const String name = 'MyCoursesRouter';
+
+  static const PageInfo<MyCoursesRouterArgs> page =
+      PageInfo<MyCoursesRouterArgs>(name);
 }
 
-class MyCoursesRouteArgs {
-  const MyCoursesRouteArgs({this.key});
+class MyCoursesRouterArgs {
+  const MyCoursesRouterArgs({this.key});
 
   final Key? key;
 
   @override
   String toString() {
-    return 'MyCoursesRouteArgs{key: $key}';
+    return 'MyCoursesRouterArgs{key: $key}';
   }
 }
 
 /// generated route for
-/// [SettingsScreen]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute()
+/// [ShoppingCartScreen]
+class ShoppingCartRoute extends PageRouteInfo<void> {
+  const ShoppingCartRoute({List<PageRouteInfo>? children})
       : super(
-          SettingsRoute.name,
-          path: '',
+          ShoppingCartRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'SettingsRoute';
+  static const String name = 'ShoppingCartRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginScreen]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
