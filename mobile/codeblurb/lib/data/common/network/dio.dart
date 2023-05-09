@@ -1,45 +1,53 @@
-import 'dart:convert';
-
 import 'package:codeblurb/core/app_constants.dart';
+import 'package:codeblurb/data/auth/models/refresh_token_request.dart';
+import 'package:codeblurb/data/auth/models/refresh_token_response.dart';
 import 'package:codeblurb/providers/core_providers.dart';
+import 'package:codeblurb/utils/typedefs.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_interceptor.dart';
-part 'dio_utils.dart';
+
+final errorProvider = AutoDisposeNotifierProvider<ErrorNotifier, void>(
+  ErrorNotifier.new,
+);
+
+class ErrorNotifier extends AutoDisposeNotifier<void> {
+  @override
+  void build() {}
+
+  void onError() {
+    state = null;
+  }
+
+  @override
+  bool updateShouldNotify(void previous, void next) => true;
+}
 
 final dioProvider = Provider<Dio>(
   (ref) {
-    final dio = Dio(BaseOptions(baseUrl: AppConstants.baseUrl));
-    dio.interceptors.addAll([
-      if (!kReleaseMode) PrettyDioLogger(requestBody: true, responseBody: true),
-      _AuthInterceptor(ref.watch(sharedPrefsProvider)),
-      InterceptorsWrapper(onError: (error, handler) async {
-        if (error.response?.statusCode == 401) {
-          // await ref.read(authRepoProvider).refreshToken();
-          _retry(error.requestOptions, dio);
-        }
-        handler.next(error);
-      }),
-    ]);
-
-    (dio.transformer as BackgroundTransformer).jsonDecodeCallback = _parseJson;
-
+    final dio = Dio(
+      BaseOptions(baseUrl: AppConstants.baseUrl),
+    )
+      ..interceptors.addAll([
+        if (!kReleaseMode) PrettyDioLogger(requestBody: true),
+        AuthInterceptor(
+          ref.watch(sharedPrefsProvider),
+          onUnauthorized: ref.read(errorProvider.notifier).onError,
+        ),
+        QueuedInterceptorsWrapper(
+          onError: (e, handler) {
+            FirebaseCrashlytics.instance.recordError(e.error, e.stackTrace);
+            return handler.reject(e);
+          },
+        )
+      ])
+      ..transformer = BackgroundTransformer();
     return dio;
   },
-  name: 'Dio Provider',
+  name: 'Dio',
 );
-
-Future<Response<dynamic>> _retry(RequestOptions requestOptions, Dio dio) async {
-  final options = Options(
-    method: requestOptions.method,
-    headers: requestOptions.headers,
-  );
-  return dio.request<dynamic>(requestOptions.path,
-      data: requestOptions.data,
-      queryParameters: requestOptions.queryParameters,
-      options: options);
-}

@@ -16,6 +16,7 @@ import '../../../generated/l10n.dart';
 
 part 'components/registration_form.dart';
 
+@RoutePage()
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
 

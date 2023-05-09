@@ -1,8 +1,10 @@
+import 'package:auto_route/annotations.dart';
 import 'package:codeblurb/data/shopping/models/minimal_content_bundle_response.dart';
 import 'package:codeblurb/data/shopping/models/shopping_item_response.dart';
 import 'package:codeblurb/presentation/features/my_courses/components/my_courses_list_item.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage(name: 'MyCoursesRouter')
 class MyCoursesScreen extends StatelessWidget {
   MyCoursesScreen({super.key});
 
