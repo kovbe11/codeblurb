@@ -10,11 +10,17 @@ const LoginPage: FC = () => {
   const { mutate: login, isLoading } = useMutation({
     mutationKey: [`/login/`],
     mutationFn: async () => {
-      const response = await client.post<LoginResponse>("/auth/login/", {
+      const response = await client.post<LoginResponse>("/auth/register/", {
         username: "admin",
         password: "admin",
       });
-      //   saveTokens(response.data);
+      // saveTokens(response.data);
+      // saveTokens({
+      //   accessToken:
+      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VySWQiOjEsImV4cCI6MTY5OTk5OTk5OX0.apqA1rdc_A41nHHVfKUjqJ9QjSZrDGFRPZMrv2l-rdw",
+      //   refreshToken:
+      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJ1c2VySWQiOjEsImV4cCI6MTY5OTk5OTk5OX0.apqA1rdc_A41nHHVfKUjqJ9QjSZrDGFRPZMrv2l-rdw",
+      // });
     },
     onError: (error) => {
       //TODO remove following

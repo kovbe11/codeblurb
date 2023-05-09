@@ -9,3 +9,12 @@ export type TArrayKeys<T> = {
 export type TObjectKeys<T> = {
   [K in keyof T]: T[K] extends Object ? K : never;
 }[keyof T];
+
+export type TInformationType = "info" | "danger" | "warning" | "success";
+
+export type THelp = {
+  type: TInformationType;
+  message: string;
+};
+
+export type TDraggableCategory = "all" | "solution";

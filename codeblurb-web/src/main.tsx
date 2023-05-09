@@ -5,16 +5,11 @@ import {
   QueryKey,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { I18nextProvider } from "react-i18next";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import "./index.css";
 
 const defaultQueryFn = ({ queryKey }: { queryKey: QueryKey }) =>
@@ -32,16 +27,16 @@ export const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <I18nextProvider i18n={i18n}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <BrowserRouter>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </I18nextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <I18nextProvider i18n={i18n}>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </I18nextProvider>
+  // </React.StrictMode>
 );

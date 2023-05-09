@@ -1,3 +1,4 @@
+import LandingPage from "@/components/landing/LandingPage";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
@@ -9,7 +10,7 @@ const App: FC = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<div>Landing page</div>} />
+        <Route path="/" element={<LandingPage />} />
         <Route element={<RedirectIfLoggedIn />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<div>Sign up page</div>} />
