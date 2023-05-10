@@ -6,6 +6,7 @@ import hu.codeblurb.backend.controller.mapper.ShopMapper;
 import hu.codeblurb.backend.service.ShoppingCartService;
 import hu.codeblurb.backend.service.ShoppingItemService;
 import hu.codeblurb.backend.service.dto.ShoppingItemResult;
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,17 +29,17 @@ public class ShoppingCartController {
 
     @PreAuthorize("authorizationService.customerHasNotBoughtShoppingItem(#shoppingCartItem)")
     @PostMapping("/add-item/{shoppingCartItem}")
+    @Timed(value = "codeblurb.shopping.add-item")
     public ShoppingCartResponse addItemToShoppingCart(@PathVariable Integer shoppingCartItem) {
         shoppingCartService.addItemToCart(shoppingCartItem);
-        return null;
-        //TODO
+        return restoreShoppingCart();
     }
 
     @DeleteMapping("/delete-item/{shoppingCartItem}")
+    @Timed(value = "codeblurb.shopping.delete-item")
     public ShoppingCartResponse removeItemFromShoppingCart(@PathVariable Integer shoppingCartItem) {
         shoppingCartService.removeItemFromCart(shoppingCartItem);
-        return null;
-        //TODO
+        return restoreShoppingCart();
     }
 
     @GetMapping("/restore-shopping-cart")
@@ -48,6 +49,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/available-shopping-items")
+    @Timed(value = "codeblurb.shopping.available-items")
     public GetAvailableShoppingItemsResponse getAvailableShoppingItems() {
         final var shoppingItems = shoppingCartService.getAvailableShoppingItems();
         return new GetAvailableShoppingItemsResponse(mapper.mapShoppingItems(shoppingItems));

@@ -15,5 +15,13 @@ spring:
       ddl-auto: update
     show-sql: false
     generate-ddl: true
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
 codeblurb:
   secret-key: CodeBlurbSecretKey1234

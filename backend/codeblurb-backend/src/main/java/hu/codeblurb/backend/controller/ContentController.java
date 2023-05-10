@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.micrometer.core.annotation.Timed;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -37,12 +38,14 @@ public class ContentController {
     private final ContentMapper mapper;
 
     @GetMapping("/my-content-bundles")
+    @Timed(value = "codeblurb.content.mycontent")
     public MyContentBundlesResponse getMyContentBundles() {
         final var contentBundles = contentService.getPurchasedContentBundles();
         return new MyContentBundlesResponse(mapper.mapContentBundles(contentBundles));
     }
 
     @GetMapping("/my-content-bundles/separated")
+    @Timed(value = "codeblurb.content.mycontent")
     public MyContentBundlesSeparatedResponse getMyContentBundlesSeparated() {
         final var contentBundles = mapper.mapContentBundles(contentService.getPurchasedContentBundles());
         final var separatedContentBundles = separateContentBundles(contentBundles);
@@ -51,6 +54,7 @@ public class ContentController {
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/code/scratch-solution/{contentId}")
+    @Timed(value = "codeblurb.content.code-solution")
     public CodeSolutionResponse runSolutionFor(@PathVariable Integer contentId, @Valid @RequestBody CodeSolutionRequest code) {
         contentService.runCodeSolutionFor(contentId, code.code());
         return null;
@@ -58,6 +62,7 @@ public class ContentController {
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/code/code-quiz-solution/{contentId}")
+    @Timed(value = "codeblurb.content.code-quiz-solution")
     public CodeQuizSolutionResponse checkCodeQuizSolutionFor(@PathVariable Integer contentId, @Valid @RequestBody CodeQuizSolutionRequest code) {
         contentService.checkCodeQuizSolutionFor(contentId, code.solutionsByIndex());
         return null;
@@ -65,6 +70,7 @@ public class ContentController {
 
     @PreAuthorize("authorizationService.customerHasAccessToContent(#contentId)")
     @PostMapping("/quiz/solution/{contentId}")
+    @Timed(value = "codeblurb.content.quiz-solution")
     public QuizSolutionResponse checkSolutionForQuiz(@PathVariable Integer contentId,
                                                      @Valid @RequestBody QuizSolutionRequest quizSolutionRequest) {
         final var result = contentService.checkSolutionForQuiz(contentId, quizSolutionRequest);
