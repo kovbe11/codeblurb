@@ -17,5 +17,3 @@ spring:
     generate-ddl: true
 codeblurb:
   secret-key: CodeBlurbSecretKey1234
-
-
