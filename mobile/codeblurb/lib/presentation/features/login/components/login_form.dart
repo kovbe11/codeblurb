@@ -69,7 +69,7 @@ class _LoginForm extends ConsumerWidget {
           const SizedBox(height: 24),
           PrimaryButton(
             title: l10n.signIn,
-            onTap: () => context.router.replace(const HomeRoute()),
+            onTap: () => notifier.login(context),
           ),
           const SizedBox(height: 24),
           SecondaryButton(

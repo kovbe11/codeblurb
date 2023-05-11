@@ -1,12 +1,26 @@
 import CodeEditor from "@/components/codeEditing/CodeEditor";
 import DragAndDropTask from "@/components/dragAndDrop/DragAndDropTask";
 import FillInTheGapsTask from "@/components/fillInTheGaps/FillInTheGapsTask";
+import client from "@/network/axiosClient";
+import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
 
 const LandingPage: FC = () => {
+  const { mutate, isLoading } = useMutation({
+    mutationKey: [`cart`],
+    mutationFn: async () => {
+      const response = await client.get<any>(
+        "shopping/available-shopping-items"
+      );
+      console.log(response.data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
   return (
     <div className="flex flex-col items-center justify-center gap-5">
-      <p>LandingPage</p>
+      <p onClick={() => mutate()}>LandingPage</p>
       <CodeEditor />
       <DragAndDropTask />
       <FillInTheGapsTask
@@ -23,6 +37,21 @@ const LandingPage: FC = () => {
           "dolor sit amet",
           "egyketha negyothat hetnyolckilenc",
           "blablablabla",
+        ]}
+        solutions={[
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
         ]}
       />
     </div>
