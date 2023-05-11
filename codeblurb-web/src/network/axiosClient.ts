@@ -11,11 +11,9 @@ const client = axios.create({
 
 client.interceptors.request.use(async (req) => {
   const accessToken = localStorage.getItem("accessToken");
-  console.log(accessToken);
   if (accessToken) {
     req.headers.Authorization = `Bearer ${accessToken}`;
   }
-  console.log(req, "asdf");
   return req;
 });
 
@@ -25,7 +23,6 @@ client.interceptors.response.use(
   },
   async (error) => {
     const originalConfig = error.config;
-    console.log(originalConfig);
     if (error.response?.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       const refreshToken = localStorage.getItem("refreshToken");
@@ -36,7 +33,6 @@ client.interceptors.response.use(
           refreshToken,
         }
       );
-      console.log(response);
       localStorage.setItem("accessToken", response.data.accessToken ?? "");
       localStorage.setItem("refreshToken", response.data.refreshToken ?? "");
 
