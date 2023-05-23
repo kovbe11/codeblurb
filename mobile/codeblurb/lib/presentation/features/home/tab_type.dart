@@ -10,9 +10,9 @@ enum TabType {
   PageRouteInfo<dynamic> get route {
     switch (this) {
       case TabType.browseCourses:
-        return const BrowseCoursesRouter();
+        return BrowseCoursesRouter();
       case TabType.myCourses:
-        return const MyCoursesRouter();
+        return MyCoursesRouter();
       case TabType.settings:
         return const SettingsRouter();
     }

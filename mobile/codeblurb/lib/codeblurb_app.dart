@@ -20,11 +20,12 @@ class CodeblurbApp extends StatelessWidget {
         S.delegate,
         ...GlobalMaterialLocalizations.delegates
       ],
-      routerDelegate: router.delegate(
+
+      // routeInformationParser: router.defaultRouteParser(),
+      routerConfig: router.config(
         navigatorObservers: () =>
             [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
       ),
-      routeInformationParser: router.defaultRouteParser(),
       builder: (_, page) => _PageWrapper(child: page!),
     );
   }

@@ -55,7 +55,6 @@ class _RegistrationForm extends ConsumerWidget {
             label: l10n.password,
             validator: Validators.password,
             autofillHints: const [AutofillHints.password],
-            onSubmit: () => notifier.register(context),
           ),
           const SizedBox(height: 24),
           InputField(
@@ -64,8 +63,6 @@ class _RegistrationForm extends ConsumerWidget {
             isSecureField: true,
             label: l10n.confirmPassword,
             validator: (String? value) {
-              log(value ?? '');
-              log(notifier.passwordController.text);
               return Validators.confirmPassword(
                   notifier.passwordController.text)(value);
             },

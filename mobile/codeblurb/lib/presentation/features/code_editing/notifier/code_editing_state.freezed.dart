@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'code_editing_state.dart';
 
@@ -29,39 +29,42 @@ mixin _$CodeEditingState {
 abstract class $CodeEditingStateCopyWith<$Res> {
   factory $CodeEditingStateCopyWith(
           CodeEditingState value, $Res Function(CodeEditingState) then) =
-      _$CodeEditingStateCopyWithImpl<$Res>;
+      _$CodeEditingStateCopyWithImpl<$Res, CodeEditingState>;
+  @useResult
   $Res call({String code, int cursorPosition, bool isFocused});
 }
 
 /// @nodoc
-class _$CodeEditingStateCopyWithImpl<$Res>
+class _$CodeEditingStateCopyWithImpl<$Res, $Val extends CodeEditingState>
     implements $CodeEditingStateCopyWith<$Res> {
   _$CodeEditingStateCopyWithImpl(this._value, this._then);
 
-  final CodeEditingState _value;
   // ignore: unused_field
-  final $Res Function(CodeEditingState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
-    Object? cursorPosition = freezed,
-    Object? isFocused = freezed,
+    Object? code = null,
+    Object? cursorPosition = null,
+    Object? isFocused = null,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      cursorPosition: cursorPosition == freezed
+      cursorPosition: null == cursorPosition
           ? _value.cursorPosition
           : cursorPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      isFocused: isFocused == freezed
+      isFocused: null == isFocused
           ? _value.isFocused
           : isFocused // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -72,36 +75,35 @@ abstract class _$$_CodeEditingStateCopyWith<$Res>
           _$_CodeEditingState value, $Res Function(_$_CodeEditingState) then) =
       __$$_CodeEditingStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String code, int cursorPosition, bool isFocused});
 }
 
 /// @nodoc
 class __$$_CodeEditingStateCopyWithImpl<$Res>
-    extends _$CodeEditingStateCopyWithImpl<$Res>
+    extends _$CodeEditingStateCopyWithImpl<$Res, _$_CodeEditingState>
     implements _$$_CodeEditingStateCopyWith<$Res> {
   __$$_CodeEditingStateCopyWithImpl(
       _$_CodeEditingState _value, $Res Function(_$_CodeEditingState) _then)
-      : super(_value, (v) => _then(v as _$_CodeEditingState));
+      : super(_value, _then);
 
-  @override
-  _$_CodeEditingState get _value => super._value as _$_CodeEditingState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
-    Object? cursorPosition = freezed,
-    Object? isFocused = freezed,
+    Object? code = null,
+    Object? cursorPosition = null,
+    Object? isFocused = null,
   }) {
     return _then(_$_CodeEditingState(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      cursorPosition: cursorPosition == freezed
+      cursorPosition: null == cursorPosition
           ? _value.cursorPosition
           : cursorPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      isFocused: isFocused == freezed
+      isFocused: null == isFocused
           ? _value.isFocused
           : isFocused // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -135,21 +137,19 @@ class _$_CodeEditingState implements _CodeEditingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CodeEditingState &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality()
-                .equals(other.cursorPosition, cursorPosition) &&
-            const DeepCollectionEquality().equals(other.isFocused, isFocused));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.cursorPosition, cursorPosition) ||
+                other.cursorPosition == cursorPosition) &&
+            (identical(other.isFocused, isFocused) ||
+                other.isFocused == isFocused));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(cursorPosition),
-      const DeepCollectionEquality().hash(isFocused));
+  int get hashCode => Object.hash(runtimeType, code, cursorPosition, isFocused);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CodeEditingStateCopyWith<_$_CodeEditingState> get copyWith =>
       __$$_CodeEditingStateCopyWithImpl<_$_CodeEditingState>(this, _$identity);
 }
