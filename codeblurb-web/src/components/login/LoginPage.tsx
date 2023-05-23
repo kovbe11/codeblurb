@@ -1,10 +1,7 @@
 import Loader from "@/components/common/Loader";
-import useAuth from "@/hooks/useAuth";
-import client from "@/network/axiosClient";
+import { useLogin } from "@/hooks/useLogin";
 import { LoginRequest } from "@/network/models/loginRequest";
-import { LoginResponse } from "@/network/models/loginResponse";
 import clsxm from "@/utils/clsxm";
-import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
 
 import { useForm } from "react-hook-form";
@@ -17,22 +14,11 @@ const LoginPage: FC = () => {
     formState: { errors },
   } = useForm<LoginRequest>();
 
-  const onSubmit = handleSubmit(() => login());
+  const { login, isLoading } = useLogin(() =>
+    console.log("error while logging in")
+  );
 
-  const { login: saveTokens } = useAuth();
-  const { mutate: login, isLoading } = useMutation({
-    mutationKey: [`login`],
-    mutationFn: async () => {
-      const response = await client.post<LoginResponse>(
-        "auth/login",
-        getValues()
-      );
-      saveTokens(response.data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  const onSubmit = handleSubmit(() => login(getValues()));
 
   return (
     <form

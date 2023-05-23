@@ -1,14 +1,13 @@
-import useAuth from "@/hooks/useAuth";
-import { isLoggedInAtom } from "@/store/jotaiAtoms";
+import { useLogout } from "@/hooks/useLogout";
+import useTokenStore from "@/store/token";
 import clsxm from "@/utils/clsxm";
-import { useAtomValue } from "jotai";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "./common/Logo";
 
 const NavigationBar: FC = () => {
-  const { logout } = useAuth();
-  const isLoggedIn = useAtomValue(isLoggedInAtom);
+  const logout = useLogout();
+  const isLoggedIn = useTokenStore(useCallback((state) => !!state.userId, []));
 
   return (
     <nav
@@ -84,7 +83,7 @@ const NavigationBar: FC = () => {
             Profile Icon
           </NavLink>
           <button
-            onClick={logout}
+            onClick={() => logout()}
             className={clsxm(
               "flex items-center justify-center text-black transition-all duration-100 hover:scale-105"
             )}
