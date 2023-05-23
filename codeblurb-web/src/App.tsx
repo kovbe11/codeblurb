@@ -2,6 +2,9 @@ import LandingPage from "@/components/landing/LandingPage";
 import SignUpPage from "@/components/signUp/SignUpPage";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/autoplay";
 import {
   default as CourseDetailsPage,
   default as CourseTaskPage,

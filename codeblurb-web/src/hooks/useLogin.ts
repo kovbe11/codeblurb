@@ -17,6 +17,9 @@ export const useLogin = (onError: () => void) => {
     mutationFn: async (data: { username: string; password: string }) => {
       return await axiosClient.post<TTokens>("/auth/login", data);
     },
+    meta: {
+      showToast: false,
+    },
     onSuccess: (data) => {
       setAccessToken(data.data.accessToken);
       setRefreshToken(data.data.refreshToken);

@@ -23,3 +23,12 @@ export type TTokens = {
   accessToken: string;
   refreshToken: string;
 };
+
+export type TCourseInfo = {
+  id: number;
+  title: string;
+  technology: string;
+  rating: number;
+  image: string;
+  price: number;
+};

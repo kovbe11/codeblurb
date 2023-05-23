@@ -17,6 +17,9 @@ export const useLogout = () => {
         skipAuthRefresh: true,
       } as AxiosAuthRefreshRequestConfig);
     },
+    meta: {
+      showToast: false,
+    },
     onSettled: () => {
       logout();
       navigate("/", { state: { from: "" } });
