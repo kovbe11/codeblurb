@@ -1,7 +1,6 @@
 import Loader from "@/components/common/Loader";
-import useAuth from "@/hooks/useAuth";
+import { useLogin } from "@/hooks/useLogin";
 import client from "@/network/axiosClient";
-import { LoginResponse } from "@/network/models/loginResponse";
 import { RegisterRequest } from "@/network/models/registerRequest";
 import clsxm from "@/utils/clsxm";
 import { useMutation } from "@tanstack/react-query";
@@ -17,18 +16,14 @@ const SignUpPage: FC = () => {
     formState: { errors },
   } = useForm<RegisterRequest & { confirmPassword: string }>();
 
-  const onSubmit = handleSubmit(() => login());
+  const onSubmit = handleSubmit(() => signUp());
 
-  const { login: saveTokens } = useAuth();
-  const { mutate: login, isLoading } = useMutation({
+  const { login } = useLogin(() => console.log("error logging in"));
+  const { mutate: signUp, isLoading } = useMutation({
     mutationKey: [`register`],
     mutationFn: async () => {
       await client.post("auth/register", getValues());
-      const loginResponse = await client.post<LoginResponse>(
-        "auth/login",
-        getValues()
-      );
-      saveTokens(loginResponse.data);
+      await login(getValues());
     },
     onError: (error) => {
       console.log(error);
