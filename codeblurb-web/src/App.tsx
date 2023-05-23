@@ -1,8 +1,10 @@
 import LandingPage from "@/components/landing/LandingPage";
 import SignUpPage from "@/components/signUp/SignUpPage";
+import "rc-slider/assets/index.css";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 import "swiper/css";
 import "swiper/css/autoplay";
 import {

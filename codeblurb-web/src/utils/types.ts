@@ -32,3 +32,5 @@ export type TCourseInfo = {
   image: string;
   price: number;
 };
+
+export type TOverflow = "unspecified" | "right" | "left";
