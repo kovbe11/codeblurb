@@ -2,7 +2,16 @@ import LandingPage from "@/components/landing/LandingPage";
 import SignUpPage from "@/components/signUp/SignUpPage";
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
+import {
+  default as CourseDetailsPage,
+  default as CourseTaskPage,
+} from "./components/courseDetails/CourseDetailsPage";
+import ExplorePage from "./components/explore/ExplorePage";
+import HomePage from "./components/home/HomePage";
 import LoginPage from "./components/login/LoginPage";
+import MyCoursesPage from "./components/myCourses/MyCoursesPage";
+import ProfilePage from "./components/profile/ProfilePage";
+import ShoppingCartPage from "./components/shoppingCart/ShoppingCartPage";
 import Layout from "./routing/Layout";
 import RedirectIfLoggedIn from "./routing/RedirectIfLoggedIn";
 import RequireAuth from "./routing/RequireAuth";
@@ -18,14 +27,16 @@ const App: FC = () => {
         </Route>
 
         <Route element={<RequireAuth />}>
-          <Route path="/home" element={<div>Home page</div>} />
-          <Route path="/explore" element={<div>explore page</div>} />
-          <Route path="/my-courses" element={<div>my-courses page</div>} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/my-courses" element={<MyCoursesPage />} />
+          <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/course/:courseId" element={<CourseDetailsPage />} />
           <Route
-            path="/shopping-cart"
-            element={<div>shopping-cart page</div>}
+            path="/course/:courseId/task/:taskId"
+            element={<CourseTaskPage />}
           />
-          <Route path="/profile" element={<div>Profile page</div>} />
         </Route>
       </Route>
     </Routes>
