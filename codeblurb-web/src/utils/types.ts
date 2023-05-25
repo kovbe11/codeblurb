@@ -24,6 +24,14 @@ export type TTokens = {
   refreshToken: string;
 };
 
+export type TCourseSection = {
+  id: number;
+  title: string;
+  subtitle: string;
+  estimatedTime: number;
+  type: "video" | "coding" | "quiz" | "article";
+};
+
 export type TCourseInfo = {
   id: number;
   title: string;
@@ -34,3 +42,11 @@ export type TCourseInfo = {
 };
 
 export type TOverflow = "unspecified" | "right" | "left";
+
+export type TReview = {
+  id: number;
+  name: string;
+  rating: number;
+  comment: string;
+  date: string;
+};

@@ -1,5 +1,230 @@
-import { TCourseInfo } from "./types";
+import { TCourseInfo, TReview } from "./types";
 
+export const dummyReviews: TReview[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    rating: 5,
+    comment:
+      "This course is amazing! It covers advanced JavaScript topics in a clear and concise manner. Highly recommended!",
+    date: "2023-05-01",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    rating: 4,
+    comment:
+      "The course content is comprehensive and well-structured. I found the explanations easy to follow. Great job!",
+    date: "2023-05-05",
+  },
+  {
+    id: 3,
+    name: "Chris Johnson",
+    rating: 5,
+    comment:
+      "I'm impressed with the depth of topics covered in this course. The quizzes helped solidify my understanding. Excellent resource!",
+    date: "2023-05-08",
+  },
+  {
+    id: 4,
+    name: "Sarah Thompson",
+    rating: 3,
+    comment:
+      "While the videos were informative, I felt that some concepts were not explained in enough detail. Could be improved.",
+    date: "2023-05-10",
+  },
+  {
+    id: 5,
+    name: "David Wilson",
+    rating: 5,
+    comment:
+      "The coding challenges were challenging yet enjoyable. I appreciated the practical exercises. Highly recommend this course!",
+    date: "2023-05-15",
+  },
+  {
+    id: 6,
+    name: "Emily Brown",
+    rating: 4,
+    comment:
+      "The articles provided a great overview of the topics. However, I would have liked to see more coding examples. Overall, good course.",
+    date: "2023-05-18",
+  },
+  {
+    id: 7,
+    name: "Michael Davis",
+    rating: 5,
+    comment:
+      "I found the interview preparation section extremely helpful. The mock interviews gave me the confidence I needed. Great content!",
+    date: "2023-05-20",
+  },
+  {
+    id: 8,
+    name: "Melissa Anderson",
+    rating: 2,
+    comment:
+      "I was disappointed with the lack of real-world examples in the course. It felt too theoretical. Needs improvement.",
+    date: "2023-05-22",
+  },
+  {
+    id: 9,
+    name: "Robert Turner",
+    rating: 5,
+    comment:
+      "The course covers a wide range of advanced JavaScript topics. The explanations were clear, and the quizzes helped reinforce the concepts. Highly recommend!",
+    date: "2023-05-23",
+  },
+  {
+    id: 10,
+    name: "Amanda Lee",
+    rating: 4,
+    comment:
+      "The videos were engaging, and the instructors did a great job explaining complex concepts. The course enhanced my understanding of JavaScript. Good course overall!",
+    date: "2023-05-25",
+  },
+];
+
+export const dummySections = [
+  {
+    id: 1,
+    title: "Advanced JavaScript Topics",
+    subtitle: "Closures and Lexical Scope",
+    estimatedTime: 180,
+    type: "article",
+  },
+  {
+    id: 2,
+    title: "Asynchronous JavaScript",
+    subtitle: "Promises and Async/Await",
+    estimatedTime: 150,
+    type: "video",
+  },
+  {
+    id: 3,
+    title: "Functional Programming in JavaScript",
+    subtitle: "Higher-Order Functions",
+    estimatedTime: 120,
+    type: "article",
+  },
+  {
+    id: 4,
+    title: "Object-Oriented Programming in JavaScript",
+    subtitle: "Prototypes and Prototypal Inheritance",
+    estimatedTime: 180,
+    type: "video",
+  },
+  {
+    id: 5,
+    title: "JavaScript Design Patterns",
+    subtitle: "Module Pattern",
+    estimatedTime: 150,
+    type: "article",
+  },
+  {
+    id: 6,
+    title: "JavaScript Testing",
+    subtitle: "Unit Testing with Jest",
+    estimatedTime: 120,
+    type: "video",
+  },
+  {
+    id: 7,
+    title: "Data Manipulation and APIs",
+    subtitle: "Working with JSON Data",
+    estimatedTime: 150,
+    type: "article",
+  },
+  {
+    id: 8,
+    title: "Browser APIs and DOM Manipulation",
+    subtitle: "Local Storage and Session Storage",
+    estimatedTime: 180,
+    type: "video",
+  },
+  {
+    id: 9,
+    title: "Error Handling and Debugging",
+    subtitle: "Error Handling Techniques",
+    estimatedTime: 120,
+    type: "article",
+  },
+  {
+    id: 10,
+    title: "Interview Preparation",
+    subtitle: "Common JavaScript Interview Questions",
+    estimatedTime: 240,
+    type: "article",
+  },
+  {
+    id: 11,
+    title: "JavaScript Arrays",
+    subtitle: "Array Manipulation",
+    estimatedTime: 90,
+    type: "coding",
+  },
+  {
+    id: 12,
+    title: "ES6 Modules",
+    subtitle: "Module Syntax",
+    estimatedTime: 60,
+    type: "article",
+  },
+  {
+    id: 13,
+    title: "Regular Expressions in JavaScript",
+    subtitle: "Pattern Matching",
+    estimatedTime: 120,
+    type: "video",
+  },
+  {
+    id: 14,
+    title: "Error Handling in Promises",
+    subtitle: "Handling Errors in Asynchronous Code",
+    estimatedTime: 90,
+    type: "coding",
+  },
+  {
+    id: 15,
+    title: "JavaScript Scope",
+    subtitle: "Lexical Scope and Hoisting",
+    estimatedTime: 120,
+    type: "article",
+  },
+  {
+    id: 16,
+    title: "JavaScript Event Handlers",
+    subtitle: "Event Handling Techniques",
+    estimatedTime: 90,
+    type: "coding",
+  },
+  {
+    id: 17,
+    title: "Using Fetch API",
+    subtitle: "Making HTTP Requests",
+    estimatedTime: 120,
+    type: "video",
+  },
+  {
+    id: 18,
+    title: "Object Destructuring",
+    subtitle: "Extracting Values from Objects",
+    estimatedTime: 60,
+    type: "coding",
+  },
+  {
+    id: 19,
+    title: "Working with Dates in JavaScript",
+    subtitle: "Date Manipulation and Formatting",
+    estimatedTime: 90,
+    type: "article",
+  },
+  {
+    id: 20,
+    title: "Debugging JavaScript Code",
+    subtitle: "Common Debugging Techniques",
+    estimatedTime: 120,
+    type: "quiz",
+  },
+];
 export const dummyCourses: TCourseInfo[] = [
   {
     id: 1,

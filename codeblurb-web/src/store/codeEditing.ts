@@ -63,7 +63,7 @@ const useCodeEditingStore = create<TState>()(
         });
       },
     })),
-    { name: "codeEditingStore" }
+    { name: "Code Editing Store" }
   )
 );
 

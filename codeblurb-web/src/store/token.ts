@@ -71,7 +71,8 @@ export const useTokenStore = create<TState>()(
           set((_) => initialState, false, "useTokenStore/reset");
           localStorage.removeItem("token-storage");
         },
-      }))
+      })),
+      { name: "Token Store" }
     ),
     {
       name: "token-store",
