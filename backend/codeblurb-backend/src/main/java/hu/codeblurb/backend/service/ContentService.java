@@ -50,12 +50,11 @@ public class ContentService {
 
 
     public void runCodeSolutionFor(Integer contentId, String code) {
-        final var coding = codingRepository.findById(contentId)
-                .filter(it -> it.getCodingContentType() == CodingContent.CodingContentType.SCRATCH)
-                .orElseThrow(() -> new EntityNotFoundException(CodingContent.class, contentId));
+//        final var coding = codingRepository.findById(contentId)
+//                .filter(it -> it.getCodingContentType() == CodingContent.CodingContentType.SCRATCH)
+//                .orElseThrow(() -> new EntityNotFoundException(CodingContent.class, contentId));
 
-        codeRunnerService.runAndCheckOutputFor(coding, code);
-        //TODO
+        codeRunnerService.runAndCheckOutputFor(null, code);
     }
 
     public QuizSolutionResult checkSolutionForQuiz(Integer contentId, QuizSolutionRequest quizSolutionRequest) {

@@ -17,6 +17,7 @@ public class AuthorizationService {
     private final CustomerService customerService;
 
     public boolean customerHasAccessToContent(Integer contentId) {
+        if(contentId == 0) return true;
         final var content = contentService.getContentById(contentId);
         final var customerId = getCustomerId();
         return customerService.hasCustomerPayedForContent(customerId, content);
