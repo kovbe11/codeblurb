@@ -40,12 +40,13 @@ public class CodingContent extends Content {
         super(null, null, CODING, null);
     }
 
-    public CodingContent(Integer id, String name, String description, List<String> codeSkeleton, List<String> codeSnippets, List<TestCase> testCases) {
+    public CodingContent(Integer id, String name, String description, CodingContentType codingContentType, List<String> codeSkeleton, List<String> codeSnippets, List<TestCase> testCases) {
         super(id, name, CODING, null);
         this.description = description;
         this.codeSkeleton = codeSkeleton;
         this.codeSnippets = codeSnippets;
         this.testCases = testCases;
+        this.codingContentType = codingContentType;
     }
 
     public enum CodingContentType {

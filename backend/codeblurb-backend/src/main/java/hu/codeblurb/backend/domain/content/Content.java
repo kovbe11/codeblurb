@@ -7,12 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 import static javax.persistence.InheritanceType.JOINED;
@@ -31,7 +26,7 @@ public abstract class Content {
     private String name;
     @Column(nullable = false)
     private ContentType contentType;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "includedContent")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "includedContent", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<ContentBundle> contentBundles;
 
     public enum ContentType {

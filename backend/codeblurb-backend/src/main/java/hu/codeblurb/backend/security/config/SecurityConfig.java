@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String TOKEN_REFRESH_URL = "/auth/refresh";
     private static final String REGISTER_URL = "/auth/register";
     private static final String ACTUATOR_URL = "/actuator/**";
+    private static final String SYNC_URL = "/sync";
+
     private final JwtTokenAuthenticationService jwtTokenAuthenticationService;
 
     @Bean
@@ -41,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, TOKEN_REFRESH_URL).permitAll()
                 .antMatchers(HttpMethod.POST, REGISTER_URL).permitAll()
                 .antMatchers(HttpMethod.GET, ACTUATOR_URL).permitAll()
+                .antMatchers(HttpMethod.GET, SYNC_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(

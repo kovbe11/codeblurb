@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'hu.codeblurb'
-version = '0.2'
+version = '0.5'
 sourceCompatibility = '17'
 
 configurations {

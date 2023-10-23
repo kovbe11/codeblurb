@@ -17,7 +17,7 @@ import static hu.codeblurb.backend.domain.content.Content.ContentType.QUIZ;
 @ToString
 public class QuizContent extends Content {
 
-    @OneToMany(mappedBy = "quiz", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "quiz", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<QuizQuestion> questions;
 
     public QuizContent() {

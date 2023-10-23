@@ -3,14 +3,14 @@ spring:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
   datasource:
-    url: jdbc:mysql://${CODEBLURB_DB_HOST:localhost}:3306/codeblurb?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://${CODEBLURB_DB_HOST:localhost}:5432/codeblurb
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: false
@@ -25,3 +25,4 @@ management:
         include: health,metrics,prometheus
 codeblurb:
   secret-key: CodeBlurbSecretKey1234
+  sync-url: http://localhost:1337/api/content-bundles?populate=deep
